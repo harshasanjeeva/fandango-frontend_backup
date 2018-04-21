@@ -4,6 +4,8 @@ import { Button, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,Dro
 import { Route, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import history from './History';
+import Homemain from './Homemain'
+
 class Home extends Component {
 
     constructor(props) {
@@ -26,9 +28,15 @@ class Home extends Component {
     return (
       <div >
   
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+      <div >
+        <Navbar color="dark" light expand="md">
+        <NavbarBrand href="/">
+
+        <img src={require('../images/1050x171.gif')} width="170" height="30" alt="" />
+
+       
+
+        </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -61,12 +69,20 @@ class Home extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+
+        <Homemain />
+
+
+
       </div>
   
       </div>
     );
   }
 }
+
+
+
 const mapStateToProps = (user) => {
   console.log("user-->",user)
 
