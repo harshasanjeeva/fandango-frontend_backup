@@ -43,3 +43,23 @@ export const signup = (payload) =>
             console.log("This is error");
             return error;
         });
+
+export const booking = (payload) =>
+    fetch(`${api}/users/booking`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });

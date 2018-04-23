@@ -114,7 +114,7 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
 
     return {
-        signin: stores.user.sign
+        signin: stores.user.signup_status
     };
 }
 

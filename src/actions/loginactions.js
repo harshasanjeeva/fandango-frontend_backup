@@ -1,6 +1,7 @@
 import * as API from "../api/API";
 export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
+export const BOOK ="BOOK";
 
 
 
@@ -66,6 +67,42 @@ export function Signup(data) {
     console.log(data);
     return {
         type: SIGNUP,
+        message: "inside Signup Actions",
+        data:data
+    }
+}
+
+
+
+
+export function actionbook(userdata) {
+    console.log("in booking");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.booking(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside 2nd try");
+                        dispatch(book(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function book(data) {
+    console.log(data);
+    return {
+        type: BOOK,
         message: "inside Signup Actions",
         data:data
     }

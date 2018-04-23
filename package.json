@@ -10,9 +10,13 @@
     "material-ui-search-bar": "^0.4.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-native": "^0.55.3",
+    "react-player": "^1.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
+    "react-star-rating": "^1.4.2",
+    "react-star-rating-component": "^1.4.1",
     "react-swipeable-views": "^0.12.13",
     "react-tap-event-plugin": "^3.0.2",
     "reactstrap": "^5.0.0-beta.2",
@@ -20,6 +24,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
+    "video-react": "^0.10.4",
     "webpack": "3.11.0"
   },
   "scripts": {

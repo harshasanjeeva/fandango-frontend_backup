@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {actionlogin} from '../actions/loginactions';
-import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import { Link } from 'react-router-dom';
@@ -60,6 +61,43 @@ class Login extends Component {
 
         return (
             <div className="row justify-content-md-center">
+                <div>
+                    <Navbar color="dark" light expand="md">
+                        <NavbarBrand href="/">
+
+                            <img src={require('../images/1050x171.gif')} width="170" height="30" alt="" />
+                            <div>
+
+                            </div>
+
+
+
+                        </NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Options
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        <DropdownItem>
+                                            Option 1
+                                        </DropdownItem>
+                                        <DropdownItem>
+                                            Option 2
+                                        </DropdownItem>
+                                        <DropdownItem divider />
+                                        <DropdownItem>
+                                            Reset
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+                </div>
                 <div className="col-md-4-center">
                 </div>
 
@@ -124,7 +162,7 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        loggedin : stores.user.status,
+        loggedin : stores.user.login_status,
         // userid
     };
 }
