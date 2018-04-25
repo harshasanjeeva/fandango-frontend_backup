@@ -4,7 +4,8 @@ import { Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import Navbarmain from './Navbarmain'
+import { Link } from 'react-router-dom';
+import Navbarmain from './Navbarlogout'
 
 //import history from "./history";
 
@@ -14,6 +15,7 @@ class Login extends Component {
         super(props);
         this.state = {
             email:'',
+            username: '',
             password: '',
             modal: false
         };
@@ -99,7 +101,9 @@ class Login extends Component {
                             <button
                                 className="btn btn-primary"
                                 type="button"
-                                onClick={() => this.props.log(this.state)}>
+                                onClick={() => {
+                                    history.push('/movies');
+                                    this.props.log(this.state)}}>
                                 Login
                             </button>
 

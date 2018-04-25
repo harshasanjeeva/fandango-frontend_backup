@@ -6,9 +6,9 @@ import {connect} from 'react-redux';
 
 class Signup extends Component {
 
-    static propTypes = {
+   /* static propTypes = {
         handleSubmit: PropTypes.func.isRequired
-    };
+    };*/
 
     state = {
         email: '',

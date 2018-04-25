@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Button, Dropdown,Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Route, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
 import Login from "./Login";
 import history from './History';
 import Homemain from './Homemain'
+import '.././App.css';
 
 
 
@@ -16,16 +17,24 @@ class Navbarmain extends Component {
     
         this.toggle = this.toggle.bind(this);
         this.state = {
-          isOpen: false
+       
+          isOpen: false,
+          isOpens: false,
+          isOpensthree: false,
+          dropdownOpen: false,
+          dropdownOpens:false,
+          dropdownOpensthree:false
         };
       }
+
+
       toggle() {
         this.setState({
-          isOpen: !this.state.isOpen
+          isOpen: !this.state.isOpen,
+          dropdownOpen: !this.state.dropdownOpen,
+          // dropdownOpen1:!this.state.dropdownOpen1
         });
       }
-
-
 
   render() {
     return (
@@ -43,32 +52,37 @@ class Navbarmain extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/signup" to="/signup">Signup</NavLink>
-              </NavItem>
-              <NavItem>
-              <NavLink href="/login">Sign In</NavLink>
-            </NavItem>
-              <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+
+
+  
+                <NavItem>
+                    <NavLink onClick={(event) => history.push('/Movies')}>Movies</NavLink>
+                </NavItem>
+
+
+                <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+                My Account
+              </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem header>Options</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem href="/">Tickets</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem href="/payments">Make Payments</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem href="/profile">Profile</DropdownItem>
+
+                    </DropdownMenu>
+                  </Dropdown>
+
+
+                <NavItem>
+                <NavLink href="/">Sign Out</NavLink>
+                </NavItem>
+
+
+
             </Nav>
           </Collapse>
         </Navbar>
@@ -87,13 +101,15 @@ class Navbarmain extends Component {
 
 
 
-const mapStateToProps = (user) => {
-  console.log("user-->",user)
+const mapStateToProps = (state) => {
+    return {
+        user:state.user
+    };
 
 }
 
 
-export default withRouter(connect(mapStateToProps)(Navbarmain));
+export default connect(mapStateToProps)(Navbarmain);
 
 
 // <Route exact path="/login" render={() => (

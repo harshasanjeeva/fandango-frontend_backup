@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Login from "./Login";
 import history from './History';
 import Homemain from './Homemain'
-import Navbarheader from './Navbarmain'
+import Navbarheader from './Navbarlogout'
 
 class Home extends Component {
 
@@ -31,7 +31,11 @@ class Home extends Component {
       <div >
   
       <div >
+
+
+
        <Navbarheader />
+
 
         <Homemain />
 
@@ -48,10 +52,5 @@ class Home extends Component {
 
 
 
-const mapStateToProps = (user) => {
-  console.log("user-->",user)
 
-}
-
-
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(Home);

@@ -22,6 +22,33 @@
   font-size: large;
 }
 
+.listgroupStyle{
+  display:inline-block !important;
+  background-color: bisque;
+}
+.listgroupStyle > li{
+  float:left;
+  background-color: bisque;
+
+}
+
+
+
+.listgroupMovies {
+  margin-top: 20px;
+  display:inline-block !important;
+}
+
+.listgroupMovies > li  {
+  float:left;
+  height:330px;
+  width:200px;
+  margin:20px;
+}
+.ml-auto > li > a {
+    color:white !important;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
