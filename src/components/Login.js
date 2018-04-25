@@ -18,7 +18,7 @@ class Login extends Component {
         this.state = {
             email:'',
             username: '',
-            Passwrd: '',
+            password: '',
             modal: false
         };
         this.toggle = this.toggle.bind(this);
@@ -28,12 +28,6 @@ class Login extends Component {
             modal: !this.state.modal
         });
     }
-
-
-    state = {
-        username: '',
-        password: ''
-    };
 
     componentWillMount(){
         this.setState({
@@ -104,7 +98,7 @@ class Login extends Component {
                                 type="password"
                                 label="password"
                                 placeholder="Enter Password"
-                                value={this.state.passwrd}
+                                value={this.state.password}
                                 onChange={(event) => {
                                     this.setState({
                                         password: event.target.value
