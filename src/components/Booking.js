@@ -152,8 +152,11 @@ class Booking extends Component {
                             <ButtonToolbar>
                             <Button color="info"
                                     onClick={() => this.props.log(this.state)}>7:30 PM</Button>
-                                <Button color="info" bsSize="small
-                                onClick={() => this.props.log(this.state)}">8:00 PM</Button>
+                                <Button color="info" bsSize="small"
+                                onClick={() => {
+                                    history.push('/tickets');
+                                    this.props.log(this.state)
+                                }}>8:00 PM</Button>
 
                                 <Button color="info"
                                         onClick={() => this.props.log(this.state)}>8:30 PM</Button>

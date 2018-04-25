@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Login from "./Login";
 import history from './History';
 import Homemain from './Homemain'
-import Navbarheader from './Navbarmain'
+import Navbarheader from './Navbarlogout'
 
 class Home extends Component {
 

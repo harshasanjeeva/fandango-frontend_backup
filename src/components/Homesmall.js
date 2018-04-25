@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
+
 import {
   Carousel,
   CarouselItem,
@@ -7,27 +8,26 @@ import {
   CarouselIndicators,
   CarouselCaption
 } from 'reactstrap';
-import Homesmall from './Homesmall'
 
 const items = [
   {
-    src: require('../images/5.png'),
+    src:'https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209250/images/masterrepository/fandango/209250/disobedience2018.jpg' ,
     altText: '',
     caption: ''
   },
   {
-    src: require('../images/3.png'),
+    src: 'https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg',
     altText: '',
     caption: ''
   },
   {
-    src: require('../images/7.png'),
+    src: 'https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg',
     altText: '',
     caption: ''
   }
 ];
 
-class Homemain extends Component {
+class Homesmall extends Component {
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
@@ -72,7 +72,7 @@ class Homemain extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} height="250px" width="1100px" />
+          <img src={item.src} alt={item.altText} height="100px" width="100px" />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
     );
@@ -80,7 +80,7 @@ class Homemain extends Component {
 
     return (<div>
         
-<Homesmall />
+
 
         <br />
         <br />
@@ -99,4 +99,4 @@ class Homemain extends Component {
 }
 
 
-export default withRouter((Homemain));;
+export default withRouter((Homesmall));;
