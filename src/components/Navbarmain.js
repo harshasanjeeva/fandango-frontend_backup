@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Login from "./Login";
 import history from './History';
 import Homemain from './Homemain'
+import '.././App.css';
 
 
 
@@ -100,13 +101,15 @@ class Navbarmain extends Component {
 
 
 
-const mapStateToProps = (user) => {
-  console.log("user-->",user)
+const mapStateToProps = (state) => {
+    return {
+        user:state.user
+    };
 
 }
 
 
-export default withRouter(connect(mapStateToProps)(Navbarmain));
+export default connect(mapStateToProps)(Navbarmain);
 
 
 // <Route exact path="/login" render={() => (
