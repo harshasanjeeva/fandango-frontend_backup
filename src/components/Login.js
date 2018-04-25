@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {actionlogin} from '../actions/loginactions';
 import { Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Container, Row, Col, Input} from 'reactstrap';
+import { Button, Card,ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import { Link } from 'react-router-dom';
+import Navbarmain from './Navbarmain'
+
 //import history from "./history";
 
 class Login extends Component {
@@ -60,55 +63,29 @@ class Login extends Component {
 
 
         return (
-            <div className="row justify-content-md-center">
+            <div style={{backgroundColor:"black" ,height: "100% !important"}}>
+            <Navbarmain />
+            <Row>
+            <Col> </Col>
+            <Col>
+            <Card style={{backgroundColor:"black", border: "solid",
+            borderColor: "white"}}>
+            <div>
                 <div>
-                    <Navbar color="dark" light expand="md">
-                        <NavbarBrand href="/">
-
-                            <img src={require('../images/1050x171.gif')} width="170" height="30" alt="" />
-                            <div>
-
-                            </div>
-
-
-
-                        </NavbarBrand>
-                        <NavbarToggler onClick={this.toggle} />
-                        <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
-
-                                <UncontrolledDropdown nav inNavbar>
-                                    <DropdownToggle nav caret>
-                                        Options
-                                    </DropdownToggle>
-                                    <DropdownMenu right>
-                                        <DropdownItem>
-                                            Option 1
-                                        </DropdownItem>
-                                        <DropdownItem>
-                                            Option 2
-                                        </DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>
-                                            Reset
-                                        </DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
-                            </Nav>
-                        </Collapse>
-                    </Navbar>
+                
                 </div>
-                <div className="col-md-4-center">
+                <div >
                 </div>
 
-                <div className="col-md-3">
+                <div >
                     <form>
-                        <div className="form-group">
+                        <div >
+                        <h1 style={{color:"white"}}>FANDANGO </h1>
                             <h1>Login</h1>
                         </div>
-                        <div className="form-group">
-                            <input
-                                className="form-control"
+                        <div >
+                            <Input
+                                
                                 type="text"
                                 label="Username"
                                 placeholder="Enter Address"
@@ -120,10 +97,10 @@ class Login extends Component {
                                 }}
                             />
                         </div>
-
+<br />
                         <div className="form-group">
-                            <input
-                                className="form-control"
+                            <Input
+                                
                                 type="password"
                                 label="password"
                                 placeholder="Enter Password"
@@ -149,6 +126,10 @@ class Login extends Component {
                         </div>
                     </form>
                 </div>
+            </div>
+            </Card>
+            </Col>
+            </Row>
             </div>
         );
     }
