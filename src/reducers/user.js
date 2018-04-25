@@ -28,7 +28,7 @@ const stores= (state = initialState, action) => {
             return {
                 ...state,
                 "stores":{
-                    "username":action.data.username,
+                    "username":action.data.name,
                     "info":action.data.logi,
                     "login_status":action.data.status
                 }

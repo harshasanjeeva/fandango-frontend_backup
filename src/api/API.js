@@ -1,11 +1,11 @@
-const api = 'http://ec2-13-59-81-89.us-east-2.compute.amazonaws.com:3000'
+const api = process.env.REACT_APP_CONTACTS_API_URL ||'http://localhost:3001'
 
 const headers = {
     'Accept': 'application/json'
 };
 
 export const doLogin = (payload) =>
-    fetch(`${api}/users/login`, {
+    fetch(`${api}/operations/login`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -25,7 +25,7 @@ export const doLogin = (payload) =>
         });
 
 export const signup = (payload) =>
-    fetch(`${api}/users/register`, {
+    fetch(`${api}/operations/signup`, {
         method: 'POST',
         headers: {
             ...headers,

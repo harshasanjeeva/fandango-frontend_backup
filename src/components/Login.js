@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {actionlogin} from '../actions/loginactions';
-import { Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { Container, Row, Col, Input} from 'reactstrap';
-import { Button, Card,ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Row, Col, Input} from 'reactstrap';
+import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import { Link } from 'react-router-dom';
 import Navbarmain from './Navbarmain'
 
 //import history from "./history";
@@ -17,8 +14,7 @@ class Login extends Component {
         super(props);
         this.state = {
             email:'',
-            username: '',
-            Passwrd: '',
+            password: '',
             modal: false
         };
         this.toggle = this.toggle.bind(this);
@@ -28,12 +24,6 @@ class Login extends Component {
             modal: !this.state.modal
         });
     }
-
-
-    state = {
-        username: '',
-        password: ''
-    };
 
     componentWillMount(){
         this.setState({
@@ -51,16 +41,8 @@ class Login extends Component {
     render() {
 
         if (this.props.loggedin===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
             this.navigate();
         }
-
-
-
-
-
 
         return (
             <div style={{backgroundColor:"black" ,height: "100% !important"}}>
@@ -104,7 +86,7 @@ class Login extends Component {
                                 type="password"
                                 label="password"
                                 placeholder="Enter Password"
-                                value={this.state.passwrd}
+                                value={this.state.password}
                                 onChange={(event) => {
                                     this.setState({
                                         password: event.target.value
@@ -144,7 +126,6 @@ const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
         loggedin : stores.user.login_status,
-        // userid
-    };
+          };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
