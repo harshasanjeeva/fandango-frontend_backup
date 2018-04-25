@@ -5,7 +5,7 @@ const headers = {
 };
 
 export const doLogin = (payload) =>
-    fetch(`${api}/users/login`, {
+    fetch(`${api}/operations/login`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -25,7 +25,7 @@ export const doLogin = (payload) =>
         });
 
 export const signup = (payload) =>
-    fetch(`${api}/users/register`, {
+    fetch(`${api}/operations/signup`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -45,7 +45,7 @@ export const signup = (payload) =>
         });
 
 export const booking = (payload) =>
-    fetch(`${api}/users/booking`, {
+    fetch(`${api}/operations/booking`, {
         method: 'POST',
         headers: {
             ...headers,

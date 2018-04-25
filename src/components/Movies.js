@@ -15,7 +15,8 @@ class Movies extends Component {
 
         this.state = {
 
-            movieType:""
+            movieType:'',
+            movieId:''
 
         };
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
@@ -23,7 +24,7 @@ class Movies extends Component {
 
     handleMoviesClick = (event,movieId) => {
         event.preventDefault();
-        history.push
+        this.props.history.push
         ({
             pathname: '/booking',
             state: { movieId: movieId }
