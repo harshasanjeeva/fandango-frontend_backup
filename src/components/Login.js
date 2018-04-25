@@ -7,7 +7,7 @@ import { Button, Card,ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMe
 import {connect} from 'react-redux';
 import history from "./History";
 import { Link } from 'react-router-dom';
-import Navbarmain from './Navbarmain'
+import Navbarmain from './Navbarlogout'
 
 //import history from "./history";
 

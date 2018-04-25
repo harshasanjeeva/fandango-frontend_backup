@@ -4,6 +4,8 @@ import '.././App.css';
 
 import {connect} from 'react-redux';
 import history from './History';
+import Navbarmain from './Navbarmain'
+
 let style1={listStyleType: 'none',overflow:'hidden'};
 let style2={float:'left',display:'inline-block'};
 class Movies extends Component {
@@ -50,6 +52,8 @@ class Movies extends Component {
 
     render() {
         return (
+            <div>
+            <Navbarmain />
             <Container className="test">
                 <Row>
                     <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
@@ -110,7 +114,7 @@ class Movies extends Component {
                 </Row>
 
             </Container>
-
+            </div>
 
     );
 

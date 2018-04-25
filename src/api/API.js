@@ -1,4 +1,4 @@
-const api = 'http://ec2-13-59-81-89.us-east-2.compute.amazonaws.com:3000'
+const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:3001'
 
 const headers = {
     'Accept': 'application/json'
