@@ -87,7 +87,7 @@ class Movies extends Component {
                     </Col>
                 </Row>
                 <Row>
-                    <Col><h2 class="heading-size-l heading-style-1 section-header inline">Opening This Week</h2></Col>
+                    <Col><h2 >Opening This Week</h2></Col>
                 </Row>
                 <Row>
                     <ListGroup className="listgroupMovies">

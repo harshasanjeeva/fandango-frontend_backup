@@ -45,6 +45,9 @@
   width:200px;
   margin:20px;
 }
+.ml-auto > li > a {
+    color:white !important;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
