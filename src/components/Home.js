@@ -50,6 +50,11 @@ class Home extends Component {
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
               </NavItem>
+                <NavItem>
+                    <NavLink onClick={(event) => history.push('/Movies')}>
+                        Movies
+                    </NavLink>
+                </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
@@ -94,10 +99,5 @@ class Home extends Component {
 
 
 
-const mapStateToProps = (user) => {
-  console.log("user-->",user)
 
-}
-
-
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(Home);

@@ -6,6 +6,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
 import Booking from "./Booking";
+import Movies from "./Movies"
 import '../App.css';
 import history from "./History";
 
@@ -18,6 +19,7 @@ class Routes extends Component {
                     <Route  path='/login' component={Login}/>
                     <Route  path='/signup' component={Signup}/>
                     <Route  path='/booking' component={Booking}/>
+                    <Route  path='/movies' component={Movies}/>
 
                 </Switch>
             </Router>
