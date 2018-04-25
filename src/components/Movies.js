@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container,Row,Col,ListGroupItem,ListGroup} from 'reactstrap';
+import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
 import '.././App.css';
 
 import {connect} from 'react-redux';
@@ -13,6 +13,8 @@ class Movies extends Component {
 
         this.state = {
 
+            movieType:""
+
         };
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
     }
@@ -21,7 +23,7 @@ class Movies extends Component {
         event.preventDefault();
         history.push
         ({
-            pathname: '/details',
+            pathname: '/booking',
             state: { movieId: movieId }
         });
 
@@ -29,15 +31,25 @@ class Movies extends Component {
 
     renderList()
     {
-        return this.props.movies.map((movie) => {
+
+        const movies=this.props.movies;
+
+        let filteredMovies=movies.filter(
+            (movie) => {
+                return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
+            }
+        );
+        return filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
                 key={movie.movieId}>
                         <img src={movie.movieLink}/>
                     <div >
-                        <a  onClick={(event)=>this.handleMoviesClick(event,movie.movieId)}>
-                            {movie.movieName}<br/>
-                        </a>
+                        <NavLink  onClick={(event)=>{
+
+                            this.handleMoviesClick(event,movie.movieId)}}>
+                            {movie.movieName}
+                        </NavLink>
                         <span>{movie.movieTiming}</span>
                     </div>
 
@@ -60,27 +72,51 @@ class Movies extends Component {
                         <ListGroup className="listgroupStyle" >
 
                             <ListGroupItem>
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Action%2FAdventure">ACTION</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'action'
+                                    })
+                                }}>ACTION</a>
                             </ListGroupItem>
 
                             <ListGroupItem >
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Drama">DRAMA</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'drama'
+                                    })
+                                }}>DRAMA</a>
                             </ListGroupItem>
 
                             <ListGroupItem >
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Comedy">COMEDY</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'comedy'
+                                    })
+                                }}>COMEDY</a>
                             </ListGroupItem>
 
                             <ListGroupItem >
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Comedy">ROMANCE</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'romance'
+                                    })
+                                }}>ROMANCE</a>
                             </ListGroupItem>
 
                             <ListGroupItem>
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Comedy">HORROR</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'horror'
+                                    })
+                                }}>HORROR</a>
                             </ListGroupItem>
 
                             <ListGroupItem >
-                                <a id="GenreName" href="http://www.fandango.com/moviesintheaters?GenreFilter=Comedy">SCI-FI</a>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'sci-fi'
+                                    })
+                                }}>SCI-FI</a>
                             </ListGroupItem>
 
                         </ListGroup>
@@ -97,16 +133,12 @@ class Movies extends Component {
                 </Row>
 
                 <Row>
-                    <div className='col'><h2 class="heading-size-l heading-style-1 section-header inline">Now Playing</h2></div>
+                    <div><h2>Now Playing</h2></div>
                 </Row>
                 <Row>
-                    <Col sm="12" >
                         <ListGroup className="listgroupMovies">
                             {this.renderList()}
                         </ListGroup>
-
-
-                    </Col>
                 </Row>
 
             </Container>
