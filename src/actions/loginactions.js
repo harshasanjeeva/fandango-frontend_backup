@@ -4,7 +4,9 @@ export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
 export const MOVIES ="MOVIES";
 export const GETMOVIES ="GETMOVIES";
-
+export const TICKET ="TICKET";
+export const ADDMOVIES ="ADDMOVIES";
+export const ADDHALL ="ADDHALL";
 
 export function actionlogin(userdata) {
     console.log("in login");
@@ -122,6 +124,7 @@ export function movies(data) {
         data:data
     }
 }
+
 export function actiongetmovies(userdata) {
     console.log("in get movies");
     console.log(userdata);
@@ -151,6 +154,75 @@ export function getmovies(data) {
     return {
         type: GETMOVIES,
         message: "inside GETMOVIES Actions",
+        data:data
+    }
+}
+
+
+
+export function actionaddmovies(userdata) {
+    console.log("in add movies");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.moviesadd(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(addmovies(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function addmovies(data) {
+    console.log(data);
+    return {
+        type: ADDMOVIES,
+        message: "inside movie adding",
+        data:data
+    }
+}
+
+
+export function actionaddhall(userdata) {
+    console.log("in add hall");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.halladd(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved hall response now dispatching to actions");
+                        dispatch(addhall(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function addhall(data) {
+    console.log(data);
+    return {
+        type: ADDHALL,
+        message: "inside hall adding",
         data:data
     }
 }

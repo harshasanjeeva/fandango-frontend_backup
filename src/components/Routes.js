@@ -5,6 +5,10 @@ import Signup from "./Signup";
 import Home from "./Home";
 import Booking from "./Booking";
 import Movies from "./Movies"
+import Tickets from "./Tickets";
+import Addmovies from "./Addmovies";
+import Addhall from "./Addhall";
+
 import '../App.css';
 import history from "./History";
 import Payments from "./Payments";
@@ -23,6 +27,9 @@ class Routes extends Component {
                     <Route  path='/movies' component={Movies}/>
                     <Route  path='/payments' component={Payments}/>
                     <Route  path='/profile' component={Profile}/>
+                    <Route  path='/tickets' component={Tickets}/>
+                    <Route  path='/addmovies' component={Addmovies}/>
+                    <Route  path='/addhall' component={Addhall}/>
                 </Switch>
             </Router>
         );
