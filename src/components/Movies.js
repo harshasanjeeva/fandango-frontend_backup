@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
 import '.././App.css';
-
+import {actionmovies,actiongetmovies} from '../actions/loginactions';
 import {connect} from 'react-redux';
-import history from './History';
 import Navbarmain from './Navbarmain'
 
-let style1={listStyleType: 'none',overflow:'hidden'};
-let style2={float:'left',display:'inline-block'};
+
 class Movies extends Component {
 
     constructor(props) {
@@ -29,20 +27,32 @@ class Movies extends Component {
             pathname: '/booking',
             state: { movieId: movieId }
         });
-
+        this.props.log(movieId)
     }
+
+
+
+    // componentWillMount(){
+    // this.props.getmovies("");
+    // }
+
+
 
     renderList()
     {
 
         const movies=this.props.movies;
-
-        let filteredMovies=movies.filter(
+        var filteredMovies;
+        setTimeout(function(){
+         filteredMovies=movies.filter(
             (movie) => {
-                return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
+                // return movie.movieType.toLowerCase().indexOf(this.props.movie.movieType.toLowerCase())!==-1;
+                return movie
             }
         );
-        return filteredMovies.map((movie) => {
+        },1000)
+
+        return  setTimeout(function(){filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
                 key={movie.movieId}>
@@ -50,7 +60,7 @@ class Movies extends Component {
                     <div >
                         <NavLink  onClick={(event)=>{
 
-                            this.handleMoviesClick(event,movie.movieId)}}>
+                            this.handleMoviesClick(event,movie)}}>
                             {movie.movieName}
                         </NavLink>
                         <span>{movie.movieTiming}</span>
@@ -59,7 +69,7 @@ class Movies extends Component {
                 </ListGroupItem>
 
             );
-        });
+        }); },1000)
     }
 
 
@@ -152,11 +162,33 @@ class Movies extends Component {
     );
 
     }}
-function mapStateToProps(state) {
+
+const mapDispatchToProps =(dispatch)=> {
     return {
-            movies:state.movies
+        log : (data) => dispatch(actionmovies(data)),
+   //     getmovies : (data) => dispatch(actiongetmovies(data))
+    };
+}
+function mapStateToProps(state) {
+    console.log(state);
+
+    return {
+            //movies:state.user.movies.movie_data
+            movies: [ { _id: '5ae11550734d1d48c4cbc875',
+                movieId: 1,
+                movieName: 'Disobedience',
+                movieLink: 'https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209250/images/masterrepository/fandango/209250/disobedience2018.jpg',
+                movieTiming: 'Friday 23 April 2017',
+                movieType: 'Horror' },
+              { _id: '5ae115bb734d1d48c4cbc8a9',
+                movieId: 2,
+                movieName: 'The Test and Art of Thinking',
+                movieLink: 'https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg',
+                movieTiming: 'Friday 23 April 2017',
+                movieType: 'Drama' },
+              ]
     };
 }
 
 
-export default connect(mapStateToProps)(Movies);
+export default connect(mapStateToProps,mapDispatchToProps)(Movies);

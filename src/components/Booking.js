@@ -1,30 +1,24 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {actionbook} from '../actions/loginactions';
 import "../../node_modules/video-react/dist/video-react.css";
-import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import ReactPlayer from 'react-player';
+import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav } from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import image from '../images/5.png';
 import { Player } from 'video-react';
-import StarRating from 'react-star-rating';
-import StarRatingComponent from 'react-star-rating-component';
-import { Link } from 'react-router-dom';
-//import history from "./history";
+import Navbarmain from './Navbarmain';
 
 class Booking extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            date:'April 13 2018',
-            genre: 'action/adventure',
-            theatre: 'Inox Movies',
-            Movie:"Fast and Furious",
+            date:'',
+            genre: '',
+            theatre: '',
+            Movie:"",
             rating: 2,
             timing:""
-
         };
         this.toggle = this.toggle.bind(this);
     }
@@ -34,27 +28,16 @@ class Booking extends Component {
         });
     }
 
-
-
-    state = {
-        date:'April 13 2018',
-        genre: 'action/adventure',
-        theatre: 'Inox Movies',
-        Movie:"Fast and Furious",
-        rating: 2,
-        timing:""
-    };
-
-    componentWillMount(){
-        this.setState({
-            date:'April 13 2018',
-            genre: 'action/adventure',
-            theatre: 'Inox Movies',
-            Movie:"Fast and Furious",
-            rating: 2,
-            timing:""
-        });
-    }
+    // componentWillMount(){
+    //     this.setState({
+    //         date:'April 13 2018',
+    //         genre: 'action/adventure',
+    //         theatre: 'Inox Movies',
+    //         Movie:"Fast and Furious",
+    //         rating: 2,
+    //         timing:""
+    //     });
+    // }
 
     navigate()
     {
@@ -82,41 +65,7 @@ class Booking extends Component {
         return (
             <div className="booking" style={{backgroundColor: "#696969"}}>
                 <div>
-                <Navbar color="dark" light expand="md">
-                    <NavbarBrand href="/">
-
-                        <img src={require('../images/1050x171.gif')} width="170" height="30" alt="" />
-                        <div>
-
-                        </div>
-
-
-
-                    </NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Options
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                    <DropdownItem>
-                                        Option 1
-                                    </DropdownItem>
-                                    <DropdownItem>
-                                        Option 2
-                                    </DropdownItem>
-                                    <DropdownItem divider />
-                                    <DropdownItem>
-                                        Reset
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
+                    <Navbarmain/>
                 </div>
 
                 <div className="row">
@@ -126,13 +75,13 @@ class Booking extends Component {
                         <a href="#"><img src={image} height="200px" width="200px"/></a>
                         <div>
                             <div>
-                                <strong>Movie:</strong> {this.state.Movie}
+                                <strong>Movie:</strong> {this.props.Movie}
                             </div>
                             <div>
-                        <strong>Released:</strong> {this.state.date}
+                        <strong>Released:</strong> {this.props.movieTiming}
                             </div>
                             <div>
-                        <strong>Genre:</strong> {this.state.genre}
+                        <strong>Genre:</strong> {this.props.movieType}
                             </div>
                         <div>
                         <strong>Theatre:</strong> {this.state.theatre}
@@ -152,9 +101,11 @@ class Booking extends Component {
                             <ButtonToolbar>
                             <Button color="info"
                                     onClick={() => this.props.log(this.state)}>7:30 PM</Button>
+
+
                                 <Button color="info" bsSize="small"
                                 onClick={() => {
-                                    history.push('/tickets');
+                                    // history.push('/tickets');
                                     this.props.log(this.state)
                                 }}>8:00 PM</Button>
 
@@ -177,8 +128,7 @@ class Booking extends Component {
                     <Player
                         playsInline
                         poster="/assets/poster.png"
-                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                    />
+                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
 
                 </div>
 
@@ -198,8 +148,10 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        booked : stores.user.booking_status,
-        // userid
+        Movie:stores.user.movies.booking_data.movieName,
+        movieTiming: stores.user.movies.booking_data.movieTiming,
+        movieType: stores.user.movies.booking_data.movieType,
+        movieTiming: stores.user.movies.booking_data.movieTiming
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);

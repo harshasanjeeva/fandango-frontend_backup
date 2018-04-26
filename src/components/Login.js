@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {actionlogin} from '../actions/loginactions';
-import { Modal, ModalBody, ModalFooter } from 'reactstrap';
-import { Container, Row, Col, Input} from 'reactstrap';
-import { Button, Card,ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Row, Col, Input} from 'reactstrap';
+import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import { Link } from 'react-router-dom';
-import Navbarmain from './Navbarlogout'
+import Navbarmain from './Navbarlogout';
+import {actiongetmovies} from '../actions/loginactions';
 
-//import history from "./history";
 
 class Login extends Component {
 
@@ -17,7 +14,6 @@ class Login extends Component {
         super(props);
         this.state = {
             email:'',
-            username: '',
             password: '',
             modal: false
         };
@@ -29,32 +25,23 @@ class Login extends Component {
         });
     }
 
-    componentWillMount(){
-        this.setState({
-            username: '',
-            password: ''
-        });
-    }
 
     navigate()
     {
-        history.push('/');
+        console.log("movies===>")
+       history.push('/movies');
+       var d = {
+        movies:''
+    }
+    this.props.getmovies(d);
     }
 
 
     render() {
 
-        if (this.props.loggedin===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
+        if (this.props.login_status){
             this.navigate();
         }
-
-
-
-
-
 
         return (
             <div style={{backgroundColor:"black" ,height: "100% !important"}}>
@@ -133,14 +120,15 @@ class Login extends Component {
 
 const mapDispatchToProps =(dispatch)=> {
     return {
-        log : (data) => dispatch(actionlogin(data))
+        log : (data) => dispatch(actionlogin(data)),
+        getmovies : (data) => dispatch(actiongetmovies(data))
     };
 }
 const mapStateToProps =(stores)=> {
     console.log(stores);
+    console.log(stores.user.stores.login_status);
     return {
-        loggedin : stores.user.login_status,
-        // userid
-    };
+        login_status :stores.user.stores.login_status
+          };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

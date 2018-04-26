@@ -71,7 +71,7 @@ class Navbarmain extends Component {
                       <DropdownItem divider />
                       <DropdownItem href="/payments">Make Payments</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/profile">Profile</DropdownItem>
+                      <DropdownItem href="/profile" onclick="">Profile</DropdownItem>
 
                     </DropdownMenu>
                   </Dropdown>

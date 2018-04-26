@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 
 import history from "./History";
-import {Input, Card, Row,Col,CardTitle, CardBody,CardHeader,Label,FormGroup,Form} from 'reactstrap';
+import {Input, Card, Row,Col, CardBody,CardHeader} from 'reactstrap';
 import {Button} from 'reactstrap';
 import Navbarmain from './Navbarmain'
 import { Alert } from 'reactstrap';
