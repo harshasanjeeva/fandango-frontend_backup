@@ -41,16 +41,14 @@ class Addmovies extends Component {
 
     navigate()
     {
-        history.push('/');
+        history.push('/addhall');
     }
 
 
     render() {
 
-        if (this.props.add===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
+        if (this.props.add==true){
+    //alert("movie add successfull");
             this.navigate();
         }
 
@@ -260,9 +258,11 @@ const mapDispatchToProps =(dispatch)=> {
     };
 }
 const mapStateToProps =(stores)=> {
+    console.log(stores.user.stores.addmovie_status);
     console.log(stores);
     return {
-        add : stores.user.add_status,
+
+        add : stores.user.stores.addmovie_status,
         adminid : 123,
     };
 }

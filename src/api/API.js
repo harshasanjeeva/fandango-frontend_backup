@@ -108,7 +108,7 @@ export const moviesadd = (payload) =>
 
 
 export const halladd = (payload) =>
-    fetch(`${api}/operations/addmovies`, {
+    fetch(`${api}/operations/addhall`, {
         method: 'POST',
         headers: {
             ...headers,

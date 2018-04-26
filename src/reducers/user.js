@@ -85,16 +85,14 @@ const stores= (state = initialState, action) => {
 
         case ADDMOVIES:
             console.log("im here in add movies store");
-            console.log("in booking:")
-            console.log(action.data.status);
-            console.log("email",action.data.email);
+            console.log("in add movies:")
+            console.log("add movie status",action.data.status);
             console.log(stores)
             return {
                 ...state,
                 "stores":{
 
-                    "addmovie_status":action.data.status,
-                    "movie_id": action.data.movie_id
+                    "addmovie_status":action.data.status
                 }
             }
 
@@ -102,14 +100,12 @@ const stores= (state = initialState, action) => {
             console.log("im here in add hall store");
             console.log("in hall:")
             console.log(action.data.status);
-            console.log("email",action.data.email);
             console.log(stores)
             return {
                 ...state,
                 "stores":{
 
-                    "addhall_status":action.data.status,
-                    "movie_id": action.data.movie_id
+                    "addhall_status":action.data.status
                 }
             }
 

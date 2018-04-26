@@ -149,7 +149,7 @@ export function ticket(data) {
 
 
 export function actionaddmovies(userdata) {
-    console.log("in Ticket Selection");
+    console.log("in add movies");
     console.log(userdata);
     return function (dispatch) {
         try {
@@ -157,7 +157,7 @@ export function actionaddmovies(userdata) {
             API.moviesadd(userdata)
                 .then((response) => {
                     try {
-                        console.log("inside 2nd try");
+                        console.log("recieved response now dispatching to action");
                         dispatch(addmovies(response));
                     }
                     catch (error) {
@@ -183,7 +183,7 @@ export function addmovies(data) {
 
 
 export function actionaddhall(userdata) {
-    console.log("in Ticket Selection");
+    console.log("in add hall");
     console.log(userdata);
     return function (dispatch) {
         try {
@@ -191,7 +191,7 @@ export function actionaddhall(userdata) {
             API.halladd(userdata)
                 .then((response) => {
                     try {
-                        console.log("inside 2nd try");
+                        console.log("recieved hall response now dispatching to actions");
                         dispatch(addhall(response));
                     }
                     catch (error) {

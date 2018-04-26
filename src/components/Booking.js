@@ -152,15 +152,13 @@ class Booking extends Component {
                             <ButtonToolbar>
                             <Button color="info"
                                     onClick={() => this.props.log(this.state)}>7:30 PM</Button>
+
+
                                 <Button color="info" bsSize="small"
-<<<<<<< Updated upstream
                                 onClick={() => {
-                                    history.push('/tickets');
+                                    // history.push('/tickets');
                                     this.props.log(this.state)
                                 }}>8:00 PM</Button>
-=======
-                                onClick={() => this.props.log(this.state)}>8:00 PM</Button>
->>>>>>> Stashed changes
 
                                 <Button color="info"
                                         onClick={(event) =>{
@@ -199,8 +197,7 @@ class Booking extends Component {
                     <Player
                         playsInline
                         poster="/assets/poster.png"
-                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
-                    />
+                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
 
                 </div>
 

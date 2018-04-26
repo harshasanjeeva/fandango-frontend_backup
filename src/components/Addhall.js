@@ -245,7 +245,7 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        add : stores.user.add_status,
+        add : stores.user.stores.addhall_status,
         adminid : 123,
         movieid:456
     };
