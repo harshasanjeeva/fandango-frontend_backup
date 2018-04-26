@@ -63,3 +63,66 @@ export const booking = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+
+export const ticketing = (payload) =>
+    fetch(`${api}/operations/ticketing`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const moviesadd = (payload) =>
+    fetch(`${api}/operations/addmovies`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const halladd = (payload) =>
+    fetch(`${api}/operations/addmovies`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });

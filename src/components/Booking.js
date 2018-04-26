@@ -153,17 +153,39 @@ class Booking extends Component {
                             <Button color="info"
                                     onClick={() => this.props.log(this.state)}>7:30 PM</Button>
                                 <Button color="info" bsSize="small"
+<<<<<<< Updated upstream
                                 onClick={() => {
                                     history.push('/tickets');
                                     this.props.log(this.state)
                                 }}>8:00 PM</Button>
+=======
+                                onClick={() => this.props.log(this.state)}>8:00 PM</Button>
+>>>>>>> Stashed changes
 
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>8:30 PM</Button>
+                                        onClick={(event) =>{
+                                            this.setState({
+                                                timing: event.timing.value
+                                            })
+                                            this.props.log(this.state)
+
+                                        }}>8:30 PM</Button>
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>9:00 PM</Button>
+                                        onClick={(event) =>{
+                                            this.setState({
+                                                timing: event.timing.value
+                                            })
+                                            this.props.log(this.state)
+
+                                        }}>9:30 PM</Button>
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>10:00 PM</Button>
+                                        onClick={(event) =>{
+                                            this.setState({
+                                                timing: event.timing.value
+                                            })
+                                            this.props.log(this.state)
+
+                                        }}>10:30 PM</Button>
                                 <Button color="link"
                                         onClick={() => this.props.log(this.state)}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>

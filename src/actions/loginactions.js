@@ -2,7 +2,9 @@ import * as API from "../api/API";
 export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
-
+export const TICKET ="TICKET";
+export const ADDMOVIES ="ADDMOVIES";
+export const ADDHALL ="ADDHALL";
 
 
 
@@ -104,6 +106,111 @@ export function book(data) {
     return {
         type: BOOK,
         message: "inside Signup Actions",
+        data:data
+    }
+}
+
+
+
+
+export function actionticket(userdata) {
+    console.log("in Ticket Selection");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.ticketing(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside 2nd try");
+                        dispatch(ticket(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function ticket(data) {
+    console.log(data);
+    return {
+        type: TICKET,
+        message: "inside ticket Actions",
+        data:data
+    }
+}
+
+
+
+export function actionaddmovies(userdata) {
+    console.log("in Ticket Selection");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.moviesadd(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside 2nd try");
+                        dispatch(addmovies(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function addmovies(data) {
+    console.log(data);
+    return {
+        type: ADDMOVIES,
+        message: "inside movie adding",
+        data:data
+    }
+}
+
+
+export function actionaddhall(userdata) {
+    console.log("in Ticket Selection");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.halladd(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside 2nd try");
+                        dispatch(addhall(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function addhall(data) {
+    console.log(data);
+    return {
+        type: ADDHALL,
+        message: "inside hall adding",
         data:data
     }
 }
