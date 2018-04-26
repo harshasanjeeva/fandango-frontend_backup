@@ -63,3 +63,45 @@ export const booking = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+
+//============================editProfile=====================
+       
+export const editProfile = (payload) =>
+    fetch(`${api}/operations/editprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log("here in api myprojectDesc proposal"); 
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+  
+export const getmovies = (payload) =>
+fetch(`${api}/operations/getmovies`, {
+    method: 'POST',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+    .then(response => {
+
+        return response;
+    })
+    .catch(error => {
+        console.log("This is error");
+        return error;
+    });

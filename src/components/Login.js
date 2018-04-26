@@ -112,7 +112,7 @@ class Login extends Component {
                                 className="btn btn-primary"
                                 type="button"
                                 onClick={() => {
-                                    history.push('/movies');
+                                    
                                     this.props.log(this.state)}}>
                                 Login
                             </button>

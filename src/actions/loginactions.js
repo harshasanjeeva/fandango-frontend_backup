@@ -1,7 +1,10 @@
 import * as API from "../api/API";
+
 export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
+export const EDIT_PROFILE ="EDIT_PROFILE";
+
 
 
 
@@ -107,3 +110,44 @@ export function book(data) {
         data:data
     }
 }
+
+
+//==================editProfile==============start
+export function editProfile(userDeails) {
+    console.log("in myprojectDesc-->",userDeails);
+    return function(dispatch){
+        try {
+        API.editProfile(userDeails)
+        .then((response) => {
+            try {
+                console.log("in myprojectDesc 2");
+                dispatch(editProfile2(response));
+        }
+        catch(error){
+console.log(error)
+        }
+        });
+} catch (error) {
+    console.log(error)
+}
+    }
+
+};
+
+
+export function editProfile2(resData) {
+    
+    console.log("PROJECT_DESC 2-->actions",resData)
+        
+    return {
+            type: EDIT_PROFILE,
+            msg:"Project edit",
+            status:true,
+            data:resData
+        }
+        
+}
+
+//==================editProfile==============start
+
+
