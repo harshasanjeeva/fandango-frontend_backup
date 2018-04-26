@@ -4,10 +4,8 @@ import { Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import { Link } from 'react-router-dom';
 import Navbarmain from './Navbarlogout'
 
-//import history from "./history";
 
 class Login extends Component {
 
@@ -15,7 +13,6 @@ class Login extends Component {
         super(props);
         this.state = {
             email:'',
-            username: '',
             password: '',
             modal: false
         };
@@ -27,22 +24,16 @@ class Login extends Component {
         });
     }
 
-    componentWillMount(){
-        this.setState({
-            username: '',
-            password: ''
-        });
-    }
 
     navigate()
     {
-        history.push('/');
+        history.push('/movies');
     }
 
 
     render() {
 
-        if (this.props.loggedin===true){
+        if (this.props.login_status){
             this.navigate();
         }
 
@@ -102,7 +93,6 @@ class Login extends Component {
                                 className="btn btn-primary"
                                 type="button"
                                 onClick={() => {
-                                    history.push('/movies');
                                     this.props.log(this.state)}}>
                                 Login
                             </button>
@@ -128,8 +118,9 @@ const mapDispatchToProps =(dispatch)=> {
 }
 const mapStateToProps =(stores)=> {
     console.log(stores);
+    console.log(stores.user.stores.login_status);
     return {
-        loggedin : stores.user.login_status,
+        login_status :stores.user.stores.login_status
           };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

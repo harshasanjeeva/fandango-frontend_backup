@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import { Row,Col,Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { Jumbotron,Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle} from 'reactstrap';
+import { Row,Col, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Card,  CardBody, CardTitle} from 'reactstrap';
 import NavHeaderLogin from './Navbarmain';
 import history from './History'
-import { Link } from 'react-router-dom';
 
 
 

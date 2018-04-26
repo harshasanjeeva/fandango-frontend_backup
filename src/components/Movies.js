@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
 import '.././App.css';
-
+import {actionmovies,actiongetmovies} from '../actions/loginactions';
 import {connect} from 'react-redux';
-import history from './History';
 import Navbarmain from './Navbarmain'
 
-let style1={listStyleType: 'none',overflow:'hidden'};
-let style2={float:'left',display:'inline-block'};
+
 class Movies extends Component {
 
     constructor(props) {
@@ -29,20 +27,25 @@ class Movies extends Component {
             pathname: '/booking',
             state: { movieId: movieId }
         });
-
+        this.props.log(movieId)
     }
-
+    componentWillMount(){
+    this.props.getmovies("");
+    }
     renderList()
     {
 
         const movies=this.props.movies;
-
-        let filteredMovies=movies.filter(
+        var filteredMovies;
+        setTimeout(function(){
+         filteredMovies=movies.filter(
             (movie) => {
                 return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
             }
         );
-        return filteredMovies.map((movie) => {
+        },500)
+
+        return  setTimeout(function(){filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
                 key={movie.movieId}>
@@ -50,7 +53,7 @@ class Movies extends Component {
                     <div >
                         <NavLink  onClick={(event)=>{
 
-                            this.handleMoviesClick(event,movie.movieId)}}>
+                            this.handleMoviesClick(event,movie)}}>
                             {movie.movieName}
                         </NavLink>
                         <span>{movie.movieTiming}</span>
@@ -59,7 +62,7 @@ class Movies extends Component {
                 </ListGroupItem>
 
             );
-        });
+        }); },1000)
     }
 
 
@@ -152,11 +155,19 @@ class Movies extends Component {
     );
 
     }}
-function mapStateToProps(state) {
+
+const mapDispatchToProps =(dispatch)=> {
     return {
-            movies:state.movies
+        log : (data) => dispatch(actionmovies(data)),
+        getmovies : (data) => dispatch(actiongetmovies(data))
+    };
+}
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+            movies:state.user.movies.movie_data
     };
 }
 
 
-export default connect(mapStateToProps)(Movies);
+export default connect(mapStateToProps,mapDispatchToProps)(Movies);

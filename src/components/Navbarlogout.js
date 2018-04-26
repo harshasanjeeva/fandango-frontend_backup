@@ -25,8 +25,6 @@ class Navbarlogout extends Component {
         });
       }
 
-
-
   render() {
     return (
       <div >
@@ -70,13 +68,10 @@ class Navbarlogout extends Component {
 
 
 
-const mapStateToProps = (user) => {
-  console.log("user-->",user)
-
-}
 
 
-export default withRouter(connect(mapStateToProps)(Navbarlogout));
+
+export default withRouter((Navbarlogout));
 
 
 // <Route exact path="/login" render={() => (

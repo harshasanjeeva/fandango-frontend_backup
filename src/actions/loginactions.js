@@ -2,8 +2,8 @@ import * as API from "../api/API";
 export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
-
-
+export const MOVIES ="MOVIES";
+export const GETMOVIES ="GETMOVIES";
 
 
 export function actionlogin(userdata) {
@@ -104,6 +104,53 @@ export function book(data) {
     return {
         type: BOOK,
         message: "inside Signup Actions",
+        data:data
+    }
+}
+export function actionmovies(userdata) {
+    console.log("in movies");
+    return function (dispatch) {
+            dispatch(movies(userdata))
+        }
+};
+
+export function movies(data) {
+    console.log(data);
+    return {
+        type: MOVIES,
+        message: "inside Movies Actions",
+        data:data
+    }
+}
+export function actiongetmovies(userdata) {
+    console.log("in get movies");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.getmovies(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside 2nd try");
+                        dispatch(getmovies(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function getmovies(data) {
+    console.log(data);
+    return {
+        type: GETMOVIES,
+        message: "inside GETMOVIES Actions",
         data:data
     }
 }
