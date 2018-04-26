@@ -66,6 +66,8 @@ class Booking extends Component {
 
     render() {
 
+        const { location } = this.props;
+
 
         if (this.props.booked===true){
             // {/*<Alert color="primary">*/}
@@ -180,6 +182,8 @@ class Booking extends Component {
                 </div>
 
             </div>
+
+                {location.state.movieId}
 
 
             </div>

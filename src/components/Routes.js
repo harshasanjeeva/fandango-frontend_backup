@@ -7,8 +7,9 @@ import Signup from "./Signup";
 import Home from "./Home";
 import Booking from "./Booking";
 import Movies from "./Movies"
-import '../App.css';
 import history from "./History";
+import AllTheatresAndTimings from "./AllTheatresAndTimings";
+import '../App.css';
 
 class Routes extends Component {
     render() {
@@ -20,6 +21,7 @@ class Routes extends Component {
                     <Route  path='/signup' component={Signup}/>
                     <Route  path='/booking' component={Booking}/>
                     <Route  path='/movies' component={Movies}/>
+                    <Route  path='/alltheatresAndTimings' component={AllTheatresAndTimings}/>
 
                 </Switch>
             </Router>

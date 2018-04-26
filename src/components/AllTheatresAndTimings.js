@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
+import { Container,Row,Col,ListGroupItem,ListGroup,NavLink,Button} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
 
@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import history from './History';
 let style1={listStyleType: 'none',overflow:'hidden'};
 let style2={float:'left',display:'inline-block'};
-class Movies extends Component {
+class AllTheatresAndTimings extends Component {
 
     constructor(props) {
         super(props);
@@ -19,6 +19,7 @@ class Movies extends Component {
 
         };
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
+
     }
 
     handleMoviesClick = (event,movieId) => {
@@ -31,40 +32,71 @@ class Movies extends Component {
 
     }
 
+    returnTheatreTiming = (timings) => {
+            return timings.map((timing)=>{
+                return(
+                    <ListGroupItem>
+                        {timing}
+                    </ListGroupItem>
+                    );
+                });
+            }
     renderList()
     {
-
-        const movies=this.props.movies;
-
-        let filteredMovies=movies.filter(
-            (movie) => {
-                return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
-            }
-        );
-        return filteredMovies.map((movie) => {
+        return this.props.theatres.map((theatre) => {
             return (
-                <ListGroupItem action
-                key={movie.movieId}>
-                        <img src={movie.movieLink}/>
-                    <div >
-                        <Link
-                            key={movie.movieId}
-                            to={{
-                                pathname: `/booking`,
-                                state: { movieId: movie.movieId }
-                            }}>
-                            {movie.movieName}
-                        </Link>
+        <div class="theater__wrap">
+            <div class="theater__header">
 
-                        <span>{movie.movieTiming}</span>
-                    </div>
+                <div class="theater__name-wrap">
+                    <h3>
+                      {theatre.theatreName}
+                    </h3>
+                </div>
 
+                <div>
+                    <span>{theatre.theatreAddress}</span>
+                </div>
+                <div>
+                    <NavLink>Map</NavLink>
+                    <NavLink>Amenities</NavLink>
+                </div>
+            </div>
+
+            <ListGroup className="listgroupStyle" >
+
+                <ListGroupItem>
+
+
+                    <h3>
+                        Select a movie time to buy Standard Showtimes
+                    </h3>
+
+
+                    <ul class="theater__amentiy-list">
+
+                        <li class="mop-theater__amenity-icon-wrap">
+                            <NavLink>Closed caption</NavLink>
+                        </li>
+
+                        <li class="mop-theater__amenity-icon-wrap">
+                            <NavLink>Accessibility devices available</NavLink>
+                        </li>
+
+                    </ul>
+                    <ListGroup className="listgroupStyle" >
+
+                        {this.returnTheatreTiming(theatre.movieTimings) }
+
+                    </ListGroup>
                 </ListGroupItem>
 
+            </ListGroup>
+
+        </div>
             );
         });
     }
-
 
     render() {
         return (
@@ -128,36 +160,31 @@ class Movies extends Component {
                         </ListGroup>
                     </Col>
                 </Row>
+
                 <Row>
-                    <Col><h2 >Opening This Week</h2></Col>
+                    <div><h2>Theatres List</h2></div>
                 </Row>
                 <Row>
                     <ListGroup className="listgroupMovies">
                         {this.renderList()}
                     </ListGroup>
-
                 </Row>
 
-                <Row>
-                    <div><h2>Now Playing</h2></div>
-                </Row>
-                <Row>
-                        <ListGroup className="listgroupMovies">
-                            {this.renderList()}
-                        </ListGroup>
-                </Row>
 
             </Container>
 
 
-    );
+        );
 
     }}
 function mapStateToProps(state) {
     return {
-            movies:state.movies
+        theatres:state.theatres
     };
 }
 
 
-export default connect(mapStateToProps)(Movies);
+export default connect(mapStateToProps)(AllTheatresAndTimings);
+
+
+
