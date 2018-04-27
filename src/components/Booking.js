@@ -7,8 +7,8 @@ import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
-
+import 'react-tabs/style/react-tabs.css';
+import "video-react/dist/video-react.css";
 class Booking extends Component {
 
     constructor(props) {
@@ -75,39 +75,37 @@ class Booking extends Component {
 
 
         return (
-            <div className="booking" style={{backgroundColor: "#696969"}}>
+            <div className="booking" style={{backgroundColor: "black"}}>
                 <div>
                     <Navbarmain/>
                 </div>
                 <Tabs>
-                <TabList>
-                  <Tab>Title 1</Tab>
-                  <Tab>Title 2</Tab>
+                <TabList >
+                  <Tab style={{color: "orange"}}>Overview</Tab>
+                  <Tab style={{color: "orange"}}>Movie Times + Tickets</Tab>
+                  <Tab style={{color: "orange"}}>Synopsis</Tab>
+                  <Tab style={{color: "orange"}}>Reviews</Tab>
+                  <Tab style={{color: "orange"}}>Trailer</Tab>
                 </TabList>
             
                 <TabPanel>
-                  <h2>Any content 1</h2>
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 2</h2>
-                </TabPanel>
-              </Tabs>
+                 
                 <div className="row">
 
                 <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
                     <div className="col-md-12" align="left">
                         <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
                         <div>
-                            <div>
-                                <strong>Movie:</strong> {this.props.movie.movieName}
+                            <div style={{color: "white"}}>
+                                <strong style={{color: "white"}}>Movie:</strong> {this.props.movie.movieName}
                             </div>
-                            <div>
+                            <div style={{color: "white"}}>
                         <strong>Released:</strong> {this.props.movie.movieTiming}
                             </div>
-                            <div>
+                            <div style={{color: "white"}}>
                         <strong>Genre:</strong> {this.props.movie.movieType}
                             </div>
-                        <div>
+                        <div style={{color: "white"}}>
                         <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
                         </div>
                         </div>
@@ -116,11 +114,11 @@ class Booking extends Component {
                     </div>
 
                         <div className="col-sm-8" >
-                            <div>
+                            <div style={{color: "white"}}>
                             {<strong>Movie booking here</strong>}
                             </div>
 
-                            {<strong>Show Timings:</strong>}
+                            {<strong style={{color: "white"}}>Show Timings:</strong>}
 
                             <ButtonToolbar>
                             <Button color="warning"
@@ -149,16 +147,45 @@ class Booking extends Component {
 
                 </div>
 
-                <div className="col-md-8" alight="left">
-                    {<strong>Movie Trailer</strong>}
+                <div className="col-md-8" alight="left" >
+                    {<strong style={{color: "white"}}>Movie Trailer</strong>}
                     <Player
                         playsInline
                         poster="/assets/poster.png"
-                        src={this.props.movie.movieVideoLink}/>
+                        src={this.props.movie.movieVideoLink}
+                        style={{borderColor: "white", border:"solid"}}
+                        />
 
                 </div>
 
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </TabPanel>
+                <TabPanel>
+                  <h2>Any content 2</h2>
+                </TabPanel>
+                <TabPanel>
+                <h2>Any content 2</h2>
+              </TabPanel>
+              <TabPanel>
+              <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+            <h2>Any content 2</h2>
+          </TabPanel>
+              </Tabs>
+        
 
                 {location.state.movieId}
 

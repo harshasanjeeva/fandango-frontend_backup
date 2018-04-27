@@ -160,7 +160,6 @@ export function actiongetmovies(userdata) {
     console.log(userdata);
     return function (dispatch) {
         // try {
-
             API.getmovies(userdata)
                 .then((response) => {
                     try {
