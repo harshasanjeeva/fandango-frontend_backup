@@ -18,19 +18,10 @@ class AllTheatresAndTimings extends Component {
             movieId:''
 
         };
-        this.handleMoviesClick=this.handleMoviesClick.bind(this);
 
     }
 
-    handleMoviesClick = (event,movieId) => {
-        event.preventDefault();
-        history.push
-        ({
-            pathname: '/booking',
-            state: { movieId: movieId }
-        });
 
-    }
 
     returnTheatreTiming = (timings) => {
             return timings.map((timing)=>{
@@ -99,71 +90,14 @@ class AllTheatresAndTimings extends Component {
     }
 
     render() {
+        const {location} = this.props;
         return (
             <Container className="test">
                 <Row>
-                    <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
+                    <Col style={{backgroundColor:'grey', float:'left'}}>Theatres List for <h4 style={{color:'white'}}>{location.state.movieName}</h4></Col>
                 </Row>
 
-                <Row>
-                    <Col>
-                        <ListGroup className="listgroupStyle" >
 
-                            <ListGroupItem>
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'action'
-                                    })
-                                }}>ACTION</a>
-                            </ListGroupItem>
-
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'drama'
-                                    })
-                                }}>DRAMA</a>
-                            </ListGroupItem>
-
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'comedy'
-                                    })
-                                }}>COMEDY</a>
-                            </ListGroupItem>
-
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'romance'
-                                    })
-                                }}>ROMANCE</a>
-                            </ListGroupItem>
-
-                            <ListGroupItem>
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'horror'
-                                    })
-                                }}>HORROR</a>
-                            </ListGroupItem>
-
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'sci-fi'
-                                    })
-                                }}>SCI-FI</a>
-                            </ListGroupItem>
-
-                        </ListGroup>
-                    </Col>
-                </Row>
-
-                <Row>
-                    <div><h2>Theatres List</h2></div>
-                </Row>
                 <Row>
                     <ListGroup className="listgroupMovies">
                         {this.renderList()}

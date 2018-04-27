@@ -45,8 +45,11 @@ class Booking extends Component {
     }
     handleTheatresClick=(event)=>{
         this.props.log(this.state);
-        history.push('/alltheatresAndTimings');
-
+        history.push
+        ({
+            pathname: '/alltheatresAndTimings',
+            state: { movieName: this.props.movie.movieName }
+        });
     }
 
 
@@ -91,7 +94,7 @@ class Booking extends Component {
                         <strong>Genre:</strong> {this.props.movie.movieType}
                             </div>
                         <div>
-                        <strong>Theatre:</strong> {this.state.theatre}
+                        <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
                         </div>
                         </div>
 
@@ -158,7 +161,8 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        movie:stores.user.movies.booking_data
+        movie:stores.user.movies.booking_data,
+        theatres:stores.theatres
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);
