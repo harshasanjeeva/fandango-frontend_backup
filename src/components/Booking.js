@@ -4,10 +4,9 @@ import "../../node_modules/video-react/dist/video-react.css";
 import { Button, ButtonToolbar} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import image from '../images/5.png';
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
-
+import { withRouter } from 'react-router-dom';
 class Booking extends Component {
 
     constructor(props) {
@@ -18,9 +17,13 @@ class Booking extends Component {
             theatre: '',
             Movie:"",
             rating: 2,
-            timing:""
+            timings:"",
+            prevdata:"",
+            user_id:""
+
         };
         this.toggle = this.toggle.bind(this);
+        this.handleTheatresClick = this.handleTheatresClick.bind(this);
     }
     toggle() {
         this.setState({
@@ -32,12 +35,22 @@ class Booking extends Component {
     {
         history.push('/');
     }
+    handleTheatresClick=(event)=>{
+        this.props.log(this.state);
+        history.push
+        ({
+            pathname: '/alltheatresAndTimings',
+            //state: { movieName: location.state.movieName }
+        });
+    }
 
 
 
 
     render() {
 
+        const { location } = this.props;
+        console.log("booking -==>",location.state.movieId, location.state.movieName);
 
         if (this.props.booked===true){
             this.navigate();
@@ -53,19 +66,19 @@ class Booking extends Component {
 
                 <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
                     <div className="col-md-12" align="left">
-                        <a href="#"><img src={image} height="200px" width="200px"/></a>
+                        <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
                         <div>
                             <div>
-                                <strong>Movie:</strong> {this.props.Movie}
+                                <strong>Movie:</strong> {this.props.movie.movieName}
                             </div>
                             <div>
-                        <strong>Released:</strong> {this.props.movieTiming}
+                        <strong>Released:</strong> {this.props.movie.movieTiming}
                             </div>
                             <div>
-                        <strong>Genre:</strong> {this.props.movieType}
+                        <strong>Genre:</strong> {this.props.movie.movieType}
                             </div>
                         <div>
-                        <strong>Theatre:</strong> {this.state.theatre}
+                        <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
                         </div>
                         </div>
 
@@ -81,27 +94,84 @@ class Booking extends Component {
 
                             <ButtonToolbar>
                             <Button color="info"
-                                    onClick={() => this.props.log(this.state)}>7:30 PM</Button>
+                                    onClick={(event) => {
+                                        this.setState({
+                                            //prevdata: location.state.movieId,
+                                            user_id:this.props.user_id,// get userid
+                                            timings:"7:00"
+                                        })
+                                        console.log("in BOOKINGS===>",this.state)
+var l = this.state
+                                      setTimeout(function(){
+                                          history.push
+                                          ({
+                                              pathname: '/Ticket',
+                                              state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
+                                          });
 
-
+                                      },1000)
+                                    }}>7:00 PM</Button>
                                 <Button color="info" bsSize="small"
-                                onClick={() => {
-                                    // history.push('/tickets');
-                                    this.props.log(this.state)
-                                }}>8:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                //prevdata: location,
+                                                user_id:this.props.user_id,
+                                                timings:"8:00"
+                                            })
+                                            var g = this.state
+                                            setTimeout(function(){
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
+                                            });
+                                            },1000)
+                                        }}>8:00 PM</Button>
 
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>8:30 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                               // prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"8:30"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
+                                            });
+                                        }}>8:30 PM</Button>
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>9:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                //prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"9:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
+                                            });
+                                        }}>9:00 PM</Button>
                                 <Button color="info"
-                                        onClick={() => this.props.log(this.state)}>10:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                //prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"10:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
+                                            });
+                                        }}>10:00 PM</Button>
                                 <Button color="link"
-                                        onClick={() => this.props.log(this.state)}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
+                                      onClick={(event)=>{
+                                    this.handleTheatresClick(event)}}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>
-
                         </div>
-
                 </div>
 
                 <div className="col-md-8" alight="left">
@@ -109,13 +179,11 @@ class Booking extends Component {
                     <Player
                         playsInline
                         poster="/assets/poster.png"
-                        src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"/>
-
+                        src={this.props.movie.movieVideoLink}/>
                 </div>
 
             </div>
-
-
+                /*{location.state.movieId}*/
             </div>
         );
     }
@@ -129,10 +197,9 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        Movie:stores.user.movies.booking_data.movieName,
-        movieTiming: stores.user.movies.booking_data.movieTiming,
-        movieType: stores.user.movies.booking_data.movieType,
-        movieTiming: stores.user.movies.booking_data.movieTiming
+        movie:stores.user.booking.booking_data,
+        theatres:stores.theatres,
+        user_id: stores.user.stores.user_id
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Booking);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));

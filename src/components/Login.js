@@ -4,7 +4,8 @@ import { Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
-import Navbarmain from './Navbarlogout'
+import Navbarmain from './Navbarlogout';
+import {actiongetmovies} from '../actions/loginactions';
 
 
 class Login extends Component {
@@ -25,95 +26,95 @@ class Login extends Component {
     }
 
 
-    navigate()
-    {
-        history.push('/movies');
-    }
-
-
     render() {
 
-        if (this.props.login_status){
-            this.navigate();
+        if (this.props.login_status) {
+            var d = {movies: ''};
+            this.props.getmovies(d);
+           setTimeout(function(){ history.push('/movies') }, 3000);
         }
 
+
         return (
-            <div style={{backgroundColor:"black" ,height: "100% !important"}}>
-            <Navbarmain />
-            <Row>
-            <Col> </Col>
-            <Col>
-            <Card style={{backgroundColor:"black", border: "solid",
-            borderColor: "white"}}>
-            <div>
-                <div>
-                
-                </div>
-                <div >
-                </div>
+            <div style={{backgroundColor: "black", height: "100% !important"}}>
+                <Navbarmain/>
+                <Row>
+                    <Col> </Col>
+                    <Col>
+                        <Card style={{
+                            backgroundColor: "black", border: "solid",
+                            borderColor: "white"
+                        }}>
+                            <div>
+                                <div>
 
-                <div >
-                    <form>
-                        <div >
-                        <h1 style={{color:"white"}}>FANDANGO </h1>
-                            <h1>Login</h1>
-                        </div>
-                        <div >
-                            <Input
-                                
-                                type="text"
-                                label="Username"
-                                placeholder="Enter Address"
-                                value={this.state.email}
-                                onChange={(event) => {
-                                    this.setState({
-                                        email: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
-<br />
-                        <div className="form-group">
-                            <Input
-                                
-                                type="password"
-                                label="password"
-                                placeholder="Enter Password"
-                                value={this.state.password}
-                                onChange={(event) => {
-                                    this.setState({
-                                        password: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
-                        <div className="form-group">
+                                </div>
+                                <div>
+                                </div>
 
-                            <button
-                                className="btn btn-primary"
-                                type="button"
-                                onClick={() => {
-                                    this.props.log(this.state)}}>
-                                Login
-                            </button>
+                                <div>
+                                    <form>
+                                        <div>
+                                            <h1 style={{color: "white"}}>FANDANGO </h1>
+                                            <h1>Login</h1>
+                                        </div>
+                                        <div>
+                                            <Input
 
+                                                type="text"
+                                                label="Username"
+                                                placeholder="Enter Address"
+                                                value={this.state.email}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        email: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                        <br/>
+                                        <div className="form-group">
+                                            <Input
 
+                                                type="password"
+                                                label="password"
+                                                placeholder="Enter Password"
+                                                value={this.state.password}
+                                                onChange={(event) => {
+                                                    this.setState({
+                                                        password: event.target.value
+                                                    });
+                                                }}
+                                            />
+                                        </div>
+                                        <div className="form-group">
 
-                        </div>
-                    </form>
-                </div>
-            </div>
-            </Card>
-            </Col>
-            </Row>
+                                            <button
+                                                className="btn btn-primary"
+                                                type="button"
+                                                onClick={() => {
+
+                                                    this.props.log(this.state)
+                                                }}>
+                                                Login
+                                            </button>
+                                  </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         );
     }
 }
 
+
 const mapDispatchToProps =(dispatch)=> {
     return {
-        log : (data) => dispatch(actionlogin(data))
+        log : (data) => dispatch(actionlogin(data)),
+        getmovies : (data) => dispatch(actiongetmovies(data))
     };
 }
 const mapStateToProps =(stores)=> {
@@ -121,6 +122,8 @@ const mapStateToProps =(stores)=> {
     console.log(stores.user.stores.login_status);
     return {
         login_status :stores.user.stores.login_status
-          };
+    };
 }
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

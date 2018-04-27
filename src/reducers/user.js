@@ -6,7 +6,7 @@ import {GETMOVIES} from '../actions/loginactions';
 import {TICKET} from '../actions/loginactions';
 import {ADDHALL} from '../actions/loginactions';
 import {ADDMOVIES} from '../actions/loginactions';
-
+import {PAYMENT} from '../actions/loginactions';
 const initialState = {
        
     "user":{
@@ -34,7 +34,8 @@ const stores= (state = initialState, action) => {
                 ...state,
                 "stores":{
                     "username":action.data.name,
-                    "login_status":action.data.status
+                    "login_status":action.data.status,
+                    "user_id":action.data.user_id
                 }
             }
         case SIGNUP:
@@ -71,7 +72,7 @@ const stores= (state = initialState, action) => {
         console.log("im here in movies store");
         return {
             ...state,
-            "movies":{
+            "booking":{
                 "booking_data":action.data
             }
         }
@@ -113,15 +114,27 @@ const stores= (state = initialState, action) => {
             }
 
         case ADDHALL:
-            console.log("im here in add hall store");
-            console.log("in hall:")
+        console.log("im here in add hall store");
+        console.log("in hall:")
+        console.log(action.data.status);
+        console.log(stores)
+        return {
+            ...state,
+            "stores":{
+
+                "addhall_status":action.data.status
+            }
+        }
+        case PAYMENT:
+            console.log("im here in payment store");
+            console.log("in payment ")
             console.log(action.data.status);
             console.log(stores)
             return {
                 ...state,
                 "stores":{
 
-                    "addhall_status":action.data.status
+                    "status":action.data.status
                 }
             }
         default :

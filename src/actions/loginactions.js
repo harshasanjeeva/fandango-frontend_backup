@@ -1,12 +1,18 @@
 import * as API from "../api/API";
+
 export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
+export const EDIT_PROFILE ="EDIT_PROFILE";
+
+
+
 export const MOVIES ="MOVIES";
 export const GETMOVIES ="GETMOVIES";
 export const TICKET ="TICKET";
 export const ADDMOVIES ="ADDMOVIES";
 export const ADDHALL ="ADDHALL";
+export const PAYMENT ="PAYMENT";
 
 export function actionlogin(userdata) {
     console.log("in login");
@@ -109,6 +115,28 @@ export function book(data) {
         data:data
     }
 }
+
+export function editProfile(userDeails) {
+    console.log("in myprojectDesc-->",userDeails);
+    return function(dispatch){
+        try {
+        API.editProfile(userDeails)
+        .then((response) => {
+            try {
+                console.log("in myprojectDesc 2");
+                dispatch(editProfile2(response));
+        }
+        catch(error){
+console.log(error)
+        }
+        });
+} 
+catch (error) {
+    console.log(error)
+}
+    }
+};
+
 export function actionmovies(userdata) {
     console.log("in movies");
     return function (dispatch) {
@@ -129,28 +157,44 @@ export function actiongetmovies(userdata) {
     console.log("in get movies");
     console.log(userdata);
     return function (dispatch) {
-        try {
+        // try {
 
             API.getmovies(userdata)
                 .then((response) => {
                     try {
-                        console.log("inside 2nd try");
+                        console.log("inside 2nd try",response);
                         dispatch(getmovies(response));
                     }
                     catch (error) {
                         console.log(error);
                     }
                 });
-        }
-        catch (error) {
-            console.log(error);
-        }
+        // }
+        // catch (error) {
+
+        //     console.log("eroor in getmovies",error);
+        // }
     }
 
 };
 
+
+export function editProfile2(resData) {
+    
+    console.log("PROJECT_DESC 2-->actions",resData)
+        
+    return {
+            type: EDIT_PROFILE,
+            msg:"Project edit",
+            status:true,
+            data:resData
+        }
+        
+}
+
+
 export function getmovies(data) {
-    console.log(data);
+    console.log("data===> in actions",data);
     return {
         type: GETMOVIES,
         message: "inside GETMOVIES Actions",
@@ -223,6 +267,38 @@ export function addhall(data) {
     return {
         type: ADDHALL,
         message: "inside hall adding",
+        data:data
+    }
+}
+export function actionpayment(userdata) {
+    console.log("in payment");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.paid(userdata)
+                .then((response) => {
+                    try {
+                        console.log("received hall response now dispatching to actions");
+                        dispatch(paid(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function paid(data) {
+    console.log(data);
+    return {
+        type: PAYMENT,
+        message: "inside payment data",
         data:data
     }
 }

@@ -6,6 +6,8 @@ import { Row,Col, Button, Form, FormGroup, Label, Input, FormText } from 'reacts
 import { Card,  CardBody, CardTitle} from 'reactstrap';
 import NavHeaderLogin from './Navbarmain';
 import history from './History'
+import { Link } from 'react-router-dom';
+import {editProfile} from "../actions/loginactions";
 
 
 
@@ -17,10 +19,13 @@ class EditProfile extends Component {
           "name": this.props.name,
           "email":this.props.email,
           "phone":this.props.phone,
-          "about":this.props.about,
-          "skills":this.props.skills,
+
           "userid":this.props.userid,
-          "file":""
+        
+          "cardholdername":"",
+          "creditcard":"",
+          "cvv":"",
+          "expdate":""
         };
 
         // this.toggle = this.toggle.bind(this);
@@ -136,10 +141,10 @@ console.log("filllle==>",payload)
                       
                       type="text"
                      
-                      value={this.state.name}
+                      
                       onChange={(event) => {
                           this.setState({
-                              name: event.target.value
+                              cardholdername: event.target.value
                           });
                       }}
                   />
@@ -147,7 +152,6 @@ console.log("filllle==>",payload)
                 
               </div>
           
-            
             
           
               <Row>
@@ -180,9 +184,7 @@ console.log("filllle==>",payload)
                   />
                 </Col>
                 </Row>
-             
-       
-
+     
            
               <p for="exampleEmail" id="label-left">Expiry date</p>
                   <input
@@ -207,12 +209,13 @@ console.log("filllle==>",payload)
       
 
                 <Button color="primary" onClick={() => {
-
-                   
-                    this.callworks();
+                    console.log("state on click",this.state)
+                   this.props.profile(this.state);
+                   // this.callworks();
                   }} >Save</Button>{' '}
                   <Button color="secondary" onClick={() => {
-
+                    
+                    
                     this.callworks();
                     
                   }}>Cancel</Button>
@@ -240,13 +243,13 @@ const mapStateToProps = (user) => {
 
   }
 
-//   const mapDispatchToProps = (dispatch) => {
-//     console.log("dispatch",dispatch)
-//     return {
-//       upload : (data) => dispatch(fileUpload(data)),
-//       signin : (data) => dispatch(editProfile(data))
-//     }
-//   }
+  const mapDispatchToProps = (dispatch) => {
+    console.log("dispatch",dispatch)
+    return {
+   //   upload : (data) => dispatch(fileUpload(data)),
+      profile : (data) => dispatch(editProfile(data))
+    }
+  }
 
 
-export default  withRouter(connect(mapStateToProps)(EditProfile));
+export default  withRouter(connect(mapStateToProps,mapDispatchToProps)(EditProfile));

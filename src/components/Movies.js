@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
 import {actionmovies,actiongetmovies} from '../actions/loginactions';
 import {connect} from 'react-redux';
 import Navbarmain from './Navbarmain'
-
+import history from "./History";
+import { withRouter } from 'react-router-dom';
 
 class Movies extends Component {
 
@@ -20,140 +22,158 @@ class Movies extends Component {
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
     }
 
-    handleMoviesClick = (event,movieId) => {
+    handleMoviesClick = (event,movie) => {
         event.preventDefault();
-        this.props.history.push
+        history.push
         ({
             pathname: '/booking',
-            state: { movieId: movieId }
+            state: { movieId: movie.movieId,movieName:movie.movieName }
         });
-        this.props.log(movieId)
+        this.props.log(movie);
     }
-    componentWillMount(){
-    this.props.getmovies("");
+
+
+    componentWillReceiveProps(nextProps){
+        history.push('/movies');
     }
-    renderList()
-    {
 
-        const movies=this.props.movies;
-        var filteredMovies;
-        setTimeout(function(){
-         filteredMovies=movies.filter(
-            (movie) => {
-                return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
-            }
-        );
-        },500)
 
-        return  setTimeout(function(){filteredMovies.map((movie) => {
-            return (
-                <ListGroupItem action
-                key={movie.movieId}>
-                        <img src={movie.movieLink}/>
-                    <div >
-                        <NavLink  onClick={(event)=>{
 
-                            this.handleMoviesClick(event,movie)}}>
-                            {movie.movieName}
-                        </NavLink>
-                        <span>{movie.movieTiming}</span>
-                    </div>
+    renderList() {
 
-                </ListGroupItem>
+        const movies = this.props.movies;
 
+            var filteredMovies = movies.filter(
+                (movie) => {
+                    return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase()) !== -1;
+                }
             );
-        });
-        },1000)
-    }
+
+
+            return filteredMovies.map((movie) => {
+                return (
+                    <ListGroupItem action
+                                   key={movie.movieId}>
+                        <img src={movie.movieLink}/>
+                        <div>
+
+                            <Link
+                                key={movie.movieId}
+                                to={{
+                                    pathname: `/booking`,
+                                    state: {movieId: movie.movieId}
+                                }}>
+
+                                <NavLink onClick={(event) => {
+
+                                    this.handleMoviesClick(event, movie)
+                                }}>
+
+                                    {movie.movieName}
+                                </NavLink>
+                            </Link>
+
+                            <span>{movie.movieTiming}</span>
+                        </div>
+
+                    </ListGroupItem>
+
+                );
+            });
+
+        }
+
+
+
 
 
     render() {
         return (
             <div>
-            <Navbarmain />
-            <Container className="test">
-                <Row>
-                    <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
-                </Row>
+                <Navbarmain />
+                <Container className="test">
+                    <Row>
+                        <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
+                    </Row>
 
-                <Row>
-                    <Col>
-                        <ListGroup className="listgroupStyle" >
+                    <Row>
+                        <Col>
+                            <ListGroup className="listgroupStyle" >
 
-                            <ListGroupItem>
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'action'
-                                    })
-                                }}>ACTION</a>
-                            </ListGroupItem>
+                                <ListGroupItem>
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'action'
+                                        })
+                                    }}>ACTION</a>
+                                </ListGroupItem>
 
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'drama'
-                                    })
-                                }}>DRAMA</a>
-                            </ListGroupItem>
+                                <ListGroupItem >
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'drama'
+                                        })
+                                    }}>DRAMA</a>
+                                </ListGroupItem>
 
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'comedy'
-                                    })
-                                }}>COMEDY</a>
-                            </ListGroupItem>
+                                <ListGroupItem >
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'comedy'
+                                        })
+                                    }}>COMEDY</a>
+                                </ListGroupItem>
 
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'romance'
-                                    })
-                                }}>ROMANCE</a>
-                            </ListGroupItem>
+                                <ListGroupItem >
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'romance'
+                                        })
+                                    }}>ROMANCE</a>
+                                </ListGroupItem>
 
-                            <ListGroupItem>
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'horror'
-                                    })
-                                }}>HORROR</a>
-                            </ListGroupItem>
+                                <ListGroupItem>
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'horror'
+                                        })
+                                    }}>HORROR</a>
+                                </ListGroupItem>
 
-                            <ListGroupItem >
-                                <a onClick={(event) => {
-                                    this.setState({
-                                        movieType:'sci-fi'
-                                    })
-                                }}>SCI-FI</a>
-                            </ListGroupItem>
+                                <ListGroupItem >
+                                    <a onClick={(event) => {
+                                        this.setState({
+                                            movieType:'sci-fi'
+                                        })
+                                    }}>SCI-FI</a>
+                                </ListGroupItem>
 
-                        </ListGroup>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col><h2 >Opening This Week</h2></Col>
-                </Row>
-                <Row>
-                    <ListGroup className="listgroupMovies">
-                        {this.renderList()}
-                    </ListGroup>
-
-                </Row>
-
-                <Row>
-                    <div><h2>Now Playing</h2></div>
-                </Row>
-                <Row>
+                            </ListGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col><h2 >Opening This Week</h2></Col>
+                    </Row>
+                    <Row>
                         <ListGroup className="listgroupMovies">
                             {this.renderList()}
                         </ListGroup>
-                </Row>
 
-            </Container>
+                    </Row>
+
+                    <Row>
+                        <div><h2>Now Playing</h2></div>
+                    </Row>
+                    <Row>
+                        <ListGroup className="listgroupMovies">
+                            {this.renderList()}
+                        </ListGroup>
+                    </Row>
+
+                </Container>
             </div>
 
-    );
+        );
 
     }}
 
@@ -166,7 +186,7 @@ const mapDispatchToProps =(dispatch)=> {
 function mapStateToProps(state) {
     console.log(state);
     return {
-            movies:state.user.movies.movie_data
+    movies:state.movies
     };
 }
 

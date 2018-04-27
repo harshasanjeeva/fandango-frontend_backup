@@ -61,6 +61,11 @@ export const booking = (payload) =>
         .catch(error => {
             console.log("This is error");
             return error;
+        });
+
+       
+export const editProfile = (payload) =>
+    fetch(`${api}/operations/editprofile`, {
 });
 
 export const ticketing = (payload) =>
@@ -93,6 +98,7 @@ export const getmovies = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+            console.log("response in API",response)
             return response;
         })
         .catch(error => {
@@ -112,6 +118,7 @@ export const moviesadd = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+            console.log("here in api myprojectDesc proposal"); 
 
             console.log(response.UserName+" "+response.email);
             console.log(payload);
@@ -121,6 +128,9 @@ export const moviesadd = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+
 
 
 export const halladd = (payload) =>
@@ -142,3 +152,22 @@ export const halladd = (payload) =>
             console.log("This is error");
             return error;
         });
+
+export const paid = (payload) =>
+    fetch(`${api}/operations/payment`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+

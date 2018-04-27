@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-
 import history from "./History";
 import {Input, Card, Row,Col, CardBody,CardHeader} from 'reactstrap';
 import {Button} from 'reactstrap';
 import Navbarmain from './Navbarmain'
 import { Alert } from 'reactstrap';
+import {actionpayment} from "../actions/loginactions";
 
 
 class Payments extends Component {
@@ -18,8 +18,10 @@ class Payments extends Component {
         creditcard: '',
         cvv:'',
         expdate:'',
-        amounts:0,
-        freelancer:0
+        movieid:0,
+        movieName:"",
+        total_amount:0,
+        total_tickets:0
     };
 }
 
@@ -28,7 +30,9 @@ class Payments extends Component {
     }
 
     render() {
-       if (this.props.status === 200) {
+        const { location } = this.props;
+        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets)
+       if (this.props.status) {
             this.navigate();
         }
         return (<div>
@@ -40,8 +44,7 @@ class Payments extends Component {
                         width: 400,
                         margin: 'auto',
                         height: 530,
-                        
-                                        }}>
+                    }}>
                         <Alert color="success">
                             {this.props.message}
                         </Alert>
@@ -73,13 +76,7 @@ class Payments extends Component {
                                     });
                                 }}
                             />
-                
-                          
                         </div>
-                    
-                      
-                      
-                    
                         <Row>
                             <Col>
                                 <p id="label-left" >Card Number</p>
@@ -126,42 +123,16 @@ class Payments extends Component {
                                     });
                                 }}
                             />
-                       
-                        <div>
-                        <p for="exampleEmail" id="label-left">Amount</p>
-                            <Input
-                                
-                                type="number"
-                                placeholder="Amount"
-                                value={this.state.amounts}
-                                onChange={(event) => {
-                                    this.setState({
-                                        amounts: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
-
-
-
-                        <div>
-                        <p for="exampleEmail" id="label-left">FreeLancer Id</p>
-                            <Input
-                                
-                                type="number"
-                                placeholder="1234"
-                               
-                                onChange={(event) => {
-                                    this.setState({
-                                        freelancer: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
                         <br/>
                         <div>
                         <Button color="success" onClick={() => {
-                            history.push('/')
+                            this.setState({
+                                movieid:location.state.movieId,
+                                movieName:location.state.movieName,
+                                total_amount:location.state.total_amount,
+                                total_tickets:location.state.total_tickets
+                            })
+                            this.props.pay(this.state)
                         }}>Make Payment</Button>
                         </div>
                         </CardBody>
@@ -172,12 +143,17 @@ class Payments extends Component {
     }
 }
 
-const mapStateToProps =(user)=> {
+const mapDispatchToProps =(dispatch)=> {
+    return {
+        pay : (data) => dispatch(actionpayment(data))
+    };
+}
+const mapStateToProps =(stores)=> {
     
     return {
-        user_id: 111,
-        status : "False",
+        user_id: stores.user.stores.user_id,
+        status : stores.user.stores.status,
         message : "success"
     };
 }
-export default connect(mapStateToProps)(Payments);
+export default connect(mapStateToProps,mapDispatchToProps)(Payments);
