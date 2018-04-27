@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Route, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
-import Login from "./Login";
-import history from './History';
+import { withRouter } from 'react-router-dom';
 import Homemain from './Homemain'
-import Navbarheader from './Navbarmain'
+import Navbarheader from './Navbarlogout'
 
 class Home extends Component {
 

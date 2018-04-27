@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
-
+import {actionmovies,actiongetmovies} from '../actions/loginactions';
 import {connect} from 'react-redux';
-import history from './History';
-let style1={listStyleType: 'none',overflow:'hidden'};
-let style2={float:'left',display:'inline-block'};
+import Navbarmain from './Navbarmain'
+import history from "./History";
+
+
 class Movies extends Component {
 
     constructor(props) {
@@ -21,39 +22,55 @@ class Movies extends Component {
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
     }
 
-    handleMoviesClick = (event,movieId) => {
+    handleMoviesClick = (event,movie) => {
         event.preventDefault();
         history.push
         ({
             pathname: '/booking',
-            state: { movieId: movieId }
+            state: { movieId: movie.movieId }
         });
-
+        this.props.log(movie);
     }
+
+
+
+    // componentWillMount(){
+    // this.props.getmovies("");
+    // }
+
+
 
     renderList()
     {
 
         const movies=this.props.movies;
-
-        let filteredMovies=movies.filter(
+        var filteredMovies=movies.filter(
             (movie) => {
                 return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
             }
         );
+
+
         return filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
                 key={movie.movieId}>
                         <img src={movie.movieLink}/>
                     <div >
+
                         <Link
                             key={movie.movieId}
                             to={{
                                 pathname: `/booking`,
                                 state: { movieId: movie.movieId }
                             }}>
+
+                        <NavLink  onClick={(event)=>{
+
+                            this.handleMoviesClick(event,movie)}}>
+
                             {movie.movieName}
+                        </NavLink>
                         </Link>
 
                         <span>{movie.movieTiming}</span>
@@ -63,11 +80,15 @@ class Movies extends Component {
 
             );
         });
+
+
     }
 
 
     render() {
         return (
+            <div>
+            <Navbarmain />
             <Container className="test">
                 <Row>
                     <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
@@ -148,16 +169,26 @@ class Movies extends Component {
                 </Row>
 
             </Container>
-
+            </div>
 
     );
 
     }}
-function mapStateToProps(state) {
+
+const mapDispatchToProps =(dispatch)=> {
     return {
-            movies:state.movies
+        log : (data) => dispatch(actionmovies(data)),
+        getmovies : (data) => dispatch(actiongetmovies(data))
+    };
+}
+function mapStateToProps(state) {
+    console.log(state);
+
+    return {
+            movies:state.user.movies.movie_data.moviedata
+
     };
 }
 
 
-export default connect(mapStateToProps)(Movies);
+export default connect(mapStateToProps,mapDispatchToProps)(Movies);

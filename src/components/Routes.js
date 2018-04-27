@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
 import {Route,Router, Switch} from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import * as API from '../api/API';
 import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
 import Booking from "./Booking";
 import Movies from "./Movies"
-import history from "./History";
+
 import AllTheatresAndTimings from "./AllTheatresAndTimings";
 import '../App.css';
+
+// import Tickets from "./Tickets";
+import Addmovies from "./Addmovies";
+import Addhall from "./Addhall";
+
+import history from "./History";
+import Payments from "./Payments";
+import Profile from "./Profile";
+
 
 class Routes extends Component {
     render() {
@@ -21,7 +28,15 @@ class Routes extends Component {
                     <Route  path='/signup' component={Signup}/>
                     <Route  path='/booking' component={Booking}/>
                     <Route  path='/movies' component={Movies}/>
+
                     <Route  path='/alltheatresAndTimings' component={AllTheatresAndTimings}/>
+
+
+                    <Route  path='/payments' component={Payments}/>
+                    <Route  path='/profile' component={Profile}/>
+                   
+                    <Route  path='/addmovies' component={Addmovies}/>
+                    <Route  path='/addhall' component={Addhall}/>
 
                 </Switch>
             </Router>
