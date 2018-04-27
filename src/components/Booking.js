@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 
 class Booking extends Component {
 
@@ -77,7 +79,19 @@ class Booking extends Component {
                 <div>
                     <Navbarmain/>
                 </div>
-
+                <Tabs>
+                <TabList>
+                  <Tab>Title 1</Tab>
+                  <Tab>Title 2</Tab>
+                </TabList>
+            
+                <TabPanel>
+                  <h2>Any content 1</h2>
+                </TabPanel>
+                <TabPanel>
+                  <h2>Any content 2</h2>
+                </TabPanel>
+              </Tabs>
                 <div className="row">
 
                 <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
@@ -109,21 +123,21 @@ class Booking extends Component {
                             {<strong>Show Timings:</strong>}
 
                             <ButtonToolbar>
-                            <Button color="info"
+                            <Button color="warning"
                                     onClick={(event) => this.props.log(this.state)}>7:30 PM</Button>
 
-
-                                <Button color="info" bsSize="small"
+<span />
+                                <Button color="warning" bsSize="small"
                                 onClick={() => {
                                     // history.push('/tickets');
                                     this.props.log(this.state)
                                 }}>8:00 PM</Button>
 
-                                <Button color="info"
+                                <Button color="warning"
                                         onClick={(event) => this.props.log(this.state)}>8:30 PM</Button>
-                                <Button color="info"
+                                <Button color="warning"
                                         onClick={(event) => this.props.log(this.state)}>9:00 PM</Button>
-                                <Button color="info"
+                                <Button color="warning"
                                         onClick={(event) => this.props.log(this.state)}>10:00 PM</Button>
                                 <Button color="link"
                                       onClick={(event)=>{
@@ -161,7 +175,7 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        movie:stores.user.movies.booking_data,
+        movie:stores.user.booking.booking_data,
         theatres:stores.theatres
     };
 }

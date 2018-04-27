@@ -71,7 +71,7 @@ const stores= (state = initialState, action) => {
         console.log("im here in movies store");
         return {
             ...state,
-            "movies":{
+            "booking":{
                 "booking_data":action.data
             }
         }
