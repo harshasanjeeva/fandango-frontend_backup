@@ -99,7 +99,7 @@ class AllTheatresAndTimings extends Component {
 
     render() {
         const {location} = this.props;
-        return (<div style={{backgroundColor: "black"}}>
+        return (<div id="har" style={{backgroundColor: "black"}}>
             <Navbarmain />
 
             <Tabs>

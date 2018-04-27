@@ -31,16 +31,27 @@ class Payments extends Component {
        if (this.props.status === 200) {
             this.navigate();
         }
-        return (<div>
+        return (<div style={{backgroundColor: "black", height:1000 }}>
             <Navbarmain/>
     
+<div style=  {{borderColor:"white",
+                        
+border:"solid",
+borderWidth:"1px"
 
+                }}>
                     <Card style={{ 
             
                         width: 400,
                         margin: 'auto',
-                        height: 530,
+                        height: 519,
+                        marginBottom:0,
+                        backgroundColor: "black",
+                        borderColor:"white !important",
                         
+                        border:"solid",
+                        
+
                                         }}>
                         <Alert color="success">
                             {this.props.message}
@@ -60,9 +71,9 @@ class Payments extends Component {
                      
                      
                      
-                        <p id="label-left">Cardholder Name</p>
+                        <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Cardholder Name</span>
                       
-                        <Input
+                        <Input style={{ marginBottom:"0px !important"}}
                                 
                                 type="text"
                                
@@ -82,7 +93,7 @@ class Payments extends Component {
                     
                         <Row>
                             <Col>
-                                <p id="label-left" >Card Number</p>
+                                <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Card Number</span>
                                 <Input
                                     name="email"
                                     type="text"
@@ -96,7 +107,7 @@ class Payments extends Component {
                                 />
                             </Col>
                             <Col>
-                            <p for="exampleEmail" id="label-left">CVV</p>
+                            <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                             <Input
                                
                                 type="number"
@@ -114,7 +125,7 @@ class Payments extends Component {
                  
 
                      
-                        <p for="exampleEmail" id="label-left">Expiry date</p>
+                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                             <input
                                 className="form-control"
                                 type="text"
@@ -128,7 +139,7 @@ class Payments extends Component {
                             />
                        
                         <div>
-                        <p for="exampleEmail" id="label-left">Amount</p>
+                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Amount</span>
                             <Input
                                 
                                 type="number"
@@ -145,7 +156,7 @@ class Payments extends Component {
 
 
                         <div>
-                        <p for="exampleEmail" id="label-left">FreeLancer Id</p>
+                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>FreeLancer Id</span>
                             <Input
                                 
                                 type="number"
@@ -166,6 +177,7 @@ class Payments extends Component {
                         </div>
                         </CardBody>
                     </Card>
+                    </div>
                 </div>
     
         )

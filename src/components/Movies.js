@@ -38,10 +38,13 @@ class Movies extends Component {
     // this.props.getmovies("");
     // }
 
+    componentWillReceiveProps(nextProps){
+        history.push('/movies');
+    }
 
 
-    renderList()
-    {
+
+    renderList() {
 
         const movies=this.props.movies;
         if (movies.length !== 0 && movies !== null && movies !== undefined)
@@ -56,23 +59,24 @@ class Movies extends Component {
         return filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
-                key={movie.movieId}>
-                        <img src={movie.movieLink}/>
-                    <div >
+                               key={movie.movieId}>
+                    <img src={movie.movieLink}/>
+                    <div>
 
                         <Link
                             key={movie.movieId}
                             to={{
                                 pathname: `/booking`,
-                                state: { movieId: movie.movieId }
+                                state: {movieId: movie.movieId}
                             }}>
 
-                        <NavLink  onClick={(event)=>{
+                            <NavLink onClick={(event) => {
 
-                            this.handleMoviesClick(event,movie)}}>
+                                this.handleMoviesClick(event, movie)
+                            }}>
 
-                            {movie.movieName}
-                        </NavLink>
+                                {movie.movieName}
+                            </NavLink>
                         </Link>
 
                         <span>{movie.movieTiming}</span>
@@ -83,10 +87,12 @@ class Movies extends Component {
             );
         });
 
+    }
+
 
     }
 
-    }
+    
     render() {
         return (
             <div>
@@ -201,9 +207,7 @@ class Movies extends Component {
             </Container>
             </div>
 
-    );
-
-    }}
+    ); }}
 
 const mapDispatchToProps =(dispatch)=> {
     return {
