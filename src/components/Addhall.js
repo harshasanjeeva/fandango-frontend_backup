@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {actionaddhall} from '../actions/loginactions';
-import { Form, FormGroup, Label, Container, Row, Col, Input} from 'reactstrap';
+import { Form, Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
@@ -44,9 +44,6 @@ class Addhall extends Component {
     render() {
 
         if (this.props.add===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
             this.navigate();
         }
 

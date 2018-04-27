@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {actionbook} from '../actions/loginactions';
 import "../../node_modules/video-react/dist/video-react.css";
-import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav } from 'reactstrap';
+import { Button, ButtonToolbar} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import image from '../images/5.png';
@@ -28,17 +28,6 @@ class Booking extends Component {
         });
     }
 
-    // componentWillMount(){
-    //     this.setState({
-    //         date:'April 13 2018',
-    //         genre: 'action/adventure',
-    //         theatre: 'Inox Movies',
-    //         Movie:"Fast and Furious",
-    //         rating: 2,
-    //         timing:""
-    //     });
-    // }
-
     navigate()
     {
         history.push('/');
@@ -51,16 +40,8 @@ class Booking extends Component {
 
 
         if (this.props.booked===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
             this.navigate();
         }
-
-
-
-
-
 
         return (
             <div className="booking" style={{backgroundColor: "#696969"}}>

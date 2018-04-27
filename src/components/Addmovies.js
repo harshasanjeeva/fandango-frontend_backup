@@ -3,8 +3,8 @@ import {actionaddmovies} from '../actions/loginactions';
 import { Form, Row, Col, Input} from 'reactstrap';
 import { Card} from 'reactstrap';
 import {connect} from 'react-redux';
-import history from "./History";;
-import Navbarmain from './Navbarmain'
+import history from "./History";
+import Navbarmain from './Navbarmain';
 
 class Addmovies extends Component {
 
@@ -42,8 +42,7 @@ class Addmovies extends Component {
 
     render() {
 
-        if (this.props.add==true){
-    //alert("movie add successfull");
+        if (this.props.add===true){
             this.navigate();
         }
 

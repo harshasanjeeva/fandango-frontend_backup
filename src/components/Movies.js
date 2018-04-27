@@ -62,7 +62,8 @@ class Movies extends Component {
                 </ListGroupItem>
 
             );
-        }); },1000)
+        });
+        },1000)
     }
 
 

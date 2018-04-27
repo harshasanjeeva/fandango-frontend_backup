@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Dropdown,Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Route, withRouter } from 'react-router-dom';
+import {  Dropdown,Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import {connect} from 'react-redux';
-import Login from "./Login";
+//import Login from "./Login";
 import history from './History';
-import Homemain from './Homemain'
+//import Homemain from './Homemain'
 import '.././App.css';
 
 

@@ -22,7 +22,7 @@ class EditProfile extends Component {
           "userid":this.props.userid,
           "file":""
         };
-    
+
         // this.toggle = this.toggle.bind(this);
       }
 
@@ -196,7 +196,7 @@ console.log("filllle==>",payload)
                           });
                       }}
                   />
-             
+
 
 
 

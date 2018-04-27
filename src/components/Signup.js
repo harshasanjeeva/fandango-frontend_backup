@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import history from "./History";
 import {actionsign} from '../actions/loginactions';
 import {connect} from 'react-redux';
 
 class Signup extends Component {
-
-   /* static propTypes = {
-        handleSubmit: PropTypes.func.isRequired
-    };*/
 
     state = {
         email: '',
