@@ -38,39 +38,45 @@ class Movies extends Component {
     // this.props.getmovies("");
     // }
 
+    componentWillReceiveProps(nextProps){
+        history.push('/movies');
+    }
 
 
-    renderList()
-    {
 
-        const movies=this.props.movies;
-        var filteredMovies=movies.filter(
-            (movie) => {
-                return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
-            }
-        );
+    renderList() {
+
+        const movies = this.props.movies;
+        if (movies.length !== 0 && movies !== null && movies !== undefined)
+        {
+            var filteredMovies = movies.filter(
+                (movie) => {
+                    return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase()) !== -1;
+                }
+            );
 
 
         return filteredMovies.map((movie) => {
             return (
                 <ListGroupItem action
-                key={movie.movieId}>
-                        <img src={movie.movieLink}/>
-                    <div >
+                               key={movie.movieId}>
+                    <img src={movie.movieLink}/>
+                    <div>
 
                         <Link
                             key={movie.movieId}
                             to={{
                                 pathname: `/booking`,
-                                state: { movieId: movie.movieId }
+                                state: {movieId: movie.movieId}
                             }}>
 
-                        <NavLink  onClick={(event)=>{
+                            <NavLink onClick={(event) => {
 
-                            this.handleMoviesClick(event,movie)}}>
+                                this.handleMoviesClick(event, movie)
+                            }}>
 
-                            {movie.movieName}
-                        </NavLink>
+                                {movie.movieName}
+                            </NavLink>
                         </Link>
 
                         <span>{movie.movieTiming}</span>
@@ -80,6 +86,8 @@ class Movies extends Component {
 
             );
         });
+
+    }
 
 
     }

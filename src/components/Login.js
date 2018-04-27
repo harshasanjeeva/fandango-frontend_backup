@@ -26,96 +26,92 @@ class Login extends Component {
     }
 
 
-    navigate()
-    {
-        console.log("movies===>")
-       history.push('/movies');
-       var d = {
-        movies:''
-    }
-    this.props.getmovies(d);
-    }
-
-
     render() {
 
-        if (this.props.login_status){
-            this.navigate();
+        if (this.props.login_status) {
+            var d = {movies: ''};
+            this.props.getmovies(d);
+            setTimeout(function(){ history.push('/movies') }, 800);
         }
 
-        return (
-            <div style={{backgroundColor:"black" ,height: "100% !important"}}>
-            <Navbarmain />
-            <Row>
-            <Col> </Col>
-            <Col>
-            <Card style={{backgroundColor:"black", border: "solid",
-            borderColor: "white"}}>
-            <div>
-                <div>
-                
+
+            return (
+                <div style={{backgroundColor: "black", height: "100% !important"}}>
+                    <Navbarmain/>
+                    <Row>
+                        <Col> </Col>
+                        <Col>
+                            <Card style={{
+                                backgroundColor: "black", border: "solid",
+                                borderColor: "white"
+                            }}>
+                                <div>
+                                    <div>
+
+                                    </div>
+                                    <div>
+                                    </div>
+
+                                    <div>
+                                        <form>
+                                            <div>
+                                                <h1 style={{color: "white"}}>FANDANGO </h1>
+                                                <h1>Login</h1>
+                                            </div>
+                                            <div>
+                                                <Input
+
+                                                    type="text"
+                                                    label="Username"
+                                                    placeholder="Enter Address"
+                                                    value={this.state.email}
+                                                    onChange={(event) => {
+                                                        this.setState({
+                                                            email: event.target.value
+                                                        });
+                                                    }}
+                                                />
+                                            </div>
+                                            <br/>
+                                            <div className="form-group">
+                                                <Input
+
+                                                    type="password"
+                                                    label="password"
+                                                    placeholder="Enter Password"
+                                                    value={this.state.password}
+                                                    onChange={(event) => {
+                                                        this.setState({
+                                                            password: event.target.value
+                                                        });
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className="form-group">
+
+                                                <button
+                                                    className="btn btn-primary"
+                                                    type="button"
+                                                    onClick={() => {
+
+                                                        this.props.log(this.state)
+                                                    }}>
+                                                    Login
+                                                </button>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </Card>
+                        </Col>
+                    </Row>
                 </div>
-                <div >
-                </div>
-
-                <div >
-                    <form>
-                        <div >
-                        <h1 style={{color:"white"}}>FANDANGO </h1>
-                            <h1>Login</h1>
-                        </div>
-                        <div >
-                            <Input
-                                
-                                type="text"
-                                label="Username"
-                                placeholder="Enter Address"
-                                value={this.state.email}
-                                onChange={(event) => {
-                                    this.setState({
-                                        email: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
-<br />
-                        <div className="form-group">
-                            <Input
-                                
-                                type="password"
-                                label="password"
-                                placeholder="Enter Password"
-                                value={this.state.password}
-                                onChange={(event) => {
-                                    this.setState({
-                                        password: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
-                        <div className="form-group">
-
-                            <button
-                                className="btn btn-primary"
-                                type="button"
-                                onClick={() => {
-                                    
-                                    this.props.log(this.state)}}>
-                                Login
-                            </button>
+            );
+        }
 
 
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-            </Card>
-            </Col>
-            </Row>
-            </div>
-        );
-    }
 }
 
 const mapDispatchToProps =(dispatch)=> {
