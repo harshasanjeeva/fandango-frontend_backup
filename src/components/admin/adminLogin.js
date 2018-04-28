@@ -4,7 +4,7 @@ import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "../History";
 import Navbarmain from '../Navbarlogout';
-import {actionAdminLogin,getMovieHalls} from '../../actions/loginactions';
+import {actionAdminLogin, actiongetmovies, getMovieHalls} from '../../actions/loginactions';
 
 
 class adminHome extends Component {
@@ -22,12 +22,13 @@ class adminHome extends Component {
     adminLogin() {
         this.props.log(this.state);
         this.props.getMovieHalls();
+        this.props.getMovies();
         setTimeout(function () {
             history.push
             ({
-                pathname: '/adminHome'
+                pathname: '/adminMainPage'
             });
-        },1000);
+        },6000);
     }
 
 
@@ -116,7 +117,8 @@ class adminHome extends Component {
 const mapDispatchToProps =(dispatch)=> {
     return {
         log : (data) => dispatch(actionAdminLogin(data)),
-        getMovieHalls: () => dispatch(getMovieHalls())
+        getMovieHalls: () => dispatch(getMovieHalls()),
+        getMovies : (data) => dispatch(actiongetmovies(data))
     };
 }
 const mapStateToProps =(state)=> {
