@@ -77,7 +77,7 @@ class Payments extends Component {
                         </div>
                         <Row>
                             <Col>
-                                <p id="label-left" >Card Number</p>
+                                <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Card Number</span>
                                 <Input
                                     name="email"
                                     type="text"

@@ -58,7 +58,7 @@ class Booking extends Component {
         }
 
         return (
-            <div className="booking" style={{backgroundColor: "#696969"}}>
+            <div className="booking" style={{backgroundColor: "black"}}>
                 <div>
                     <Navbarmain/>
                 </div>
@@ -91,7 +91,7 @@ class Booking extends Component {
                                 {<strong>Movie booking here</strong>}
                             </div>
 
-                            {<strong>Show Timings:</strong>}
+                            {<strong style={{color: "white"}}>Show Timings:</strong>}
 
                             <ButtonToolbar>
                                 <Button color="info"
