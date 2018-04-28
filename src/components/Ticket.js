@@ -4,16 +4,16 @@ import { Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import Navbarmain from './Navbarmain'
+import { withRouter } from 'react-router-dom';
 
-
-class ticket extends Component {
+class Ticket extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             user_id: this.props.userid,
             movie_id: this.props.movieid,
-            general:0,
+            general:1,
             student: 0,
             children: 0,
             general_amount:'',
@@ -42,12 +42,9 @@ class ticket extends Component {
 
 
     render() {
-        const { olddata } = this.props;
-        if (this.props.tick){
-            this.navigate();
-        }
-
-
+        const { location } = this.props;
+        console.log(location)
+        console.log("Tickets -==>",location.state.movieIds, location.state.movieNames,location.state.genre,location.state.release, location.state.theatrename, location.state.timings)
 
 
 
@@ -78,12 +75,13 @@ class ticket extends Component {
                                                 type="number"
                                                 label="No of Tickets"
                                                 placeholder="Enter Number"
-                                                value={this.state.general}
+                                                //value={this.state.general}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         general:parseInt(event.target.value),
-                                                        general_amount: parseInt(event.target.value * 10)
+                                                        general_amount:event.target.value  * 10
                                                     });
+                                                    console.log("seats-->",this.state.general, "amount-->",this.state.general_amount);
                                                 }}
                                             />
                                         </div>
@@ -95,7 +93,7 @@ class ticket extends Component {
                                                 type="number"
                                                 label="student"
                                                 placeholder="Enter Number"
-                                                value={this.state.student}
+                                               // value={this.state.student}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         student: parseInt(event.target.value),
@@ -112,7 +110,7 @@ class ticket extends Component {
                                                 type="number"
                                                 label="children"
                                                 placeholder="Enter Number"
-                                                value={this.state.children}
+                                                //value={this.state.children}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         children: parseInt(event.target.value),
@@ -128,16 +126,19 @@ class ticket extends Component {
                                                 type="button"
                                                 onClick={() =>{
                                                     this.setState({
-                                                        prevdata2: olddata,
+                                                        prevdata2: location.state,
                                                         total_amount:this.state.general_amount+this.state.student_amount+this.state.children_amount,
                                                         total_tickets:this.state.children+this.state.student+this.state.general
                                                     })
                                                     history.push
                                                     ({
                                                         pathname: '/Payments',
-                                                        state: this.state
+                                                        state: {  movieId: location.state.movieIds, movieName:location.state.movieNames, total_amount:this.state.total_amount,
+                                                            total_tickets:this.state.total_tickets,genre:location.state.genre,release:location.state.release,
+                                                            theatrename:location.state.theatrename, timings: location.state.timings, general:this.state.general,
+                                                            student:this.state.student, children:this.state.children}
                                                     });
-                                                }}>
+                                                    }}>
                                                 Continue to seat selection
                                             </button>
                                         </div>
@@ -162,8 +163,7 @@ const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
         tick : stores.user.ticket_status,
-        userid : 123,
         movieid: 456
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ticket);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Ticket));
