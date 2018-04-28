@@ -66,6 +66,22 @@ export const booking = (payload) =>
        
 export const editProfile = (payload) =>
     fetch(`${api}/operations/editprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
 });
 
 export const ticketing = (payload) =>
@@ -171,3 +187,54 @@ export const paid = (payload) =>
             return error;
         });
 
+export const real = (payload) =>
+    fetch(`${api}/operations/realticket`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const delprofile = (payload) =>
+    fetch(`${api}/operations/delprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const viewprofile = (payload) =>
+    fetch(`${api}/operations/viewprofile`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });

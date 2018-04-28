@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/alice-carousel.css";
 
 import {
   Carousel,
@@ -26,6 +28,8 @@ const items = [
     caption: ''
   }
 ];
+
+
 
 class Homesmall extends Component {
   constructor(props) {
@@ -66,34 +70,56 @@ class Homesmall extends Component {
   render() {
     const { activeIndex } = this.state;
 
+
+    const responsive = {
+        0: {
+          items: 1
+        },
+        300: {
+          items: 2
+        },
+        600: {
+          items: 3
+        },
+        900: {
+            items: 4
+          },
+        1024: {
+            items: 5
+          }
+      };
+  
+
+
+
     const slides = items.map((item) => {
       return (      <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} height="100px" width="100px" />
+          <img src={item.src} alt={item.altText} height="150px" width="120px" />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
     );
     });
 
-    return (<div>
+    return (<div style={{marginLeft:"70px",width:"1000px"}}>
         
 
+        <AliceCarousel responsive={responsive} style={{width:"800px",height:"200px"}}>
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209250/images/masterrepository/fandango/209250/disobedience2018.jpg" 
+        className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209376/images/masterrepository/fandango/209376/kings-2017.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/208107/images/masterrepository/fandango/208107/letthesunshinein-2018.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/199925/images/masterrepository/fandango/199925/avengersinfinitywar-postera.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/204139/images/masterrepository/fandango/204139/rpo_new_main_vert_dom_2764x.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
 
-        <br />
-        <br />
-      <Carousel
-        activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
-      >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={this.goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={this.previous} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={this.next} />
-      </Carousel>
+      </AliceCarousel>
     </div>);
   }
 }

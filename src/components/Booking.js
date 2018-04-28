@@ -6,7 +6,12 @@ import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
+
 import { withRouter } from 'react-router-dom';
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import "video-react/dist/video-react.css";
 class Booking extends Component {
 
     constructor(props) {
@@ -47,37 +52,46 @@ class Booking extends Component {
 
 
 
-    render() {
-
+    render(){
         const { location } = this.props;
-        console.log("booking -==>",location.state.movieId, location.state.movieName);
+        console.log("booking -==>",location.state.movieId, location.state.movieName,location.state.genre, location.state.release);
 
         if (this.props.booked===true){
             this.navigate();
         }
 
         return (
-            <div className="booking" style={{backgroundColor: "#696969"}}>
+            <div className="booking" style={{backgroundColor: "black"}}>
                 <div>
                     <Navbarmain/>
                 </div>
-
+                <Tabs>
+                <TabList >
+                  <Tab style={{color: "orange"}}>Overview</Tab>
+                  <Tab style={{color: "orange"}}>Movie Times + Tickets</Tab>
+                  <Tab style={{color: "orange"}}>Synopsis</Tab>
+                  <Tab style={{color: "orange"}}>Reviews</Tab>
+                  <Tab style={{color: "orange"}}>Trailer</Tab>
+                </TabList>
+            
+                <TabPanel>
+                 
                 <div className="row">
 
                 <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
                     <div className="col-md-12" align="left">
                         <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
                         <div>
-                            <div>
-                                <strong>Movie:</strong> {this.props.movie.movieName}
+                            <div style={{color: "white"}}>
+                                <strong style={{color: "white"}}>Movie:</strong> {this.props.movie.movieName}
                             </div>
-                            <div>
+                            <div style={{color: "white"}}>
                         <strong>Released:</strong> {this.props.movie.movieTiming}
                             </div>
-                            <div>
+                            <div style={{color: "white"}}>
                         <strong>Genre:</strong> {this.props.movie.movieType}
                             </div>
-                        <div>
+                        <div style={{color: "white"}}>
                         <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
                         </div>
                         </div>
@@ -86,104 +100,160 @@ class Booking extends Component {
                     </div>
 
                         <div className="col-sm-8" >
-                            <div>
+                            <div style={{color: "white"}}>
                             {<strong>Movie booking here</strong>}
                             </div>
 
-                            {<strong>Show Timings:</strong>}
+                            {<strong style={{color: "white"}}>Show Timings:</strong>}
 
                             <ButtonToolbar>
-                            <Button color="info"
+                            <Button color="warning"
                                     onClick={(event) => {
                                         this.setState({
-                                            //prevdata: location.state.movieId,
-                                            user_id:this.props.user_id,// get userid
-                                            timings:"7:00"
-                                        })
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"7:30"
+                                    })
                                         console.log("in BOOKINGS===>",this.state)
-var l = this.state
-                                      setTimeout(function(){
-                                          history.push
-                                          ({
-                                              pathname: '/Ticket',
-                                              state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
-                                          });
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/Ticket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
 
-                                      },1000)
-                                    }}>7:00 PM</Button>
-                                <Button color="info" bsSize="small"
+                                    },1000)
+                                    }}>7:30 PM</Button>
+
+<span />
+                                <Button color="warning" bsSize="small"
+                                        onClick={(event) => {
+                                        this.setState({
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"8:00"
+                                    })
+                                        console.log("in BOOKINGS===>",this.state)
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/Ticket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
+
+                                    },1000)
+                                    }}>8:00 PM</Button>
+
+                                <Button color="warning"
                                         onClick={(event) => {
                                             this.setState({
-                                                //prevdata: location,
-                                                user_id:this.props.user_id,
-                                                timings:"8:00"
-                                            })
-                                            var g = this.state
-                                            setTimeout(function(){
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
-                                            });
-                                            },1000)
-                                        }}>8:00 PM</Button>
-
-                                <Button color="info"
-                                        onClick={(event) => {
-                                            this.setState({
-                                               // prevdata: location,
                                                 user_id:this.props.user_id,// get userid
                                                 timings:"8:30"
                                             })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
-                                            });
+                                            console.log("in BOOKINGS===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/Ticket',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
                                         }}>8:30 PM</Button>
-                                <Button color="info"
+                                <Button color="warning"
+                                        onClick={(event) => {
+                                        this.setState({
+                                        //prevdata: location.state.movieId,
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"9:00"
+                                    })
+                                        console.log("in BOOKINGS===>",this.state)
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/Ticket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
+
+                                    },1000)
+                                    }}>9:00 PM</Button>
+                                <Button color="warning"
                                         onClick={(event) => {
                                             this.setState({
-                                                //prevdata: location,
-                                                user_id:this.props.user_id,// get userid
-                                                timings:"9:00"
-                                            })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
-                                            });
-                                        }}>9:00 PM</Button>
-                                <Button color="info"
-                                        onClick={(event) => {
-                                            this.setState({
-                                                //prevdata: location,
+                                                //prevdata: location.state.movieId,
                                                 user_id:this.props.user_id,// get userid
                                                 timings:"10:00"
                                             })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: {  movieIds: location.state.movieId, movieNames:location.state.movieName}
-                                            });
+                                            console.log("in BOOKINGS===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/Ticket',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
                                         }}>10:00 PM</Button>
+
                                 <Button color="link"
-                                      onClick={(event)=>{
-                                    this.handleTheatresClick(event)}}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                user_id:this.props.user_id// get userid
+                                            })
+                                            console.log("in BOOking ALL theatre ===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/alltheatresAndTimings',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
+                                        }}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>
                         </div>
                 </div>
 
-                <div className="col-md-8" alight="left">
-                    {<strong>Movie Trailer</strong>}
+                <div className="col-md-8" alight="left" >
+                    {<strong style={{color: "white"}}>Movie Trailer</strong>}
                     <Player
                         playsInline
                         poster="/assets/poster.png"
-                        src={this.props.movie.movieVideoLink}/>
+                        src={this.props.movie.movieVideoLink}
+                        style={{borderColor: "white", border:"solid"}}
+                        />
+
                 </div>
 
             </div>
-                /*{location.state.movieId}*/
+
+
+
+
+
+
+
+
+
+
+
+
+                </TabPanel>
+                <TabPanel>
+                  <h2>Any content 2</h2>
+                </TabPanel>
+                <TabPanel>
+                <h2>Any content 2</h2>
+              </TabPanel>
+              <TabPanel>
+              <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+            <h2>Any content 2</h2>
+          </TabPanel>
+              </Tabs>
+        
+
+                {location.state.movieId}
+
             </div>
         );
     }
@@ -199,7 +269,7 @@ const mapStateToProps =(stores)=> {
     return {
         movie:stores.user.booking.booking_data,
         theatres:stores.theatres,
-        user_id: stores.user.stores.user_id
+        user_id:stores.user.stores.user_id
     };
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));

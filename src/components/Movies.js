@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Container,Row,Col,ListGroupItem,ListGroup,NavLink} from 'reactstrap';
+import { Container,Row,Col,ListGroupItem,ListGroup,NavLink,Button} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
 import {actionmovies,actiongetmovies} from '../actions/loginactions';
 import {connect} from 'react-redux';
 import Navbarmain from './Navbarmain'
 import history from "./History";
-import { withRouter } from 'react-router-dom';
+
 
 class Movies extends Component {
 
@@ -27,11 +27,10 @@ class Movies extends Component {
         history.push
         ({
             pathname: '/booking',
-            state: { movieId: movie.movieId,movieName:movie.movieName }
+            state: { movieId: movie.movieId,movieName:movie.movieName, genre:movie.movieType, release:movie.movieTiming}
         });
         this.props.log(movie);
     }
-
 
     componentWillReceiveProps(nextProps){
         history.push('/movies');
@@ -41,11 +40,12 @@ class Movies extends Component {
 
     renderList() {
 
-        const movies = this.props.movies;
-
-            var filteredMovies = movies.filter(
+        const movies=this.props.movies;
+        if (movies.length !== 0 && movies !== null && movies !== undefined)
+        {
+            var filteredMovies=movies.filter(
                 (movie) => {
-                    return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase()) !== -1;
+                    return movie.movieType.toLowerCase().indexOf(this.state.movieType.toLowerCase())!==-1;
                 }
             );
 
@@ -53,7 +53,7 @@ class Movies extends Component {
             return filteredMovies.map((movie) => {
                 return (
                     <ListGroupItem action
-                                   key={movie.movieId}>
+                        key={movie.movieId}>
                         <img src={movie.movieLink}/>
                         <div>
 
@@ -84,73 +84,101 @@ class Movies extends Component {
         }
 
 
-
+    }
 
 
     render() {
         return (
             <div>
                 <Navbarmain />
+                <br />
                 <Container className="test">
                     <Row>
-                        <Col style={{backgroundColor:'grey', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
+                        <Col style={{backgroundColor:'#343a40', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
                     </Row>
-
+                    <br/>
                     <Row>
-                        <Col>
-                            <ListGroup className="listgroupStyle" >
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
+                        <Col  >
 
-                                <ListGroupItem>
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'action'
-                                        })
-                                    }}>ACTION</a>
-                                </ListGroupItem>
 
-                                <ListGroupItem >
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'drama'
-                                        })
-                                    }}>DRAMA</a>
-                                </ListGroupItem>
-
-                                <ListGroupItem >
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'comedy'
-                                        })
-                                    }}>COMEDY</a>
-                                </ListGroupItem>
-
-                                <ListGroupItem >
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'romance'
-                                        })
-                                    }}>ROMANCE</a>
-                                </ListGroupItem>
-
-                                <ListGroupItem>
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'horror'
-                                        })
-                                    }}>HORROR</a>
-                                </ListGroupItem>
-
-                                <ListGroupItem >
-                                    <a onClick={(event) => {
-                                        this.setState({
-                                            movieType:'sci-fi'
-                                        })
-                                    }}>SCI-FI</a>
-                                </ListGroupItem>
-
-                            </ListGroup>
+                            <Button>
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'action'
+                                    })
+                                }}>ACTION</a>
+                            </Button>
                         </Col>
+                        <Col  >
+                            <Button >
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'drama'
+                                    })
+                                }}>DRAMA</a>
+                            </Button>
+                        </Col>
+                        <Col>
+                            <Button >
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'comedy'
+                                    })
+                                }}>COMEDY</a>
+
+                            </Button >
+                        </Col>
+
+                        <Col>
+                            <Button >
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'romance'
+                                    })
+                                }}>ROMANCE</a>
+                            </Button >
+                        </Col>
+
+                        <Col>
+                            <Button >
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'horror'
+                                    })
+                                }}>HORROR</a>
+                            </Button >
+                        </Col>
+
+                        <Col>
+                            <Button >
+                                <a onClick={(event) => {
+                                    this.setState({
+                                        movieType:'sci-fi'
+                                    })
+                                }}>SCI-FI</a>
+                            </Button >
+
+
+
+                        </Col>
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
+                        <Col  >
+                        </Col  >
                     </Row>
+                    <br />
                     <Row>
                         <Col><h2 >Opening This Week</h2></Col>
                     </Row>
@@ -169,13 +197,10 @@ class Movies extends Component {
                             {this.renderList()}
                         </ListGroup>
                     </Row>
-
                 </Container>
             </div>
 
-        );
-
-    }}
+        ); }}
 
 const mapDispatchToProps =(dispatch)=> {
     return {
@@ -185,8 +210,9 @@ const mapDispatchToProps =(dispatch)=> {
 }
 function mapStateToProps(state) {
     console.log(state);
+
     return {
-    movies:state.movies
+        movies:state.user.movies.movie_data.moviedata
     };
 }
 

@@ -60,7 +60,7 @@ callEditProfile(){
   width: 120,
   margin: 'auto',
   marginTop:'10px',
- height: 140,
+  height: 140,
   borderRadius: 50}}/>
 
 <br/>
@@ -228,12 +228,12 @@ console.log("filllle==>",payload)
     )
   }
 }
-const mapStateToProps = (user) => {
+const mapStateToProps = (stores) => {
     
       return{
         name: "",
         email: "",
-        userid: 1111,
+        user_id: stores.user.stores.user_id,
         isLoggedIn: true,
         phone: "",
         about: "",
@@ -246,7 +246,6 @@ const mapStateToProps = (user) => {
   const mapDispatchToProps = (dispatch) => {
     console.log("dispatch",dispatch)
     return {
-   //   upload : (data) => dispatch(fileUpload(data)),
       profile : (data) => dispatch(editProfile(data))
     }
   }

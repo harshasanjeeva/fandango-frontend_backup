@@ -1,4 +1,4 @@
-import {LOGIN} from '../actions/loginactions';
+import {LOGIN, REAL} from '../actions/loginactions';
 import {SIGNUP} from '../actions/loginactions';
 import {BOOK} from '../actions/loginactions';
 import {MOVIES} from '../actions/loginactions';
@@ -7,6 +7,8 @@ import {TICKET} from '../actions/loginactions';
 import {ADDHALL} from '../actions/loginactions';
 import {ADDMOVIES} from '../actions/loginactions';
 import {PAYMENT} from '../actions/loginactions';
+import {DEL} from '../actions/loginactions';
+import {VIEW} from '../actions/loginactions';
 const initialState = {
        
     "user":{
@@ -135,6 +137,39 @@ const stores= (state = initialState, action) => {
                 "stores":{
 
                     "status":action.data.status
+                }
+            }
+
+        case REAL:
+            console.log("in real payment store")
+            return {
+                ...state,
+                "stores":{
+                    "realticket":action.data.bill
+                }
+            }
+        case DEL:
+            console.log("in delete profile store")
+            return {
+                ...state,
+                "stores":{
+                    "status":action.data.status
+                }
+            }
+            
+        case VIEW:
+            console.log("in view profile store")
+            return {
+                ...state,
+                "stores":{
+                    "First_Name":action.data.First_Name,
+                    "Last_Name":action.data.Last_Name,
+                    "address":action.data.address,
+                    "city":action.data.city,
+                    "state":action.data.state,
+                    "zipcode":action.data.zipcode,
+                    "phone":action.data.phone,
+                    "email":action.data.email
                 }
             }
         default :

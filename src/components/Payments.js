@@ -21,7 +21,14 @@ class Payments extends Component {
         movieid:0,
         movieName:"",
         total_amount:0,
-        total_tickets:0
+        total_tickets:0,
+        genre:"",
+        release:"",
+        timings:"",
+        theatrename:"",
+        student:0,
+        children:0,
+        general:0
     };
 }
 
@@ -31,41 +38,53 @@ class Payments extends Component {
 
     render() {
         const { location } = this.props;
-        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets)
+        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets,location.state.theatrename, location.state.timings, this.props.user_id)
        if (this.props.status) {
             this.navigate();
         }
-        return (<div>
+        return (<div style={{backgroundColor: "black", height:1000 }}>
             <Navbarmain/>
     
-
+            <div style=  {{borderColor:"white",
+                border:"solid",
+                borderWidth:"1px"
+                }
+                }>
                     <Card style={{ 
             
                         width: 400,
                         margin: 'auto',
-                        height: 530,
-                    }}>
+                        height: 519,
+                        marginBottom:0,
+                        backgroundColor: "black",
+                        borderColor:"white !important",
+                        border:"solid"
+                     }}>
+
                         <Alert color="success">
                             {this.props.message}
                         </Alert>
-                  
+
+                        <Alert color="danger">
+                            Please pay ${location.state.total_amount}
+                        </Alert>
 
                         <CardHeader style={{ 
                         backgroundColor: "#2c456c",
                         fontSize: 18,
                         fontWeight: 700,
                         color: "#F7F7F7"}}
-                        
                         >Credit or Debit Card</CardHeader>
                         <CardBody>
+
                    
                         <div>
                      
                      
                      
-                        <p id="label-left">Cardholder Name</p>
+                        <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Cardholder Name</span>
                       
-                        <Input
+                        <Input style={{ marginBottom:"0px !important"}}
                                 
                                 type="text"
                                
@@ -79,7 +98,7 @@ class Payments extends Component {
                         </div>
                         <Row>
                             <Col>
-                                <p id="label-left" >Card Number</p>
+                                <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Card Number</span>
                                 <Input
                                     name="email"
                                     type="text"
@@ -93,7 +112,7 @@ class Payments extends Component {
                                 />
                             </Col>
                             <Col>
-                            <p for="exampleEmail" id="label-left">CVV</p>
+                            <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                             <Input
                                
                                 type="number"
@@ -111,7 +130,7 @@ class Payments extends Component {
                  
 
                      
-                        <p for="exampleEmail" id="label-left">Expiry date</p>
+                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                             <input
                                 className="form-control"
                                 type="text"
@@ -123,20 +142,31 @@ class Payments extends Component {
                                     });
                                 }}
                             />
+
+
+
                         <br/>
                         <div>
                         <Button color="success" onClick={() => {
                             this.setState({
                                 movieid:location.state.movieId,
                                 movieName:location.state.movieName,
+                                genre:location.state.genre,
+                                release:location.state.release,
                                 total_amount:location.state.total_amount,
-                                total_tickets:location.state.total_tickets
+                                total_tickets:location.state.total_tickets,
+                                theatrename:location.state.theatrename,
+                                timings:location.state.timings,
+                                children:location.state.children,
+                                student:location.state.student,
+                                general:location.state.general
                             })
                             this.props.pay(this.state)
                         }}>Make Payment</Button>
                         </div>
                         </CardBody>
                     </Card>
+                    </div>
                 </div>
     
         )

@@ -13,7 +13,7 @@ class Ticket extends Component {
         this.state = {
             user_id: this.props.userid,
             movie_id: this.props.movieid,
-            general:0,
+            general:1,
             student: 0,
             children: 0,
             general_amount:'',
@@ -44,10 +44,7 @@ class Ticket extends Component {
     render() {
         const { location } = this.props;
         console.log(location)
-        console.log("Tickets -==>",location.state.movieIds, location.state.movieNames)
-        // if (this.props.tick){
-        //     this.navigate();
-        // }
+        console.log("Tickets -==>",location.state.movieIds, location.state.movieNames,location.state.genre,location.state.release, location.state.theatrename, location.state.timings)
 
 
 
@@ -78,12 +75,13 @@ class Ticket extends Component {
                                                 type="number"
                                                 label="No of Tickets"
                                                 placeholder="Enter Number"
-                                                value={this.state.general}
+                                                //value={this.state.general}
                                                 onChange={(event) => {
                                                     this.setState({
-                                                        general:event.target.value,
+                                                        general:parseInt(event.target.value),
                                                         general_amount:event.target.value  * 10
                                                     });
+                                                    console.log("seats-->",this.state.general, "amount-->",this.state.general_amount);
                                                 }}
                                             />
                                         </div>
@@ -95,7 +93,7 @@ class Ticket extends Component {
                                                 type="number"
                                                 label="student"
                                                 placeholder="Enter Number"
-                                                value={this.state.student}
+                                               // value={this.state.student}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         student: parseInt(event.target.value),
@@ -112,7 +110,7 @@ class Ticket extends Component {
                                                 type="number"
                                                 label="children"
                                                 placeholder="Enter Number"
-                                                value={this.state.children}
+                                                //value={this.state.children}
                                                 onChange={(event) => {
                                                     this.setState({
                                                         children: parseInt(event.target.value),
@@ -135,7 +133,10 @@ class Ticket extends Component {
                                                     history.push
                                                     ({
                                                         pathname: '/Payments',
-                                                        state: {  movieId: location.state.movieIds, movieName:location.state.movieNames, total_amount:this.state.total_amount, total_tickets:this.state.total_tickets}
+                                                        state: {  movieId: location.state.movieIds, movieName:location.state.movieNames, total_amount:this.state.total_amount,
+                                                            total_tickets:this.state.total_tickets,genre:location.state.genre,release:location.state.release,
+                                                            theatrename:location.state.theatrename, timings: location.state.timings, general:this.state.general,
+                                                            student:this.state.student, children:this.state.children}
                                                     });
                                                     }}>
                                                 Continue to seat selection
@@ -162,7 +163,6 @@ const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
         tick : stores.user.ticket_status,
-        userid : 123,
         movieid: 456
     };
 }

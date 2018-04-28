@@ -4,7 +4,7 @@ export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
 export const EDIT_PROFILE ="EDIT_PROFILE";
-
+export const DEL="DEL"
 
 
 export const MOVIES ="MOVIES";
@@ -13,6 +13,9 @@ export const TICKET ="TICKET";
 export const ADDMOVIES ="ADDMOVIES";
 export const ADDHALL ="ADDHALL";
 export const PAYMENT ="PAYMENT";
+export const REAL ="REAL";
+
+export const VIEW ="VIEW";
 
 export function actionlogin(userdata) {
     console.log("in login");
@@ -158,7 +161,6 @@ export function actiongetmovies(userdata) {
     console.log(userdata);
     return function (dispatch) {
         // try {
-
             API.getmovies(userdata)
                 .then((response) => {
                     try {
@@ -299,6 +301,102 @@ export function paid(data) {
     return {
         type: PAYMENT,
         message: "inside payment data",
+        data:data
+    }
+}
+export function actionreal(userdata) {
+    console.log("in action real");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.real(userdata)
+                .then((response) => {
+                    try {
+                        console.log("Received real ticket information");
+                        dispatch(real(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function real(data) {
+    console.log(data);
+    return {
+        type: REAL,
+        message: "inside real ticket data",
+        data:data
+    }
+}
+
+export function actiondel(userdata) {
+    console.log("in action delete");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.delprofile(userdata)
+                .then((response) => {
+                    try {
+                        console.log("in delete try");
+                        dispatch(del(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+export function del(data) {
+    console.log(data);
+    return {
+        type: DEL,
+        message: "inside real ticket data",
+        data:data
+    }
+}
+
+export function actionview(userdata) {
+    console.log("in action view profile");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.viewprofile(userdata)
+                .then((response) => {
+                    try {
+                        console.log("in delete try");
+                        dispatch(viewprofile(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+export function viewprofile(data) {
+    console.log(data);
+    return {
+        type: VIEW,
+        message: "inside viewprofile data",
         data:data
     }
 }

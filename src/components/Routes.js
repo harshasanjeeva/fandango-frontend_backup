@@ -12,11 +12,11 @@ import '../App.css';
 import Ticket from "./Ticket";
 import Addmovies from "./Addmovies";
 import Addhall from "./Addhall";
-
+import Realticket from "./realticket";
 import history from "./History";
 import Payments from "./Payments";
 import Profile from "./Profile";
-
+import myprofile from "./myprofile";
 
 class Routes extends Component {
     render() {
@@ -34,10 +34,10 @@ class Routes extends Component {
                     <Route  path='/payments' component={Payments}/>
 
                     <Route  path='/profile' component={Profile}/>
-                   
+                    <Route  path='/realticket' component={Realticket}/>
                     <Route  path='/addmovies' component={Addmovies}/>
                     <Route  path='/addhall' component={Addhall}/>
-
+                    <Route  path='/myprofile' component={myprofile}/>
                 </Switch>
             </Router>
         );

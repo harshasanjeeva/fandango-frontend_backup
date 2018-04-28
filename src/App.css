@@ -24,11 +24,11 @@
 
 .listgroupStyle{
   display:inline-block !important;
-  background-color: bisque;
+  background-color: #25313c;
 }
 .listgroupStyle > li{
   float:left;
-  background-color: bisque;
+  background-color: #25313c;
 
 }
 
@@ -52,4 +52,13 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+#react-tabs-1 > div > div.col-md-8 > div > div.video-react-poster{
+  border: solid;
+}
+
+#har> div > div.col-md-8 > div > button{
+  margin-left: 500px;
+  margin-top: 250px;  
 }
