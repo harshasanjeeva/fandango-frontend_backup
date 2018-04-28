@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 
@@ -6,77 +7,66 @@ import {Input, Card, Row,Col, CardBody,CardHeader} from 'reactstrap';
 import {Button} from 'reactstrap';
 import Navbarmain from './Navbarmain'
 import { Alert } from 'reactstrap';
+import {actionpayment} from "../actions/loginactions";
 
 
 class Payments extends Component {
     constructor(props) {
         super(props);
 
-    this.state = {
-        user_id:this.props.user_id,
-        name: '',
-        creditcard: '',
-        cvv:'',
-        expdate:'',
-        amounts:0,
-        freelancer:0
-    };
-}
+        this.state = {
+            user_id:this.props.user_id,
+            name: '',
+            creditcard: '',
+            cvv:'',
+            expdate:'',
+            oldstate:""
+        };
+    }
 
     navigate() {
         history.push('/');
     }
 
     render() {
-       if (this.props.status === 200) {
+        const { olddata2 } = this.props;
+        if (this.props.status) {
             this.navigate();
         }
-        return (<div style={{backgroundColor: "black", height:1000 }}>
-            <Navbarmain/>
-    
-<div style=  {{borderColor:"white",
-                        
-border:"solid",
-borderWidth:"1px"
+        return (<div>
+                <Navbarmain/>
 
+
+                <Card style={{
+
+                    width: 400,
+                    margin: 'auto',
+                    height: 530,
                 }}>
-                    <Card style={{ 
-            
-                        width: 400,
-                        margin: 'auto',
-                        height: 519,
-                        marginBottom:0,
-                        backgroundColor: "black",
-                        borderColor:"white !important",
-                        
-                        border:"solid",
-                        
+                    <Alert color="success">
+                        {this.props.message}
+                    </Alert>
 
-                                        }}>
-                        <Alert color="success">
-                            {this.props.message}
-                        </Alert>
-                  
 
-                        <CardHeader style={{ 
+                    <CardHeader style={{
                         backgroundColor: "#2c456c",
                         fontSize: 18,
                         fontWeight: 700,
                         color: "#F7F7F7"}}
-                        
-                        >Credit or Debit Card</CardHeader>
-                        <CardBody>
-                   
+
+                    >Credit or Debit Card</CardHeader>
+                    <CardBody>
+
                         <div>
-                     
-                     
-                     
-                        <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Cardholder Name</span>
-                      
-                        <Input style={{ marginBottom:"0px !important"}}
-                                
+
+
+
+                            <p id="label-left">Cardholder Name</p>
+
+                            <Input
+
                                 type="text"
-                               
+
                                 value={this.state.name}
                                 onChange={(event) => {
                                     this.setState({
@@ -84,20 +74,14 @@ borderWidth:"1px"
                                     });
                                 }}
                             />
-                
-                          
                         </div>
-                    
-                      
-                      
-                    
                         <Row>
                             <Col>
                                 <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Card Number</span>
                                 <Input
                                     name="email"
                                     type="text"
-                                    
+
                                     value={this.state.creditcard}
                                     onChange={(event) => {
                                         this.setState({
@@ -107,89 +91,65 @@ borderWidth:"1px"
                                 />
                             </Col>
                             <Col>
-                            <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
-                            <Input
-                               
-                                type="number"
-                                placeholder="Enter CVV"
-                                value={this.state.cvv}
-                                onChange={(event) => {
-                                    this.setState({
-                                        cvv: event.target.value
-                                    });
-                                }}
-                            />
-                          </Col>
-                          </Row>
-                       
-                 
+                                <p for="exampleEmail" id="label-left">CVV</p>
+                                <Input
 
-                     
-                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
-                            <input
-                                className="form-control"
-                                type="text"
-                                placeholder="MM/YY"
-                                value={this.state.expdate}
-                                onChange={(event) => {
-                                    this.setState({
-                                        expdate: event.target.value
-                                    });
-                                }}
-                            />
-                       
-                        <div>
-                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Amount</span>
-                            <Input
-                                
-                                type="number"
-                                placeholder="Amount"
-                                value={this.state.amounts}
-                                onChange={(event) => {
-                                    this.setState({
-                                        amounts: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
+                                    type="number"
+                                    placeholder="Enter CVV"
+                                    value={this.state.cvv}
+                                    onChange={(event) => {
+                                        this.setState({
+                                            cvv: event.target.value
+                                        });
+                                    }}
+                                />
+                            </Col>
+                        </Row>
 
 
 
-                        <div>
-                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>FreeLancer Id</span>
-                            <Input
-                                
-                                type="number"
-                                placeholder="1234"
-                               
-                                onChange={(event) => {
-                                    this.setState({
-                                        freelancer: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
+
+                        <p for="exampleEmail" id="label-left">Expiry date</p>
+                        <input
+                            className="form-control"
+                            type="text"
+                            placeholder="MM/YY"
+                            value={this.state.expdate}
+                            onChange={(event) => {
+                                this.setState({
+                                    expdate: event.target.value
+                                });
+                            }}
+                        />
                         <br/>
                         <div>
-                        <Button color="success" onClick={() => {
-                            history.push('/')
-                        }}>Make Payment</Button>
+                            <Button color="success" onClick={() => {
+                                this.setState({
+                                    oldstate: olddata2
+                                })
+                                this.props.pay(this.state)
+                            }}>Make Payment</Button>
                         </div>
-                        </CardBody>
-                    </Card>
-                    </div>
-                </div>
-    
+                    </CardBody>
+                </Card>
+            </div>
+
         )
     }
 }
 
-const mapStateToProps =(user)=> {
-    
+const mapDispatchToProps =(dispatch)=> {
     return {
-        user_id: 111,
+        pay : (data) => dispatch(actionpayment(data))
+    };
+}
+const mapStateToProps =(stores)=> {
+
+    return {
+        user_id: stores.user.stores.user_id,
         status : "False",
         message : "success"
     };
 }
-export default connect(mapStateToProps)(Payments);
+export default connect(mapStateToProps,mapDispatchToProps)(Payments);
+

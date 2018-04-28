@@ -22,6 +22,25 @@ export const doLogin = (payload) =>
             console.log("This is error");
             return error;
         });
+export const doAdminLogin = (payload) =>
+    fetch(`${api}/operations/adminLogin`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log("message",response.message);
+            console.log("after message");
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 export const signup = (payload) =>
     fetch(`${api}/operations/signup`, {
@@ -152,7 +171,24 @@ export const moviesadd = (payload) =>
 //         return error;
 //     });
 
-
+export const analytics = (payload) =>
+    fetch(`${api}/operations/analytics`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log("here in api myprojectDesc proposal"); 
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 export const halladd = (payload) =>
     fetch(`${api}/operations/addhall`, {
@@ -173,3 +209,100 @@ export const halladd = (payload) =>
             console.log("This is error");
             return error;
         });
+
+export const paid = (payload) =>
+    fetch(`${api}/operations/payment`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const addHallApi = (payload) =>
+    fetch(`${api}/operations/addHall`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const addUserToHall = (payload) =>
+    fetch(`${api}/operations/addUserToHall`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const getMovieHalls = (payload) =>
+    fetch(`${api}/operations/getMovieHalls`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const viewAllUsers = (payload) =>
+    fetch(`${api}/operations/viewAllUsers`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+
+
+

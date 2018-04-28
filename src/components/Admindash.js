@@ -8,6 +8,7 @@ import Homemain from './Homemain'
 import Navbarheader from './Navbarlogout'
 import {Link} from 'react-router-dom';
 import Footer from './Footer'
+import {Row,Col} from 'reactstrap'
 Charts(FusionCharts);
 
 
@@ -87,7 +88,7 @@ var data = [
 ]
 
     var chartData= {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: ["January", "February", "March", "April", "May", "June", "July","MOV","mov","mov"],
         datasets: [
             {
                 label: "My First dataset",
@@ -97,18 +98,18 @@ var data = [
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40]
-            },
-            {
-                label: "My Second dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)",
-                data: [28, 48, 40, 19, 86, 27, 90]
+                data: [65, 59, 80, 81, 56, 55, 40,10,50,60]
             }
+            // {
+            //     label: "My Second dataset",
+            //     fillColor: "rgba(151,187,205,0.2)",
+            //     strokeColor: "rgba(151,187,205,1)",
+            //     pointColor: "rgba(151,187,205,1)",
+            //     pointStrokeColor: "#fff",
+            //     pointHighlightFill: "#fff",
+            //     pointHighlightStroke: "rgba(151,187,205,1)",
+            //     data: [28, 48, 40, 19, 86, 27, 90]
+            // }
         ]
     };
     return (
@@ -119,8 +120,19 @@ var data = [
 
 
        <Navbarheader />
-       <BarChart data={chartData} width="600" height="250"/>
+       <Row>
+       <Col>
+       <h4 style={{color:"silver",float:"left"}}>Movies with its revenue/year</h4>
+       <BarChart data={chartData} width="500" height="250" style={{float:"left"}}/>
+       </Col>
+
+       <Col>
+       <h4 style={{color:"silver",float:"left",marginLeft:"60px"}}>Movies with its revenue/year</h4>
        <LineChart data={chartData} width="600" height="250"/>
+       </Col>
+
+       </Row >
+       <h5 style={{color:"silver"}}>10 halls who sold maximum number of tickets last month with its revenue</h5>
        <DoughnutChart data={data}  width="600" height="250"/>
   
         

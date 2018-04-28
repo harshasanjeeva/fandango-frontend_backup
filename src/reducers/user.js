@@ -6,6 +6,11 @@ import {GETMOVIES} from '../actions/loginactions';
 import {TICKET} from '../actions/loginactions';
 import {ADDHALL} from '../actions/loginactions';
 import {ADDMOVIES} from '../actions/loginactions';
+import {ADMINLOGIN} from "../actions/loginactions";
+import {PAYMENT} from "../actions/loginactions";
+import {ADDUSERHALL} from "../actions/loginactions";
+import {GETMOVIEHALLS} from "../actions/loginactions";
+import {VIEWALLUSERS} from "../actions/loginactions"
 
 const initialState = {
        
@@ -35,6 +40,18 @@ const stores= (state = initialState, action) => {
                 "stores":{
                     "username":action.data.name,
                     "login_status":action.data.status
+                }
+            }
+        case PAYMENT:
+            console.log("im here in payment store");
+            console.log("in payment ")
+            console.log(action.data.status);
+            console.log(stores)
+            return {
+                ...state,
+                "stores":{
+
+                    "payment_status":action.data.status
                 }
             }
         case SIGNUP:
@@ -84,6 +101,15 @@ const stores= (state = initialState, action) => {
                 }
             }
 
+        case ADMINLOGIN:
+            console.log("im here in movies store");
+            return {
+                ...state,
+                "adminLogin": {
+                    "admin_data": action.data
+                }
+            }
+
 
         case TICKET:
             console.log("im here in Ticket store");
@@ -100,15 +126,25 @@ const stores= (state = initialState, action) => {
             }
 
         case ADDMOVIES:
-            console.log("im here in add movies store");
-            console.log("in add movies:")
-            console.log("add movie status",action.data.status);
+        console.log("im here in add movies store");
+        console.log("in add movies:")
+        console.log("add movie status",action.data.status);
+        console.log(stores)
+        return {
+            ...state,
+            "stores":{
+
+                "addmovie_status":action.data.status
+            }
+        }
+
+        case GETMOVIEHALLS:
             console.log(stores)
             return {
                 ...state,
-                "stores":{
+                "movieHalls":{
 
-                    "addmovie_status":action.data.status
+                    "movieHalls":action.data
                 }
             }
 
@@ -120,8 +156,31 @@ const stores= (state = initialState, action) => {
             return {
                 ...state,
                 "stores":{
-
                     "addhall_status":action.data.status
+                }
+            }
+        case ADDUSERHALL:
+            console.log("im here in add hall user store");
+            console.log("in user hall:")
+            console.log(action.data.status);
+            console.log(stores)
+            return {
+                ...state,
+                "stores":{
+
+                    "addHallUser":action.data.status
+                }
+            }
+        case VIEWALLUSERS:
+            console.log("im here in add hall user store");
+            console.log("in user hall:")
+            console.log(action.data.status);
+            console.log(stores)
+            return {
+                ...state,
+                "viewAllUsers":{
+
+                    "viewAllUsers":action.data
                 }
             }
         default :

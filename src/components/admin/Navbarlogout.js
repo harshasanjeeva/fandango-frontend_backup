@@ -3,9 +3,8 @@ import { Button, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,Dro
 import { Link } from 'react-router-dom';
 import { Route, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux';
-import Login from "./Login";
-import history from './History';
-import Homemain from './Homemain'
+import history from '../History';
+import Homemain from '../Homemain'
 
 
 

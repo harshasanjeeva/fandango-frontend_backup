@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink,Button} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
-import {actionmovies,actiongetmovies} from '../actions/loginactions';
+import {actionmovies,actiongetmovies, analytics} from '../actions/loginactions';
 import {connect} from 'react-redux';
 import Navbarmain from './Navbarmain'
 import history from "./History";
-
 
 class Movies extends Component {
 
@@ -16,10 +15,15 @@ class Movies extends Component {
         this.state = {
 
             movieType:'',
-            movieId:''
+            movieId:'',
+            numofclick:2,
+            componentname:"Movies",
+            userid:123
+
 
         };
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
+        this.analytics = this.analytics.bind(this);
     }
 
     handleMoviesClick = (event,movie) => {
@@ -30,18 +34,15 @@ class Movies extends Component {
             state: { movieId: movie.movieId }
         });
         this.props.log(movie);
+        this.props.analytics(this.state);
     }
 
-
-
-    // componentWillMount(){
-    // this.props.getmovies("");
-    // }
-
-    componentWillReceiveProps(nextProps){
-        history.push('/movies');
+    analytics = ()=>{
+        this.setState({
+            numofclick: parseFloat(this.state.numofclick) + 1    
+        })
+        console.log("number of clicks",this.state.numofclick)
     }
-
 
 
     renderList() {
@@ -73,6 +74,7 @@ class Movies extends Component {
                             <NavLink onClick={(event) => {
 
                                 this.handleMoviesClick(event, movie)
+                               this.props.analytics(this.state);
                             }}>
 
                                 {movie.movieName}
@@ -111,12 +113,20 @@ class Movies extends Component {
                 <Col  >
                 </Col  >
                 <Col  >
+                
+                <Button>
+                <a onClick={(event) => {
+                    this.analytics();
+                    
+                }}>DUMMY</a>
+            </Button>
                 </Col  >
                     <Col  >
                      
 
                             <Button>
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'action'
                                     })
@@ -126,6 +136,7 @@ class Movies extends Component {
                     <Col  >
                             <Button >
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'drama'
                                     })
@@ -135,6 +146,7 @@ class Movies extends Component {
                             <Col>
                             <Button >
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'comedy'
                                     })
@@ -146,6 +158,7 @@ class Movies extends Component {
                                 <Col>
                                 <Button >
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'romance'
                                     })
@@ -156,6 +169,7 @@ class Movies extends Component {
                                 <Col>
                                 <Button >
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'horror'
                                     })
@@ -166,6 +180,7 @@ class Movies extends Component {
                                 <Col>
                                 <Button >
                                 <a onClick={(event) => {
+                                    this.analytics();
                                     this.setState({
                                         movieType:'sci-fi'
                                     })
@@ -212,9 +227,12 @@ class Movies extends Component {
 const mapDispatchToProps =(dispatch)=> {
     return {
         log : (data) => dispatch(actionmovies(data)),
-        getmovies : (data) => dispatch(actiongetmovies(data))
+        getmovies : (data) => dispatch(actiongetmovies(data)),
+        analytics : (data) => dispatch(analytics(data))
     };
 }
+
+
 function mapStateToProps(state) {
     console.log(state);
 
