@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {actionlogin} from '../../actions/loginactions';
 import { Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "../History";
 import Navbarmain from '../Navbarlogout';
-//import {actionAdminLogin} from '../../actions/actionAdminLogin';
+import {actionAdminLogin,getMovieHalls} from '../../actions/loginactions';
 
 
 class adminHome extends Component {
@@ -21,25 +20,19 @@ class adminHome extends Component {
     }
 
     adminLogin() {
-        if(this.state.email==="admin" && this.state.password==="admin")
-        {
-            this.setState({modal:true});
+        this.props.log(this.state);
+        this.props.getMovieHalls();
+        setTimeout(function () {
             history.push
             ({
-                pathname: '/adminHome',
-                state: { modal: this.state.modal }
+                pathname: '/adminHome'
             });
-        }
+        },1000);
     }
 
 
     render() {
 
-        if (this.props.login_status) {
-            var d = {movies: ''};
-            this.props.getmovies(d);
-            setTimeout(function(){ history.push('/movies') }, 800);
-        }
 
 
         return (
@@ -99,9 +92,9 @@ class adminHome extends Component {
                                             <button
                                                 className="btn btn-primary"
                                                 type="button"
-                                                onClick={() => {
+                                                onClick={(event) => {
                                                     this.adminLogin()
-                                                }}>
+                                                }}>x
                                                 Login
                                             </button>
 
@@ -120,12 +113,13 @@ class adminHome extends Component {
 
 }
 
-/*const mapDispatchToProps =(dispatch)=> {
+const mapDispatchToProps =(dispatch)=> {
     return {
-        log : (data) => dispatch(actionAdminLogin(data))
+        log : (data) => dispatch(actionAdminLogin(data)),
+        getMovieHalls: () => dispatch(getMovieHalls())
     };
-}*/
+}
 const mapStateToProps =(state)=> {
     return state
 }
-export default connect(mapStateToProps)(adminHome);
+export default connect(mapStateToProps,mapDispatchToProps)(adminHome);

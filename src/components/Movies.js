@@ -34,15 +34,6 @@ class Movies extends Component {
 
 
 
-    // componentWillMount(){
-    // this.props.getmovies("");
-    // }
-
-    componentWillReceiveProps(nextProps){
-        history.push('/movies');
-    }
-
-
 
     renderList() {
 

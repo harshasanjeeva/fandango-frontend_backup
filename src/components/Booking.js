@@ -1,7 +1,8 @@
+
 import React, {Component} from 'react';
 import {actionbook} from '../actions/loginactions';
 import "../../node_modules/video-react/dist/video-react.css";
-import { Button, ButtonToolbar, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav } from 'reactstrap';
+import { Button, ButtonToolbar} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
@@ -17,7 +18,10 @@ class Booking extends Component {
             theatre: '',
             Movie:"",
             rating: 2,
-            timing:""
+            timings:"",
+            prevdata:"",
+            user_id:""
+
         };
         this.toggle = this.toggle.bind(this);
         this.handleTheatresClick = this.handleTheatresClick.bind(this);
@@ -27,17 +31,6 @@ class Booking extends Component {
             modal: !this.state.modal
         });
     }
-
-    // componentWillMount(){
-    //     this.setState({
-    //         date:'April 13 2018',
-    //         genre: 'action/adventure',
-    //         theatre: 'Inox Movies',
-    //         Movie:"Fast and Furious",
-    //         rating: 2,
-    //         timing:""
-    //     });
-    // }
 
     navigate()
     {
@@ -61,16 +54,8 @@ class Booking extends Component {
 
 
         if (this.props.booked===true){
-            // {/*<Alert color="primary">*/}
-            //     {/*Loggedin Successfully!*/}
-            // {/*</Alert>*/}
             this.navigate();
         }
-
-
-
-
-
 
         return (
             <div className="booking" style={{backgroundColor: "#696969"}}>
@@ -80,74 +65,118 @@ class Booking extends Component {
 
                 <div className="row">
 
-                <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
-                    <div className="col-md-12" align="left">
-                        <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
-                        <div>
+                    <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
+                        <div className="col-md-12" align="left">
+                            <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
                             <div>
-                                <strong>Movie:</strong> {this.props.movie.movieName}
+                                <div>
+                                    <strong>Movie:</strong> {this.props.movie.movieName}
+                                </div>
+                                <div>
+                                    <strong>Released:</strong> {this.props.movie.movieTiming}
+                                </div>
+                                <div>
+                                    <strong>Genre:</strong> {this.props.movie.movieType}
+                                </div>
+                                <div>
+                                    <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
+                                </div>
                             </div>
-                            <div>
-                        <strong>Released:</strong> {this.props.movie.movieTiming}
-                            </div>
-                            <div>
-                        <strong>Genre:</strong> {this.props.movie.movieType}
-                            </div>
-                        <div>
-                        <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
-                        </div>
-                        </div>
 
 
-                    </div>
+                        </div>
 
                         <div className="col-sm-8" >
                             <div>
-                            {<strong>Movie booking here</strong>}
+                                {<strong>Movie booking here</strong>}
                             </div>
 
                             {<strong>Show Timings:</strong>}
 
                             <ButtonToolbar>
-                            <Button color="info"
-                                    onClick={(event) => this.props.log(this.state)}>7:30 PM</Button>
-
-
+                                <Button color="info"
+                                        onClick={(event) => {
+                                            this.setState({
+                                                prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"7:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: this.state
+                                            });
+                                        }}>7:00 PM</Button>
                                 <Button color="info" bsSize="small"
-                                onClick={() => {
-                                    // history.push('/tickets');
-                                    this.props.log(this.state)
-                                }}>8:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                prevdata: location,
+                                                user_id:this.props.user_id,
+                                                timings:"8:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: this.state
+                                            });
+                                        }}>8:00 PM</Button>
 
                                 <Button color="info"
-                                        onClick={(event) => this.props.log(this.state)}>8:30 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"8:30"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: this.state
+                                            });
+                                        }}>8:30 PM</Button>
                                 <Button color="info"
-                                        onClick={(event) => this.props.log(this.state)}>9:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"9:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: this.state
+                                            });
+                                        }}>9:00 PM</Button>
                                 <Button color="info"
-                                        onClick={(event) => this.props.log(this.state)}>10:00 PM</Button>
+                                        onClick={(event) => {
+                                            this.setState({
+                                                prevdata: location,
+                                                user_id:this.props.user_id,// get userid
+                                                timings:"10:00"
+                                            })
+                                            history.push
+                                            ({
+                                                pathname: '/Ticket',
+                                                state: this.state
+                                            });
+                                        }}>10:00 PM</Button>
                                 <Button color="link"
-                                      onClick={(event)=>{
-
-                                    this.handleTheatresClick(event)}}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
+                                        onClick={(event)=>{
+                                            this.handleTheatresClick(event)}}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>
-
                         </div>
+                    </div>
+
+                    <div className="col-md-8" alight="left">
+                        {<strong>Movie Trailer</strong>}
+                        <Player
+                            playsInline
+                            poster="/assets/poster.png"
+                            src={this.props.movie.movieVideoLink}/>
+                    </div>
 
                 </div>
-
-                <div className="col-md-8" alight="left">
-                    {<strong>Movie Trailer</strong>}
-                    <Player
-                        playsInline
-                        poster="/assets/poster.png"
-                        src={this.props.movie.movieVideoLink}/>
-
-                </div>
-
-            </div>
-
                 {location.state.movieId}
-
             </div>
         );
     }
@@ -161,8 +190,9 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        movie:stores.user.movies.booking_data,
-        theatres:stores.theatres
+        movie:stores.user.booking.booking_data,
+        theatres:stores.theatres,
+        user_id: stores.user.stores.user_id
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);
