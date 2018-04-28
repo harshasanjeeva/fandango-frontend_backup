@@ -17,21 +17,82 @@ class viewUsers extends Component {
 
             email:'',
             password:'',
-            confPassword:''
+            confPassword:'',
+            toggle:true,
+            hallUserEmail:''
 
         };
+        this.updateUser=this.updateUser.bind(this);
+    }
+
+    updateUser=()=>{
+
+        this.setState({
+            toggle:!this.state.toggle,
+            hallUserEmail:''
+        });
+        this.props.addUserToHall(this.state);
+
     }
 
     renderList()
     {
-        return this.props.hallUsers.map((hallUser) => {
+
+        var filteredUsers = this.props.hallUsers.filter(
+            (user) => {
+                return user.hallUserEmail.toLowerCase().indexOf(this.state.hallUserEmail.toLowerCase()) !== -1;
+            }
+        );
+        return filteredUsers.map((hallUser) => {
             return (
 
                 <ListGroupItem action
-                               key={hallUser.hallId} style={{backgroundColor:"black",width:"50",border:"solid white",borderWidth:"0.5 px"}}>
-                    <span style={{color:"silver"}}>  Hall User Id: {hallUser.hallUserId} </span><br/> 
-                   <span > Hall User Email : {hallUser.hallUserEmail}  </span><br/>
-                
+                               key={hallUser.hallId}  style={{backgroundColor:"black",width:"50",border:"solid white",borderWidth:"0.5 px"}}>
+
+
+
+                    {this.state.toggle ? (<div style={{color:"silver"}}>Hall User Email : {hallUser.hallUserEmail}<br/>
+                            Hall User Id: {hallUser.hallUserId}</div>) :
+                        (<FormGroup style={{marginLeft:"20px"}}>
+                        <Input
+                            type="text"
+                            id="email"
+                            placeholder="Enter Email"
+                            value={this.state.email}
+                            onChange={(event) => {
+                                this.setState({
+                                    email: event.target.value
+                                });
+                            }}
+                        />
+                        <br/>
+                        <Input
+                            type="password"
+                            id="password"
+                            placeholder="Enter Password"
+                            value={this.state.password}
+                            onChange={(event) => {
+                                this.setState({
+                                    password: event.target.value
+                                });
+                            }}
+                        /><br/>
+                        <Button onClick={(event)=>{
+                            this.updateUser();
+                        }}>
+                            Update
+                        </Button>
+                    </FormGroup>)
+                    }
+                    <Button onClick={(event)=>{this.setState({
+                        toggle:!this.state.toggle,
+                        hallUserEmail:hallUser.hallUserEmail
+                    });
+
+
+                    }}>
+                        Edit User
+                    </Button>
 
 
                 </ListGroupItem>
@@ -71,6 +132,11 @@ function mapStateToProps(state) {
 }
 
 
+const mapDispatchToProps =(dispatch)=> {
+    return {
+        addUserToHall : (data) => dispatch(addUserToHall(data))
+    };
+}
 
 
-export default connect(mapStateToProps) (viewUsers);
+export default connect(mapStateToProps,mapDispatchToProps) (viewUsers);

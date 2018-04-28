@@ -8,7 +8,7 @@ import Navbarmain from './Navbarmain'
 import history from "../History";
 
 
-class adminHome extends Component {
+class adminMovieHalls extends Component {
 
     constructor(props) {
         super(props);
@@ -68,7 +68,7 @@ class adminHome extends Component {
                                 setTimeout(function () {
                                     history.push
                                     ({
-                                        pathname: '/adminHome'
+                                        pathname: '/adminMainPage'
                                     });
                                 },1000)
 
@@ -100,14 +100,15 @@ class adminHome extends Component {
     }
 
 
-
-
     render() {
         return (
             <div style={{backgroundColor: "black",height:"1100px"}}>
             <Navbarmain/>
             <Container>
+<<<<<<< HEAD:src/components/admin/adminHome.js
                 
+=======
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab:src/components/admin/adminMovieHalls.js
 
                 <Row style={{marginTop:"20px",color:"white",borderWidth:"0.5px",}}>
                                 Enter Movie Hall Name
@@ -211,4 +212,4 @@ const mapDispatchToProps =(dispatch)=> {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps) (adminHome);
+export default connect(mapStateToProps,mapDispatchToProps) (adminMovieHalls);

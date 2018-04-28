@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Route, withRouter } from 'react-router-dom';
-import {connect} from 'react-redux';
-import Login from "./Login";
-import history from './History';
-import Homemain from './Homemain'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
+import { withRouter } from 'react-router-dom';
+//import Login from "./Login";
+//import history from './History';
+//import Homemain from './Homemain'
 
 
 
@@ -75,14 +73,3 @@ class Navbarlogout extends Component {
 
 
 export default withRouter((Navbarlogout));
-
-
-// <Route exact path="/login" render={() => (
-//   <div>
-//       <Login/>
-//       console.log("done with login");
-
-
-
-//   </div>
-// )}/>

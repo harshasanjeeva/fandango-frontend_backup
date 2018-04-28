@@ -25,33 +25,14 @@ class Login extends Component {
         });
     }
 
-
-    // navigate(){
-    //     console.log("movies===>")
- 
-    //    var d = {
-    //     movies:''
-    //    }
-    // this.props.getmovies(d);
-    // // setTimeout(funtion(){  },1000);
-    // history.push('/movies')
-    // }
-    
-
-
-
-
-
-    
-
     render() {
 
         if (this.props.login_status) {
             var d = {movies: ''};
             this.props.getmovies(d);
-          setTimeout(function(){ history.push('/movies') }, 500);
+          setTimeout(function(){ history.push('/movies') }, 3000);
         }
-    
+
 
         return (
             <div style={{backgroundColor:"black" ,height: "700px !important"}}>
@@ -59,19 +40,19 @@ class Login extends Component {
             <br />
             <br />
             <Row style={{backgroundColor:"black" ,height: "600px"}}>
-            
-            <Col> 
+
+            <Col>
             <img src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png" width="320" height="140" alt="" />
-            
+
             </Col>
             <Col>
             <br />
-      
+
             <Card style={{backgroundColor:"black", border: "solid",
             borderColor: "white", height:"350px", width:"451px"}}>
             <div>
                 <div>
-                
+
                 </div>
                 <div >
                 </div>
@@ -85,7 +66,7 @@ class Login extends Component {
                         <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Email </p>
                         <div style={{paddingLeft:100,paddingRight:100 }}>
                             <Input
-                                
+
                                 type="text"
                                 label="Username"
                                 placeholder="Enter Address"
@@ -101,7 +82,7 @@ class Login extends Component {
                         <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Password </p>
                         <div className="form-group"  style={{paddingLeft:100,paddingRight:100 }}>
                             <Input
-                                
+
                                 type="password"
                                 label="password"
                                 placeholder="Enter Password"
@@ -119,7 +100,6 @@ class Login extends Component {
                                 className="btn btn-primary"
                                 type="button"
                                 onClick={() => {
-                                    
                                     this.props.log(this.state)}}>
                                 Login
                             </button>

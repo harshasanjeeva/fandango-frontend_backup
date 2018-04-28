@@ -4,17 +4,18 @@ export const LOGIN ="LOGIN";
 export const SIGNUP ="SIGNUP";
 export const BOOK ="BOOK";
 export const EDIT_PROFILE ="EDIT_PROFILE";
-
-
-
+export const DEL="DEL";
 
 export const MOVIES ="MOVIES";
 export const GETMOVIES ="GETMOVIES";
 export const TICKET ="TICKET";
 export const ADDMOVIES ="ADDMOVIES";
 export const ADDHALL ="ADDHALL";
-export const ADMINLOGIN ="ADMINLOGIN";
 export const PAYMENT ="PAYMENT";
+export const REAL ="REAL";
+
+export const VIEW ="VIEW";
+export const ADMINLOGIN ="ADMINLOGIN";
 export const ADDUSERHALL="ADDUSERHALL";
 export const GETMOVIEHALLS="GETMOVIEHALLS";
 export const VIEWALLUSERS="VIEWALLUSERS";
@@ -41,7 +42,7 @@ export function actionlogin(userdata) {
         }
     }
 
-};
+}
 
 export function login(data) {
     console.log("data in action==>",data.message);
@@ -74,7 +75,7 @@ export function actionsign(userdata) {
         }
     }
 
-};
+}
 
 export function Signup(data) {
     console.log(data);
@@ -110,7 +111,7 @@ export function actionbook(userdata) {
         }
     }
 
-};
+}
 
 export function book(data) {
     console.log(data);
@@ -121,8 +122,6 @@ export function book(data) {
     }
 }
 
-
-//==================editProfile==============start
 export function editProfile(userDeails) {
     console.log("in myprojectDesc-->",userDeails);
     return function(dispatch){
@@ -142,14 +141,26 @@ catch (error) {
     console.log(error)
 }
     }
-};
+}
+export function editProfile2(resData) {
+
+    console.log("PROJECT_DESC 2-->actions",resData);
+
+    return {
+        type: EDIT_PROFILE,
+        msg:"Project edit",
+        status:true,
+        data:resData
+    }
+
+}
 
 export function actionmovies(userdata) {
     console.log("in movies");
     return function (dispatch) {
             dispatch(movies(userdata))
         }
-};
+}
 
 export function movies(data) {
     console.log(data);
@@ -183,6 +194,7 @@ export function actiongetmovies(userdata) {
         // }
     }
 
+<<<<<<< HEAD
 };
 
 export function analytics(userdata){
@@ -204,6 +216,15 @@ export function analytics(userdata){
         catch (error) {
             console.log(error);
         }
+=======
+}
+export function getmovies(data) {
+    console.log("data===> in actions",data);
+    return {
+        type: GETMOVIES,
+        message: "inside GETMOVIES Actions",
+        data:data
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
     }
 }
 
@@ -230,7 +251,7 @@ export function actionAdminLogin(userdata) {
         }
     }
 
-};
+}
 
 export function loginAd(data) {
     console.log("data in action==>",data.message);
@@ -242,30 +263,10 @@ export function loginAd(data) {
 }
 
 
-export function editProfile2(resData) {
-    
-    console.log("PROJECT_DESC 2-->actions",resData)
-        
-    return {
-            type: EDIT_PROFILE,
-            msg:"Project edit",
-            status:true,
-            data:resData
-        }
-        
-}
-
-//==================editProfile==============start
 
 
-export function getmovies(data) {
-    console.log("data===> in actions",data);
-    return {
-        type: GETMOVIES,
-        message: "inside GETMOVIES Actions",
-        data:data
-    }
-}
+
+
 
 
 
@@ -290,8 +291,7 @@ export function actionaddmovies(userdata) {
             console.log(error);
         }
     }
-
-};
+}
 
 export function addmovies(data) {
     console.log(data);
@@ -325,7 +325,7 @@ export function actionaddhall(userdata) {
         }
     }
 
-};
+}
 
 export function addhall(data) {
     console.log(data);
@@ -335,7 +335,6 @@ export function addhall(data) {
         data:data
     }
 }
-
 export function actionpayment(userdata) {
     console.log("in payment");
     console.log(userdata);
@@ -345,7 +344,7 @@ export function actionpayment(userdata) {
             API.paid(userdata)
                 .then((response) => {
                     try {
-                        console.log("recieved hall response now dispatching to actions");
+                        console.log("received hall response now dispatching to actions");
                         dispatch(paid(response));
                     }
                     catch (error) {
@@ -358,7 +357,7 @@ export function actionpayment(userdata) {
         }
     }
 
-};
+}
 
 export function paid(data) {
     console.log(data);
@@ -369,6 +368,38 @@ export function paid(data) {
     }
 }
 
+export function actionreal(userdata) {
+    console.log("in action real");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.real(userdata)
+                .then((response) => {
+                    try {
+                        console.log("Received real ticket information");
+                        dispatch(real(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+}
+
+    export function real(data) {
+    console.log(data);
+    return {
+    type: REAL,
+    message: "inside real ticket data",
+    data:data
+    }
+}
 
 export function addHall(hallData) {
     console.log("in payment");
@@ -392,17 +423,48 @@ export function addHall(hallData) {
         }
     }
 
-};
-
-export function addHallShort(data) {
+}
+    export function addHallShort(data) {
     console.log(data);
     return {
-        type: ADDHALL,
-        message: "inside hall data",
-        data:data
-    }
+    type: ADDHALL,
+    message: "inside hall data",
+    data:data
+}
 }
 
+
+export function actiondel(userdata) {
+            console.log("in action delete");
+            console.log(userdata);
+            return function (dispatch) {
+            try {
+
+            API.delprofile(userdata)
+            .then((response) => {
+            try {
+            console.log("in delete try");
+            dispatch(del(response));
+        }
+            catch (error) {
+            console.log(error);
+        }
+        });
+        }
+            catch (error) {
+            console.log(error);
+        }
+        }
+        }
+
+        export function del(data) {
+            console.log(data);
+            return {
+            type: DEL,
+            message: "inside delete data",
+            data:data
+        }
+        }
 
 export function addUserToHall(hallUserData) {
     console.log("in payment");
@@ -425,16 +487,49 @@ export function addUserToHall(hallUserData) {
         }
     }
 
-};
+}
 
 export function addUserToHallP(data) {
-    console.log(data);
-    return {
-        type: ADDUSERHALL,
-        message: "inside hall user data",
-        data:data
+            console.log(data);
+            return {
+            type: ADDUSERHALL,
+            message: "inside hall user data",
+            data:data
+        }
+        }
+
+export function actionview(userdata) {
+    console.log("in action view profile");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.viewprofile(userdata)
+                .then((response) => {
+                    try {
+                        console.log("in view profile try");
+                        dispatch(viewprofile(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
 }
+
+            export function viewprofile(data) {
+                    console.log(data);
+                    return {
+                    type: VIEW,
+                    message: "inside viewprofile data",
+                    data:data
+                }
+                }
+
 
 export function getMovieHalls() {
     console.log("in payment");
@@ -456,16 +551,17 @@ export function getMovieHalls() {
         }
     }
 
-};
-
-export function getMovieHallsP(data) {
-    console.log(data);
-    return {
-        type: GETMOVIEHALLS,
-        message: "inside hall user data",
-        data:data
-    }
 }
+
+ export function getMovieHallsP(data) {
+                    console.log(data);
+                    return {
+                    type: GETMOVIEHALLS,
+                    message: "inside hall user data",
+                    data:data
+                }
+                }
+
 
 
 export function viewAllUsers(data) {
@@ -488,7 +584,7 @@ export function viewAllUsers(data) {
         }
     }
 
-};
+}
 
 export function viewAllUsersP(data) {
     console.log(data);
@@ -498,16 +594,3 @@ export function viewAllUsersP(data) {
         data:data
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

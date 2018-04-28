@@ -27,7 +27,7 @@ class EditProfile extends Component {
           "cvv":"",
           "expdate":""
         };
-    
+
         // this.toggle = this.toggle.bind(this);
       }
 
@@ -63,8 +63,13 @@ callEditProfile(){
   width: 137,
   margin: 'auto',
   marginTop:'10px',
+<<<<<<< HEAD
  height: 138,
   borderRadius: 75}}/>
+=======
+  height: 140,
+  borderRadius: 50}}/>
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
 <br/>
 
@@ -201,8 +206,13 @@ console.log("filllle==>",payload)
                           });
                       }}
                   />
+<<<<<<< HEAD
              
 <br />
+=======
+
+
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
 
 
@@ -231,12 +241,12 @@ console.log("filllle==>",payload)
     )
   }
 }
-const mapStateToProps = (user) => {
+const mapStateToProps = (stores) => {
     
       return{
         name: "",
         email: "",
-        userid: 1111,
+        user_id: stores.user.stores.user_id,
         isLoggedIn: true,
         phone: "",
         about: "",
@@ -249,7 +259,6 @@ const mapStateToProps = (user) => {
   const mapDispatchToProps = (dispatch) => {
     console.log("dispatch",dispatch)
     return {
-   //   upload : (data) => dispatch(fileUpload(data)),
       profile : (data) => dispatch(editProfile(data))
     }
   }

@@ -7,23 +7,38 @@ import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
+<<<<<<< HEAD
 import {analytics} from '../actions/loginactions';
+=======
+
+import { withRouter } from 'react-router-dom';
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import "video-react/dist/video-react.css";
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 class Booking extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            date:'',
+            date: '',
             genre: '',
             theatre: '',
-            Movie:"",
+            Movie: "",
             rating: 2,
+<<<<<<< HEAD
             timings:"",
             prevdata:"",
             user_id:"",
             numofclick:2,
             componentname:"Movies details",
             userid: ""
+=======
+            timings: "",
+            prevdata: "",
+            user_id: ""
+>>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
         };
         this.toggle = this.toggle.bind(this);
@@ -31,22 +46,23 @@ class Booking extends Component {
 
         this.analytics = this.analytics.bind(this);
     }
+
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
     }
 
-    navigate()
-    {
+    navigate() {
         history.push('/');
     }
-    handleTheatresClick=(event)=>{
+
+    handleTheatresClick = (event) => {
         this.props.log(this.state);
         history.push
         ({
             pathname: '/alltheatresAndTimings',
-            state: { movieName: this.props.movie.movieName }
+            //state: { movieName: location.state.movieName }
         });
         this.analytics();
         this.props.analytics(this.state);
@@ -61,11 +77,9 @@ class Booking extends Component {
         this.props.analytics(this.state);
     }
 
-
-    render() {
-
+    render(){
         const { location } = this.props;
-
+        console.log("booking -==>",location.state.movieId, location.state.movieName,location.state.genre, location.state.release);
 
         if (this.props.booked===true){
             this.navigate();
@@ -108,102 +122,132 @@ class Booking extends Component {
                             {<strong style={{color: "white"}}>Show Timings:</strong>}
 
                             <ButtonToolbar>
-                                <Button color="info"
+                            <Button color="warning"
+                                    onClick={(event) => {
+                                        this.setState({
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"7:30"
+                                    })
+                                        console.log("in BOOKINGS===>",this.state)
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/BookTicket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
+
+                                    },1000)
+                                    }}>7:30 PM</Button>
+
+<span />
+                                <Button color="warning" bsSize="small"
                                         onClick={(event) => {
-                                            this.analytics();
-                                            
-                                            this.setState({
-                                                prevdata: location,
-                                                user_id:this.props.user_id,// get userid
-                                                timings:"7:00"
-                                            })
-                                            // history.push
-                                            // ({
-                                            //     pathname: '/Ticket',
-                                            //     state: this.state
-                                            // });
-                                        }}>7:00 PM</Button>
-                                <Button color="info" bsSize="small"
+                                       
+                                        this.analytics();
+                                    this.setState({
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"8:00"
+                                    })
+                                        console.log("in BOOKINGS===>",this.state)
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/BookTicket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
+
+                                    },1000)
+                                    }}>8:00 PM</Button>
+
+                                <Button color="warning"
                                         onClick={(event) => {
                                             this.analytics();
                                             this.props.analytics(this.state);
 
                                             this.setState({
-                                                prevdata: location,
-                                                user_id:this.props.user_id,
-                                                timings:"8:00"
-                                            })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: this.state
-                                            });
-                                        }}>8:00 PM</Button>
-
-                                <Button color="info"
-                                        onClick={(event) => {
-                                            this.analytics();
-                                            this.props.analytics(this.state);
-
-                                            this.setState({
-                                                prevdata: location,
                                                 user_id:this.props.user_id,// get userid
                                                 timings:"8:30"
                                             })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: this.state
-                                            });
+                                            console.log("in BOOKINGS===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/BookTicket',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
                                         }}>8:30 PM</Button>
-                                <Button color="info"
+                                <Button color="warning"
                                         onClick={(event) => {
-                                            this.analytics();
-                                          
-                                            this.setState({
-                                                prevdata: location,
-                                                user_id:this.props.user_id,// get userid
-                                                timings:"9:00"
-                                            })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: this.state
-                                            });
-                                        }}>9:00 PM</Button>
-                                <Button color="info"
+                                        this.setState({
+                                        //prevdata: location.state.movieId,
+                                        user_id:this.props.user_id,// get userid
+                                        timings:"9:00"
+                                    })
+                                    this.analytics();
+                                        console.log("in BOOKINGS===>",this.state)
+                                        setTimeout(function(){
+                                        history.push
+                                        ({
+                                        pathname: '/BookTicket',
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                    });
+
+                                    },1000)
+                                    }}>9:00 PM</Button>
+                                <Button color="warning"
                                         onClick={(event) => {
                                             this.analytics();
                                         
                                             this.setState({
-                                                prevdata: location,
+                                                //prevdata: location.state.movieId,
                                                 user_id:this.props.user_id,// get userid
                                                 timings:"10:00"
                                             })
-                                            history.push
-                                            ({
-                                                pathname: '/Ticket',
-                                                state: this.state
-                                            });
+                                            console.log("in BOOKINGS===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/BookTicket',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
                                         }}>10:00 PM</Button>
+
                                 <Button color="link"
-                                        onClick={(event)=>{
+                                        onClick={(event) => {
                                             this.analytics();
-                                            this.handleTheatresClick(event)}}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
+                                            this.setState({
+                                                user_id:this.props.user_id// get userid
+                                            })
+                                            console.log("in BOOking ALL theatre ===>",this.state)
+                                            setTimeout(function(){
+                                                history.push
+                                                ({
+                                                    pathname: '/alltheatresAndTimings',
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                });
+
+                                            },1000)
+                                        }}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>
                         </div>
-                    </div>
+                </div>
 
-                    <div className="col-md-8" alight="left">
-                        {<strong>Movie Trailer</strong>}
-                        <Player
-                            playsInline
-                            poster="/assets/poster.png"
-                            src={this.props.movie.movieVideoLink}/>
-                    </div>
-
+                <div className="col-md-8" alight="left" >
+                    {<strong style={{color: "white"}}>Movie Trailer</strong>}
+                    <Player
+                        playsInline
+                        poster="/assets/poster.png"
+                        src={this.props.movie.movieVideoLink}
+                        style={{borderColor: "white", border:"solid"}}
+                        />
                 </div>
                 {location.state.movieId}
+
+            </div>
             </div>
         );
     }
@@ -215,12 +259,14 @@ const mapDispatchToProps =(dispatch)=> {
         analytics : (data) => dispatch(analytics(data))
     };
 }
+
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
         movie:stores.user.booking.booking_data,
         theatres:stores.theatres,
-        user_id: stores.user.stores.user_id
+        user_id:stores.user.stores.user_id
+
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Booking);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));
