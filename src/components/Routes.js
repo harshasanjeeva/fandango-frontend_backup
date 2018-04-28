@@ -12,10 +12,10 @@ import '../App.css';
 // import Tickets from "./Tickets";
 import Addmovies from "./Addmovies";
 import Addhall from "./Addhall";
-
+import Profile from "./Profile";
 import history from "./History";
 import Payments from "./Payments";
-import Profile from "./Profile";
+import Admindash from "./Admindash";
 
 
 class Routes extends Component {
@@ -28,9 +28,9 @@ class Routes extends Component {
                     <Route  path='/signup' component={Signup}/>
                     <Route  path='/booking' component={Booking}/>
                     <Route  path='/movies' component={Movies}/>
-
+                    
                     <Route  path='/alltheatresAndTimings' component={AllTheatresAndTimings}/>
-
+                    <Route  path='/admindash' component={Admindash}/>
 
                     <Route  path='/payments' component={Payments}/>
                     <Route  path='/profile' component={Profile}/>
