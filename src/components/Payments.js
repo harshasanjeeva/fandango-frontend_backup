@@ -32,6 +32,7 @@ class Payments extends Component {
     };
 }
 
+
     navigate() {
         history.push('/');
     }
@@ -42,7 +43,8 @@ class Payments extends Component {
        if (this.props.status) {
             this.navigate();
         }
-        return (<div style={{backgroundColor: "black", height:1000 }}>
+        return (
+            <div style={{backgroundColor: "black", height:1000 }}>
             <Navbarmain/>
     
             <div style=  {{borderColor:"white",
@@ -69,25 +71,23 @@ class Payments extends Component {
                             Please pay ${location.state.total_amount}
                         </Alert>
 
-                        <CardHeader style={{ 
+                        <CardHeader style={{
                         backgroundColor: "#2c456c",
                         fontSize: 18,
                         fontWeight: 700,
                         color: "#F7F7F7"}}
                         >Credit or Debit Card</CardHeader>
                         <CardBody>
-
-                   
                         <div>
-                     
-                     
-                     
-                        <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Cardholder Name</span>
-                      
-                        <Input style={{ marginBottom:"0px !important"}}
-                                
+
+
+
+                            <p id="label-left">Cardholder Name</p>
+
+                            <Input
+
                                 type="text"
-                               
+
                                 value={this.state.name}
                                 onChange={(event) => {
                                     this.setState({
@@ -102,7 +102,7 @@ class Payments extends Component {
                                 <Input
                                     name="email"
                                     type="text"
-                                    
+
                                     value={this.state.creditcard}
                                     onChange={(event) => {
                                         this.setState({
@@ -112,6 +112,8 @@ class Payments extends Component {
                                 />
                             </Col>
                             <Col>
+
+
                             <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                             <Input
                                
@@ -126,10 +128,10 @@ class Payments extends Component {
                             />
                           </Col>
                           </Row>
-                       
-                 
 
-                     
+
+                        <Row>
+                            <Col>
                         <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                             <input
                                 className="form-control"
@@ -142,8 +144,8 @@ class Payments extends Component {
                                     });
                                 }}
                             />
-
-
+                            </Col>
+                        </Row>
 
                         <br/>
                         <div>
@@ -163,13 +165,14 @@ class Payments extends Component {
                             })
                             this.props.pay(this.state)
                         }}>Make Payment</Button>
-                        </div>
-                        </CardBody>
-                    </Card>
-                    </div>
-                </div>
-    
-        )
+
+                        <br/>
+                            </div>
+                    </CardBody>
+                </Card>
+            </div>
+            </div>
+        );
     }
 }
 

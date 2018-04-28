@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {actionbook} from '../actions/loginactions';
 import "../../node_modules/video-react/dist/video-react.css";
@@ -17,30 +18,31 @@ class Booking extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            date:'',
+            date: '',
             genre: '',
             theatre: '',
-            Movie:"",
+            Movie: "",
             rating: 2,
-            timings:"",
-            prevdata:"",
-            user_id:""
+            timings: "",
+            prevdata: "",
+            user_id: ""
 
         };
         this.toggle = this.toggle.bind(this);
         this.handleTheatresClick = this.handleTheatresClick.bind(this);
     }
+
     toggle() {
         this.setState({
             modal: !this.state.modal
         });
     }
 
-    navigate()
-    {
+    navigate() {
         history.push('/');
     }
-    handleTheatresClick=(event)=>{
+
+    handleTheatresClick = (event) => {
         this.props.log(this.state);
         history.push
         ({
@@ -48,7 +50,6 @@ class Booking extends Component {
             //state: { movieName: location.state.movieName }
         });
     }
-
 
 
 
@@ -65,43 +66,33 @@ class Booking extends Component {
                 <div>
                     <Navbarmain/>
                 </div>
-                <Tabs>
-                <TabList >
-                  <Tab style={{color: "orange"}}>Overview</Tab>
-                  <Tab style={{color: "orange"}}>Movie Times + Tickets</Tab>
-                  <Tab style={{color: "orange"}}>Synopsis</Tab>
-                  <Tab style={{color: "orange"}}>Reviews</Tab>
-                  <Tab style={{color: "orange"}}>Trailer</Tab>
-                </TabList>
-            
-                <TabPanel>
-                 
+
                 <div className="row">
 
-                <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
-                    <div className="col-md-12" align="left">
-                        <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
-                        <div>
-                            <div style={{color: "white"}}>
-                                <strong style={{color: "white"}}>Movie:</strong> {this.props.movie.movieName}
+                    <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
+                        <div className="col-md-12" align="left">
+                            <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
+                            <div>
+                                <div>
+                                    <strong>Movie:</strong> {this.props.movie.movieName}
+                                </div>
+                                <div>
+                                    <strong>Released:</strong> {this.props.movie.movieTiming}
+                                </div>
+                                <div>
+                                    <strong>Genre:</strong> {this.props.movie.movieType}
+                                </div>
+                                <div>
+                                    <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
+                                </div>
                             </div>
-                            <div style={{color: "white"}}>
-                        <strong>Released:</strong> {this.props.movie.movieTiming}
-                            </div>
-                            <div style={{color: "white"}}>
-                        <strong>Genre:</strong> {this.props.movie.movieType}
-                            </div>
-                        <div style={{color: "white"}}>
-                        <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
-                        </div>
-                        </div>
 
 
-                    </div>
+                        </div>
 
                         <div className="col-sm-8" >
-                            <div style={{color: "white"}}>
-                            {<strong>Movie booking here</strong>}
+                            <div>
+                                {<strong>Movie booking here</strong>}
                             </div>
 
                             {<strong style={{color: "white"}}>Show Timings:</strong>}
@@ -220,40 +211,10 @@ class Booking extends Component {
                         src={this.props.movie.movieVideoLink}
                         style={{borderColor: "white", border:"solid"}}
                         />
-
                 </div>
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                </TabPanel>
-                <TabPanel>
-                  <h2>Any content 2</h2>
-                </TabPanel>
-                <TabPanel>
-                <h2>Any content 2</h2>
-              </TabPanel>
-              <TabPanel>
-              <h2>Any content 2</h2>
-            </TabPanel>
-            <TabPanel>
-            <h2>Any content 2</h2>
-          </TabPanel>
-              </Tabs>
-        
-
                 {location.state.movieId}
 
+            </div>
             </div>
         );
     }
@@ -264,12 +225,14 @@ const mapDispatchToProps =(dispatch)=> {
         log : (data) => dispatch(actionbook(data))
     };
 }
+
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
         movie:stores.user.booking.booking_data,
         theatres:stores.theatres,
         user_id:stores.user.stores.user_id
+
     };
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));

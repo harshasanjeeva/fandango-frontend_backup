@@ -36,8 +36,6 @@ class Movies extends Component {
         history.push('/movies');
     }
 
-
-
     renderList() {
 
         const movies=this.props.movies;
