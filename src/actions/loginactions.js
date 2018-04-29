@@ -13,6 +13,16 @@ export const GETMOVIES ="GETMOVIES";
 export const TICKET ="TICKET";
 export const ADDMOVIES ="ADDMOVIES";
 export const ADDHALL ="ADDHALL";
+export const MOVIEUSERLOGIN = "MOVIEUSERLOGIN";
+export const MOVIEHALLDATA = "MOVIEHALLDATA";
+export const EDITMOVIEHALLDATA = "EDITMOVIEHALLDATA";
+export const HALLDATA = "HALLDATA";
+export const ADDMOVIEHALLDATA = "ADDMOVIEHALLDATA";
+export const REVENUEDATA = "REVENUEDATA";
+export const BOOKINGDATA = "BOOKINGDATA";
+export const DELETEBOOKING = "DELETEBOOKING";
+export const SETSTATUS = "DELETEBOOKING";
+export const EDITSTATUS = "DELETEBOOKING";
 
 export function actionlogin(userdata) {
     console.log("in login");
@@ -165,7 +175,7 @@ export function actiongetmovies(userdata) {
                 .then((response) => {
                     try {
                         console.log("inside 2nd try",response);
-                        dispatch(getmovies(response));
+                        dispatch(getmoviesall(response));
                     }
                     catch (error) {
                         console.log(error);
@@ -197,7 +207,7 @@ export function editProfile2(resData) {
 //==================editProfile==============start
 
 
-export function getmovies(data) {
+export function getmoviesall(data) {
     console.log("data===> in actions",data);
     return {
         type: GETMOVIES,
@@ -272,5 +282,300 @@ export function addhall(data) {
         type: ADDHALL,
         message: "inside hall adding",
         data:data
+    }
+}
+
+
+export function actionmovieuserlogin(userdata) {
+    console.log("in login");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.userlogin(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside action");
+                        dispatch(movieuserlogin(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function movieuserlogin(data) {
+    console.log("data in action==>",data.message);
+    return {
+        type: MOVIEUSERLOGIN,
+        message: "inside movie user login actions",
+        data:data
+    }
+}
+
+
+export function actiongetmoviehall(userdata) {
+    console.log("in get movie hall data");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.moviehalldata(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(getmoviehall(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function getmoviehall(data) {
+    console.log(data);
+    return {
+        type: MOVIEHALLDATA,
+        message: "inside movie hall data",
+        data:data
+    }
+}
+
+
+
+export function actioneditmoviedetails(userdata) {
+    console.log("in edit movie hall data");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.moviedetailsedit(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(editmoviedetails(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function editmoviedetails(data) {
+    console.log(data);
+    return {
+        type: EDITMOVIEHALLDATA,
+        message: "inside edit movie hall data",
+        data:data
+    }
+}
+
+
+export function actiongethalls(userdata) {
+    console.log("in get movie hall data");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.gethalldata(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(gethall(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function gethall(data) {
+    console.log(data);
+    return {
+        type: HALLDATA,
+        message: "inside  hall data",
+        data:data
+    }
+}
+
+
+export function actionaddmoviedetails(userdata) {
+    console.log("in edit movie hall data");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.moviedetailsadd(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(addmoviedetails(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function addmoviedetails(data) {
+    console.log(data);
+    return {
+        type: ADDMOVIEHALLDATA,
+        message: "inside add movie hall data",
+        data:data
+    }
+}
+
+
+export function actionrevenuedetails(userdata) {
+    console.log("in edit movie hall data");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.handlerevenue(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(revenuedetails(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function revenuedetails(data) {
+    console.log(data);
+    return {
+        type: REVENUEDATA,
+        message: "inside add movie hall data",
+        data:data
+    }
+}
+
+
+
+
+
+export function actionbookingdetails(userdata) {
+    console.log("in get booking details");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.handlebooking(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(bookingdetails(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function bookingdetails(data) {
+    console.log(data);
+    return {
+        type: BOOKINGDATA,
+        message: "inside add movie hall data",
+        data:data
+    }
+}
+
+
+export function actiondeletebooking(userdata) {
+    console.log("in get booking details");
+    console.log(userdata);
+    return function (dispatch) {
+        try {
+
+            API.bookingdelete(userdata)
+                .then((response) => {
+                    try {
+                        console.log("recieved response now dispatching to action");
+                        dispatch(deletebooking(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+};
+
+export function deletebooking(data) {
+    console.log(data);
+    return {
+        type: DELETEBOOKING,
+        message: "inside add movie hall data",
+        data:data
+    }
+}
+
+export function setstatus(data) {
+    console.log(data);
+    return {
+        type: SETSTATUS,
+        message: "inside add movie hall data",
+        data:false
+    }
+}
+
+
+export function editstatus(data) {
+    console.log(data);
+    return {
+        type: EDITSTATUS,
+        message: "inside add movie hall data",
+        data:false
     }
 }

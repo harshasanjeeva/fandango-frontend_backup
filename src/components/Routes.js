@@ -4,6 +4,14 @@ import Login from "./Login";
 import Signup from "./Signup";
 import Home from "./Home";
 import Booking from "./Booking";
+import Loginuser from "./MovieHalluser/Loginuser";
+import Hallinfo from "./MovieHalluser/Hallinfo";
+import Details from "./MovieHalluser/Details";
+import Editmoviedetails from "./MovieHalluser/Editmoviedetails";
+import Allmovies from "./MovieHalluser/Allmovies";
+import AddDetails from "./MovieHalluser/AddDetails";
+import Addhallinfo from "./MovieHalluser/Addhallinfo";
+import Revenuedetails from "./MovieHalluser/Revenuedetails";
 import Movies from "./Movies"
 
 import AllTheatresAndTimings from "./AllTheatresAndTimings";
@@ -37,6 +45,15 @@ class Routes extends Component {
                    
                     <Route  path='/addmovies' component={Addmovies}/>
                     <Route  path='/addhall' component={Addhall}/>
+                    <Route  path='/movieuser' component={Loginuser}/>
+                    <Route  path='/hallinfo' component={Hallinfo}/>
+                    <Route  path='/details' component={Details}/>
+                    <Route  path='/editmoviedetails' component={Editmoviedetails}/>
+                    <Route  path='/allmovies' component={Allmovies}/>
+                    <Route  path='/addDetails' component={AddDetails}/>
+                    <Route  path='/addhallinfo' component={Addhallinfo}/>
+                    <Route  path='/revenue' component={Revenuedetails}/>
+
 
                 </Switch>
             </Router>
