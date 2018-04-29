@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Dropdown,Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,UncontrolledDropdown,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { Route, withRouter } from 'react-router-dom';
+import {  Dropdown,Collapse, Navbar, NavbarToggler, DropdownMenu, DropdownItem,DropdownToggle,NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import {connect} from 'react-redux';
-import Login from "./Login";
+
 import history from './History';
-import Homemain from './Homemain'
 import '.././App.css';
+import {actionreal,actiondel,actionview} from "../actions/loginactions";
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -32,7 +31,6 @@ class Navbarmain extends Component {
         this.setState({
           isOpen: !this.state.isOpen,
           dropdownOpen: !this.state.dropdownOpen,
-          // dropdownOpen1:!this.state.dropdownOpen1
         });
       }
 
@@ -60,56 +58,96 @@ class Navbarmain extends Component {
                 </NavItem>
 
 
+                <NavItem>
+                    <NavLink onClick={() => {
+                        history.push
+                        ({
+                            pathname: '/myprofile',
+                            state: { user_id: this.props.user_id}
+                        });
+                        var data={user_id:this.props.user_id};
+                        this.props.profile(data);
+                        setTimeout(function () {
+                            history.push
+                            ({
+                                pathname: '/myprofile'
+                            });
+                        });
+
+                    }}>View Profile</NavLink>
+                </NavItem>
+
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
-                My Account
-              </DropdownToggle>
+                My Account{this.props.user_id}
+                </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem header>Options</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/">Tickets</DropdownItem>
+                      <DropdownItem onClick={() => {
+                          var data={user_id:this.props.user_id};
+                          this.props.real(data);
+                          history.push('/realticket');
+                          }}>Tickets</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem href="/payments">Make Payments</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/profile" onclick="">Profile</DropdownItem>
-
+                      <DropdownItem onClick={() => {
+                          var data={user_id:this.props.user_id};
+                          this.props.profile(data);
+                          setTimeout(function () {
+                              history.push('/profile');
+                          });
+                          }}>Profile</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
+                  <NavItem>
 
+
+                  <NavLink onClick={() => {
+                          history.push('/myprofile')}}>View Profile</NavLink>
+                  </NavItem>
+
+                  <NavItem>
+                  <NavLink onClick={() => {
+                          this.props.del(this.props.user_id),
+                              history.push('/')}}>Delete Account</NavLink>
+                  </NavItem>
 
                 <NavItem>
                 <NavLink href="/">Sign Out</NavLink>
                 </NavItem>
 
 
-
             </Nav>
           </Collapse>
         </Navbar>
-
-
-
-
       </div>
-
-
-  
       </div>
     );
   }
 }
 
 
-
-const mapStateToProps = (state) => {
+const mapDispatchToProps =(dispatch)=> {
     return {
-        user:state.user
+        real : (data) => dispatch(actionreal(data)),
+        del : (data) => dispatch(actiondel(data)),
+        profile : (data) => dispatch(actionview(data))
     };
+}
 
+const mapStateToProps =(stores)=> {
+    console.log(stores);
+    return {
+        //movie:stores.user.booking.booking_data,
+        //theatres:stores.theatres,
+        user_id:stores.user.stores.user_id
+    };
 }
 
 
-export default connect(mapStateToProps)(Navbarmain);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Navbarmain));
 
 
 // <Route exact path="/login" render={() => (

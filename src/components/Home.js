@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Homemain from './Homemain'
 import Navbarheader from './Navbarlogout'
+import {Link} from 'react-router-dom';
+import Footer from './Footer'
 
 class Home extends Component {
 
@@ -27,13 +29,12 @@ class Home extends Component {
   
       <div >
 
-
-
        <Navbarheader />
 
 
         <Homemain />
 
+      <Footer />
 
 
       </div>

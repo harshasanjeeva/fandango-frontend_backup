@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-
 import history from "./History";
 import {Input, Card, Row,Col, CardBody,CardHeader} from 'reactstrap';
 import {Button} from 'reactstrap';
 import Navbarmain from './Navbarmain'
 import { Alert } from 'reactstrap';
+import {actionpayment} from "../actions/loginactions";
 
 
 class Payments extends Component {
@@ -18,54 +18,76 @@ class Payments extends Component {
         creditcard: '',
         cvv:'',
         expdate:'',
-        amounts:0,
-        freelancer:0
+        movieid:0,
+        movieName:"",
+        total_amount:0,
+        total_tickets:0,
+        genre:"",
+        release:"",
+        timings:"",
+        theatrename:"",
+        student:0,
+        children:0,
+        general:0
     };
 }
+
 
     navigate() {
         history.push('/');
     }
 
     render() {
-       if (this.props.status === 200) {
+        const { location } = this.props;
+        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets,location.state.theatrename, location.state.timings, this.props.user_id)
+       if (this.props.status) {
             this.navigate();
         }
-        return (<div>
+        return (
+            <div style={{backgroundColor: "black", height:1000 }}>
             <Navbarmain/>
     
-
+            <div style=  {{borderColor:"white",
+                border:"solid",
+                borderWidth:"1px"
+                }
+                }>
                     <Card style={{ 
             
                         width: 400,
                         margin: 'auto',
-                        height: 530,
-                        
-                                        }}>
+                        height: 519,
+                        marginBottom:0,
+                        backgroundColor: "black",
+                        borderColor:"white !important",
+                        border:"solid"
+                     }}>
+
                         <Alert color="success">
                             {this.props.message}
                         </Alert>
-                  
 
-                        <CardHeader style={{ 
+                        <Alert color="danger">
+                            Please pay ${location.state.total_amount}
+                        </Alert>
+
+                        <CardHeader style={{
                         backgroundColor: "#2c456c",
                         fontSize: 18,
                         fontWeight: 700,
                         color: "#F7F7F7"}}
-                        
                         >Credit or Debit Card</CardHeader>
                         <CardBody>
-                   
                         <div>
-                     
-                     
-                     
-                        <p id="label-left">Cardholder Name</p>
-                      
-                        <Input
-                                
+
+
+
+                            <p id="label-left">Cardholder Name</p>
+
+                            <Input
+
                                 type="text"
-                               
+
                                 value={this.state.name}
                                 onChange={(event) => {
                                     this.setState({
@@ -73,20 +95,14 @@ class Payments extends Component {
                                     });
                                 }}
                             />
-                
-                          
                         </div>
-                    
-                      
-                      
-                    
                         <Row>
                             <Col>
-                                <p id="label-left" >Card Number</p>
+                                <span id="label-left" style={{ marginBottom:"0px !important", color:"white"}}>Card Number</span>
                                 <Input
                                     name="email"
                                     type="text"
-                                    
+
                                     value={this.state.creditcard}
                                     onChange={(event) => {
                                         this.setState({
@@ -96,7 +112,9 @@ class Payments extends Component {
                                 />
                             </Col>
                             <Col>
-                            <p for="exampleEmail" id="label-left">CVV</p>
+
+
+                            <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                             <Input
                                
                                 type="number"
@@ -110,11 +128,11 @@ class Payments extends Component {
                             />
                           </Col>
                           </Row>
-                       
-                 
 
-                     
-                        <p for="exampleEmail" id="label-left">Expiry date</p>
+
+                        <Row>
+                            <Col>
+                        <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                             <input
                                 className="form-control"
                                 type="text"
@@ -126,58 +144,49 @@ class Payments extends Component {
                                     });
                                 }}
                             />
-                       
-                        <div>
-                        <p for="exampleEmail" id="label-left">Amount</p>
-                            <Input
-                                
-                                type="number"
-                                placeholder="Amount"
-                                value={this.state.amounts}
-                                onChange={(event) => {
-                                    this.setState({
-                                        amounts: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
+                            </Col>
+                        </Row>
 
-
-
-                        <div>
-                        <p for="exampleEmail" id="label-left">FreeLancer Id</p>
-                            <Input
-                                
-                                type="number"
-                                placeholder="1234"
-                               
-                                onChange={(event) => {
-                                    this.setState({
-                                        freelancer: event.target.value
-                                    });
-                                }}
-                            />
-                        </div>
                         <br/>
                         <div>
                         <Button color="success" onClick={() => {
-                            history.push('/')
+                            this.setState({
+                                movieid:location.state.movieId,
+                                movieName:location.state.movieName,
+                                genre:location.state.genre,
+                                release:location.state.release,
+                                total_amount:location.state.total_amount,
+                                total_tickets:location.state.total_tickets,
+                                theatrename:location.state.theatrename,
+                                timings:location.state.timings,
+                                children:location.state.children,
+                                student:location.state.student,
+                                general:location.state.general
+                            })
+                            this.props.pay(this.state)
                         }}>Make Payment</Button>
-                        </div>
-                        </CardBody>
-                    </Card>
-                </div>
-    
-        )
+
+                        <br/>
+                            </div>
+                    </CardBody>
+                </Card>
+            </div>
+            </div>
+        );
     }
 }
 
-const mapStateToProps =(user)=> {
+const mapDispatchToProps =(dispatch)=> {
+    return {
+        pay : (data) => dispatch(actionpayment(data))
+    };
+}
+const mapStateToProps =(stores)=> {
     
     return {
-        user_id: 111,
-        status : "False",
+        user_id: stores.user.stores.user_id,
+        status : stores.user.stores.status,
         message : "success"
     };
 }
-export default connect(mapStateToProps)(Payments);
+export default connect(mapStateToProps,mapDispatchToProps)(Payments);

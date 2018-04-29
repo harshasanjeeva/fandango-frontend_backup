@@ -1,53 +1,88 @@
 export default function () {
     return [
         {
-            movieId:1,
-            movieName:"Disobedience",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209250/images/masterrepository/fandango/209250/disobedience2018.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Horror"
+            "_id": 1,
+            "title": "Avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
         },
         {
-            movieId:2,
-            movieName:"The Test and Art of Thinking",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Drama"
+            "_id": 2,
+            "title": "Fast and Furious",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
         },
         {
-            movieId:3,
-            movieName:"I feel Pretty",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Comedy"
+            "_id": 3,
+            "title": "avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
         },
         {
-            movieId:4,
-            movieName:"Kings",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209376/images/masterrepository/fandango/209376/kings-2017.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Action"
+            "_id": 4,
+            "title": "avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
         },
         {
-            movieId:5,
-            movieName:"Let the Sunshine In",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/208107/images/masterrepository/fandango/208107/letthesunshinein-2018.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Romance"
-        }
-        ,{
-            movieId:6,
-            movieName:"Avengers: Infinity Wars",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/199925/images/masterrepository/fandango/199925/avengersinfinitywar-postera.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Sci-Fi"
-        }
-        ,{
-            movieId:7,
-            movieName:"Ready Player One",
-            movieLink:"https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/204139/images/masterrepository/fandango/204139/rpo_new_main_vert_dom_2764x.jpg",
-            movieTiming:"Friday 23 April 2017",
-            movieType:"Sci-Fi"
+            "_id": 5,
+            "title": "avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
+        },
+        {
+            "_id": 6,
+            "title": "avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
+        },
+        {
+            "_id": 7,
+            "title": "avengers",
+            "trailer": "https://youtube.com/avengers",
+            "cast": "Saish, Harsha, Sunil, Ashwin",
+            "release_date": "25/04/2018",
+            "rating": "3",
+            "photos": "c:/fakepath/test.png",
+            "length": "2:05:23",
+            "theatres": "IMAX, Digital 3D",
+            "reviews": "One time watch"
         }
     ]
     

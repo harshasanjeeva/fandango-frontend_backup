@@ -42,8 +42,7 @@ class Addmovies extends Component {
 
     render() {
 
-        if (this.props.add==true){
-    //alert("movie add successfull");
+        if (this.props.add===true){
             this.navigate();
         }
 

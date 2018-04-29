@@ -16,37 +16,31 @@ class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          "name": this.props.name,
-          "email":this.props.email,
-          "phone":this.props.phone,
-
-          "userid":this.props.userid,
-        
-          "cardholdername":"",
-          "creditcard":"",
-          "cvv":"",
-          "expdate":""
+          user_id: this.props.user_id,
+          email:this.props.email,
+          phone:this.props.phone,
+          first_name:this.props.first_name,
+          last_name:this.props.last_name,
+          credit_card:this.props.credit_card,
+          card_holder_name:this.props.card_holder_name,
+          cvv:this.props.cvv,
+          address:this.props.address,
+          city:this.props.city,
+          state:this.props.state,
+          zipcode:this.props.zipcode,
+          expdate:this.props.expdate
         };
-    
+
         // this.toggle = this.toggle.bind(this);
       }
 
 
-
-callworks(){
-
-   history.push('/');
-}
-
-callEditProfile(){
-
-  history.push('/');
-}
   render() {
       console.log("userrssss",this.props.username)
+
     return (  <div> 
-      {this.props.isLoggedIn ?
-        <div>
+
+
       <NavHeaderLogin />
 <br />
         <Card style={{ 
@@ -54,14 +48,17 @@ callEditProfile(){
             width: 600,
             margin: 'auto',
             height: 750,
+            backgroundColor:"black",
+            border:"solid white",
+            borderWidth:"0.5px"
 }}>
 <img src={require('./image3.png')} alt="Card image cap" style={{ 
             
-  width: 120,
+  width: 137,
   margin: 'auto',
   marginTop:'10px',
- height: 140,
-  borderRadius: 50}}/>
+ height: 138,
+  borderRadius: 75}}/>
 
 <br/>
 
@@ -86,17 +83,17 @@ console.log("filllle==>",payload)
 
             <hr />
             <CardBody>
-            <CardTitle>User Profile Page</CardTitle>
+            <CardTitle style={{color:"white"}}>User Profile Page</CardTitle>
 
             <Form>
                 <FormGroup row>
                 
-                  <Label for="name">Name</Label>
+                  <Label for="name" style={{color:"white"}}>Name</Label>
                   <Col>
-                  <Input type="name" name="name" id="name" value={this.state.name} placeholder="Name" onChange={(event) => {
+                  <Input type="name" name="name" id="name" value={this.state.first_name} placeholder="Name" onChange={(event) => {
                     console.log(this.state);                
                     this.setState({
-                             name: event.target.value
+                        first_name: event.target.value
                                     });
                                 }} />
                   </Col>
@@ -105,7 +102,7 @@ console.log("filllle==>",payload)
 
                 <FormGroup row>
                 
-                  <Label for="email">Email</Label>
+                  <Label for="email" style={{color:"white"}}>Email</Label>
                   <Col>
                   <Input type="email" name="semail" id="semail" value={this.state.email} placeholder="Email" onChange={(event) => {
                     console.log(this.state);                
@@ -120,7 +117,7 @@ console.log("filllle==>",payload)
 
                 <FormGroup row>
             
-                <Label for="phone">Phone</Label>
+                <Label for="phone" style={{color:"white"}}>Phone</Label>
                 <Col>
                 <Input type="number" name="number" id="number" value={this.state.phone} placeholder="Phone" onChange={(event) => {
                   console.log(this.state);                
@@ -135,16 +132,16 @@ console.log("filllle==>",payload)
                      
                      
                      
-              <p id="label-left">Cardholder Name</p>
+              <span id="label-left" style={{color:"white"}}>Cardholder Name</span>
             
               <Input
                       
                       type="text"
                      
-                      
+                      value={this.state.card_holder_name}
                       onChange={(event) => {
                           this.setState({
-                              cardholdername: event.target.value
+                              card_holder_name: event.target.value
                           });
                       }}
                   />
@@ -156,21 +153,21 @@ console.log("filllle==>",payload)
           
               <Row>
                   <Col>
-                      <p id="label-left" >Card Number</p>
+                      <span id="label-left" style={{color:"white"}}>Card Number</span>
                       <Input
                           name="email"
                           type="text"
                           
-                          value={this.state.creditcard}
+                          value={this.state.credit_card}
                           onChange={(event) => {
                               this.setState({
-                                  creditcard: event.target.value
+                                  credit_card: event.target.value
                               });
                           }}
                       />
                   </Col>
                   <Col>
-                  <p for="exampleEmail" id="label-left">CVV</p>
+                  <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                   <Input
                      
                       type="number"
@@ -186,7 +183,7 @@ console.log("filllle==>",payload)
                 </Row>
      
            
-              <p for="exampleEmail" id="label-left">Expiry date</p>
+              <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                   <input
                       className="form-control"
                       type="text"
@@ -199,7 +196,7 @@ console.log("filllle==>",payload)
                       }}
                   />
              
-
+<br />
 
 
 
@@ -211,42 +208,42 @@ console.log("filllle==>",payload)
                 <Button color="primary" onClick={() => {
                     console.log("state on click",this.state)
                    this.props.profile(this.state);
-                   // this.callworks();
-                  }} >Save</Button>{' '}
+                    history.push('/movies');
+                  }} >Save</Button>
                   <Button color="secondary" onClick={() => {
-                    
-                    
-                    this.callworks();
+
                     
                   }}>Cancel</Button>
             
             </CardBody>
         </Card>
-</div>
-        : history.push('/')}
-        </div>
-    )
+</div>)
+
   }
 }
-const mapStateToProps = (user) => {
-    
-      return{
-        name: "",
-        email: "",
-        userid: 1111,
-        isLoggedIn: true,
-        phone: "",
-        about: "",
-        skills: ""
-
-      }
-
-  }
+const mapStateToProps =(stores)=> {
+    console.log(stores);
+    console.log(stores.user.stores.user_id)
+    return {
+        user_id: stores.user.editProfile.editProfile.user_id,
+        first_name : stores.user.editProfile.editProfile.first_name,
+        last_name : stores.user.editProfile.editProfile.last_name,
+        address : stores.user.editProfile.editProfile.address,
+        city : stores.user.editProfile.editProfile.city,
+        state : stores.user.editProfile.editProfile.state,
+        zipcode : stores.user.editProfile.editProfile.zipcode,
+        phone : stores.user.editProfile.editProfile.phone,
+        email : stores.user.editProfile.editProfile.email,
+        credit_card:stores.user.editProfile.editProfile.credit_card,
+        card_holder_name:stores.user.editProfile.editProfile.card_holder_name,
+        cvv:stores.user.editProfile.editProfile.cvv,
+        expdate:stores.user.editProfile.editProfile.expdate
+    };
+}
 
   const mapDispatchToProps = (dispatch) => {
     console.log("dispatch",dispatch)
     return {
-   //   upload : (data) => dispatch(fileUpload(data)),
       profile : (data) => dispatch(editProfile(data))
     }
   }

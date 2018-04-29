@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {
   Carousel,
   CarouselItem,
@@ -72,7 +72,7 @@ class Homemain extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} height="250px" width="1100px" />
+          <img src={item.src} alt={item.altText} height="280px" width="1400" />
           <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
         </CarouselItem>
     );

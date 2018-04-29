@@ -25,35 +25,34 @@ class Login extends Component {
         });
     }
 
-
-    navigate()
-    {
-        console.log("movies===>")
-       history.push('/movies');
-       var d = {
-        movies:''
-    }
-    this.props.getmovies(d);
-    }
-
-
     render() {
 
-        if (this.props.login_status){
-            this.navigate();
+        if (this.props.login_status) {
+            var d = {movies: ''};
+            this.props.getmovies(d);
+          setTimeout(function(){ history.push('/movies') }, 3000);
         }
 
+
         return (
-            <div style={{backgroundColor:"black" ,height: "100% !important"}}>
+            <div style={{backgroundColor:"black" ,height: "700px !important"}}>
             <Navbarmain />
-            <Row>
-            <Col> </Col>
+            <br />
+            <br />
+            <Row style={{backgroundColor:"black" ,height: "600px"}}>
+
             <Col>
+            <img src="//images.fandango.com/cms/assets/aced1350-33b7-11e8-8eca-fd26e4965c58--vip-registration-banner.png" width="320" height="140" alt="" />
+
+            </Col>
+            <Col>
+            <br />
+
             <Card style={{backgroundColor:"black", border: "solid",
-            borderColor: "white"}}>
+            borderColor: "white", height:"350px", width:"451px"}}>
             <div>
                 <div>
-                
+
                 </div>
                 <div >
                 </div>
@@ -61,12 +60,13 @@ class Login extends Component {
                 <div >
                     <form>
                         <div >
-                        <h1 style={{color:"white"}}>FANDANGO </h1>
-                            <h1>Login</h1>
+                        <h1 style={{color:"white"}}>FANDANGO-VIP </h1>
+                            <h2 style={{color:"orange"}}>Login</h2>
                         </div>
-                        <div >
+                        <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Email </p>
+                        <div style={{paddingLeft:100,paddingRight:100 }}>
                             <Input
-                                
+
                                 type="text"
                                 label="Username"
                                 placeholder="Enter Address"
@@ -79,9 +79,10 @@ class Login extends Component {
                             />
                         </div>
 <br />
-                        <div className="form-group">
+                        <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Password </p>
+                        <div className="form-group"  style={{paddingLeft:100,paddingRight:100 }}>
                             <Input
-                                
+
                                 type="password"
                                 label="password"
                                 placeholder="Enter Password"
@@ -99,7 +100,6 @@ class Login extends Component {
                                 className="btn btn-primary"
                                 type="button"
                                 onClick={() => {
-                                    
                                     this.props.log(this.state)}}>
                                 Login
                             </button>
@@ -113,6 +113,8 @@ class Login extends Component {
             </Card>
             </Col>
             </Row>
+
+
             </div>
         );
     }
