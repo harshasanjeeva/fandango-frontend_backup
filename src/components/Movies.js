@@ -16,14 +16,10 @@ class Movies extends Component {
 
             movieType:'',
             movieId:'',
-<<<<<<< HEAD
             numofclick:2,
             componentname:"Movies",
-            userid:123
-
-=======
+            userid:123,
             movieName:''
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
         };
         this.handleMoviesClick=this.handleMoviesClick.bind(this);
@@ -41,7 +37,6 @@ class Movies extends Component {
         this.props.analytics(this.state);
     }
 
-<<<<<<< HEAD
     analytics = ()=>{
         this.setState({
             numofclick: parseFloat(this.state.numofclick) + 1    
@@ -50,8 +45,6 @@ class Movies extends Component {
     }
 
 
-=======
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
     renderList() {
 
         const movies=this.props.movies;
@@ -74,7 +67,7 @@ class Movies extends Component {
         return filteredMoviesGenre.map((movie) => {
             return (
                 <ListGroupItem action
-                               key={movie.movieId}>
+                               key={movie.movieId} style={{backgroundColor:"black", border:"solid white",borderWidth:"0.5px"}}>
                     <img src={movie.movieLink}/>
                     <div>
 
@@ -87,20 +80,15 @@ class Movies extends Component {
 
                                 <NavLink onClick={(event) => {
 
-<<<<<<< HEAD
                                 this.handleMoviesClick(event, movie)
                                this.props.analytics(this.state);
-                            }}>
-=======
-                                    this.handleMoviesClick(event, movie)
-                                }}>
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
+                            }} style={{color:"silver"}}>
 
                                     {movie.movieName}
                                 </NavLink>
                             </Link>
 
-                            <span>{movie.movieTiming}</span>
+                            <span style={{color:"#ffc107"}}>{movie.movieTiming}</span>
                         </div>
 
                     </ListGroupItem>
@@ -117,17 +105,18 @@ class Movies extends Component {
     render() {
 
         return (
-            <div>
+            <div style={{backgroundColor:"black"}}>
             <Navbarmain />
             <br />
             <Container className="test">
 
-                <Row style={{marginTop:"20px"}}>
-                    Movies
+                <Row style={{marginTop:"20px", color:"white"}}>
+                    Search Movies
                     <Col>
                         <FormGroup style={{marginLeft:"20px"}}>
                             <Input
                                 type="text"
+                                placeholder="Avengers.."
                                 value={this.state.movieName}
                                 onChange={(event) => {
                                     this.setState({
@@ -141,7 +130,7 @@ class Movies extends Component {
 
                 </Row>
                 <Row>
-                    <Col style={{backgroundColor:'#343a40', float:'left'}}><h4 style={{color:'white'}}>Filter by Movie Genres</h4></Col>
+                    <Col style={{backgroundColor:'#343a40', float:'left'}}><h5 style={{color:"orange"}}>Filter by Movie Genres</h5></Col>
                 </Row>
 <br/>
                 <Row>
@@ -153,25 +142,19 @@ class Movies extends Component {
                 </Col  >
                 <Col  >
                 
-                <Button>
-                <a onClick={(event) => {
-                    this.analytics();
-                    
-                }}>DUMMY</a>
-            </Button>
                 </Col  >
 
                     <Col  >
-                        <Button>
+                        <Button color="info">
                             <a onClick={(event) => {
                                 this.setState({
                                     movieType:''
                                 })
-                            }}>ALL MOVIES</a>
+                            }} >ALL MOVIES</a>
                         </Button>
                     </Col>
                     <Col  >
-                            <Button>
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -181,7 +164,7 @@ class Movies extends Component {
                             </Button>
                     </Col>
                     <Col  >
-                            <Button >
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -191,7 +174,7 @@ class Movies extends Component {
                             </Button>
                         </Col>
                         <Col>
-                            <Button >
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -203,7 +186,7 @@ class Movies extends Component {
                         </Col>
 
                         <Col>
-                            <Button >
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -214,7 +197,7 @@ class Movies extends Component {
                         </Col>
 
                         <Col>
-                            <Button >
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -225,7 +208,7 @@ class Movies extends Component {
                         </Col>
 
                         <Col>
-                            <Button >
+                            <Button color="info">
                                 <a onClick={(event) => {
                                     this.analytics();
                                     this.setState({
@@ -248,7 +231,7 @@ class Movies extends Component {
                     </Row>
                     <br />
                     <Row>
-                        <Col><h2 >Opening This Week</h2></Col>
+                        <Col><h2 style={{color:"silver"}}>Opening This Week</h2></Col>
                     </Row>
                     <Row>
                         <ListGroup className="listgroupMovies">
@@ -260,7 +243,7 @@ class Movies extends Component {
                     <Row>
                         <div><h2>Now Playing</h2></div>
                     </Row>
-                    <Row>
+                    <Row >
                         <ListGroup className="listgroupMovies">
                             {this.renderList()}
                         </ListGroup>

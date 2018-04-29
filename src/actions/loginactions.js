@@ -194,7 +194,6 @@ export function actiongetmovies(userdata) {
         // }
     }
 
-<<<<<<< HEAD
 };
 
 export function analytics(userdata){
@@ -216,7 +215,7 @@ export function analytics(userdata){
         catch (error) {
             console.log(error);
         }
-=======
+}
 }
 export function getmovies(data) {
     console.log("data===> in actions",data);
@@ -224,7 +223,6 @@ export function getmovies(data) {
         type: GETMOVIES,
         message: "inside GETMOVIES Actions",
         data:data
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
     }
 }
 

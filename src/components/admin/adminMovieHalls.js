@@ -103,19 +103,15 @@ class adminMovieHalls extends Component {
     render() {
         return (
             <div style={{backgroundColor: "black",height:"1100px"}}>
-            <Navbarmain/>
             <Container>
-<<<<<<< HEAD:src/components/admin/adminHome.js
                 
-=======
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab:src/components/admin/adminMovieHalls.js
 
-                <Row style={{marginTop:"20px",color:"white",borderWidth:"0.5px",}}>
+                <Row style={{marginTop:"20px"}}>
                                 Enter Movie Hall Name
                     <Col>
                         <FormGroup style={{marginLeft:"20px"}}>
                             <Input
-                            style={{color:"white"}}
+                            placeholder="Search Movie Hall name"
                              type="text"
                              label="Search Movie Halls"
                              value={this.state.searchHallName}

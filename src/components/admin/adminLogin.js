@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import history from "../History";
 import Navbarmain from '../Navbarlogout';
 import {actionAdminLogin, actiongetmovies, getMovieHalls} from '../../actions/loginactions';
-
+import { withRouter } from 'react-router-dom';
 
 class adminHome extends Component {
 
@@ -26,7 +26,8 @@ class adminHome extends Component {
         setTimeout(function () {
             history.push
             ({
-                pathname: '/adminMainPage'
+                pathname: '/adminMainPage',
+                state:""
             });
         },6000);
     }
@@ -136,4 +137,5 @@ const mapDispatchToProps =(dispatch)=> {
 const mapStateToProps =(state)=> {
     return state
 }
-export default connect(mapStateToProps,mapDispatchToProps)(adminHome);
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(adminHome));

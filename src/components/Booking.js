@@ -7,16 +7,13 @@ import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
-<<<<<<< HEAD
 import {analytics} from '../actions/loginactions';
-=======
 
 import { withRouter } from 'react-router-dom';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import "video-react/dist/video-react.css";
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 class Booking extends Component {
 
     constructor(props) {
@@ -27,18 +24,12 @@ class Booking extends Component {
             theatre: '',
             Movie: "",
             rating: 2,
-<<<<<<< HEAD
             timings:"",
             prevdata:"",
             user_id:"",
             numofclick:2,
             componentname:"Movies details",
             userid: ""
-=======
-            timings: "",
-            prevdata: "",
-            user_id: ""
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
         };
         this.toggle = this.toggle.bind(this);
@@ -91,22 +82,39 @@ class Booking extends Component {
                     <Navbarmain/>
                 </div>
 
+                <Tabs>
+                <TabList >
+                  <Tab style={{color: "orange"}}>Overview</Tab>
+                  <Tab style={{color: "orange"}}>Movie Times + Tickets</Tab>
+                  <Tab style={{color: "orange"}}>Synopsis</Tab>
+                  <Tab style={{color: "orange"}}>Reviews</Tab>
+                  <Tab style={{color: "orange"}}>Trailer</Tab>
+                </TabList>
+            
+                <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
+
+
+
+
+
+
+
                 <div className="row">
 
                     <div className="col-md-4" align="left" style={{border: '1px solid black'}} >
                         <div className="col-md-12" align="left">
                             <a href="#"><img src={this.props.movie.movieLink} height="200px" width="200px"/></a>
                             <div>
-                                <div>
+                                <div  style={{color: "white"}}>
                                     <strong>Movie:</strong> {this.props.movie.movieName}
                                 </div>
-                                <div>
+                                <div  style={{color: "white"}}>
                                     <strong>Released:</strong> {this.props.movie.movieTiming}
                                 </div>
-                                <div>
+                                <div  style={{color: "white"}}>
                                     <strong>Genre:</strong> {this.props.movie.movieType}
                                 </div>
-                                <div>
+                                <div  style={{color: "white"}}>
                                     <strong>Theatre:</strong> {this.props.theatres[0].theatreName}
                                 </div>
                             </div>
@@ -115,7 +123,7 @@ class Booking extends Component {
                         </div>
 
                         <div className="col-sm-8" >
-                            <div>
+                            <div  style={{color: "white"}}>
                                 {<strong>Movie booking here</strong>}
                             </div>
 
@@ -139,7 +147,7 @@ class Booking extends Component {
                                     },1000)
                                     }}>7:30 PM</Button>
 
-<span />
+                                                <span />
                                 <Button color="warning" bsSize="small"
                                         onClick={(event) => {
                                        
@@ -248,6 +256,23 @@ class Booking extends Component {
                 {location.state.movieId}
 
             </div>
+            </TabPanel>
+            <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
+              <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
+            <h2>Any content 2</h2>
+          </TabPanel>
+          <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
+          <h2>Any content 2</h2>
+        </TabPanel>
+        <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
+        <h2>Any content 2</h2>
+      </TabPanel>
+          </Tabs>
+
+
+
             </div>
         );
     }

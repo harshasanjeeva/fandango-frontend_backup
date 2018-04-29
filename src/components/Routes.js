@@ -22,17 +22,9 @@ import adminLogin from "./admin/adminLogin";
 import adminHome from "./admin/adminMovieHalls";
 import ticket from "./ticket";
 import addUser from "./admin/addUser";
-<<<<<<< HEAD
-import viewUsers from "./admin/viewUsers"
 import Adminanalytics from "./Adminanalytics"
-=======
 import adminMainPage from "./admin/adminMainPage";
 import BookTicket from "./BookTicket";
-
-// import Tickets from "./Tickets";
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
-
-// import Tickets from "./Tickets";
 
 import Admindash from "./Admindash";
 
@@ -51,13 +43,10 @@ class Routes extends Component {
                     <Route  path='/movies' component={Movies}/>
                     
                     <Route  path='/alltheatresAndTimings' component={AllTheatresAndTimings}/>
-<<<<<<< HEAD
                     <Route  path='/admindash' component={Admindash}/>
                     
                     <Route  path='/adminanalytics' component={Adminanalytics}/>
-=======
                     <Route  path='/Ticket' component={Ticket}/>
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
                     <Route  path='/payments' component={Payments}/>
                     <Route  path='/profile' component={Profile}/>
 
@@ -70,7 +59,7 @@ class Routes extends Component {
                     <Route  path='/adminHome' component={adminHome}/>
 
                     <Route  path='/ticket' component={ticket}/>
-                    <Route patch='/bookTicket' component={BookTicket}/>
+                    <Route path='/bookTicket' component={BookTicket}/>
                     <Route  path='/addUser' component={addUser}/>
                     <Route  path='/viewUsers' component={viewUsers}/>
                     <Route  path='/adminMainPage' component={adminMainPage}/>

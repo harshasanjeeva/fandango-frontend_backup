@@ -63,13 +63,8 @@ callEditProfile(){
   width: 137,
   margin: 'auto',
   marginTop:'10px',
-<<<<<<< HEAD
  height: 138,
   borderRadius: 75}}/>
-=======
-  height: 140,
-  borderRadius: 50}}/>
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
 <br/>
 
@@ -206,13 +201,8 @@ console.log("filllle==>",payload)
                           });
                       }}
                   />
-<<<<<<< HEAD
              
 <br />
-=======
-
-
->>>>>>> 98bca1d6eb399f2b3a052c91d4d9c1b8efad83ab
 
 
 
