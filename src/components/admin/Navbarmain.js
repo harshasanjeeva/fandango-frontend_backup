@@ -52,26 +52,16 @@ class Navbarmain extends Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-
-
-  
-                <NavItem>
-                    <NavLink onClick={(event) => history.push('/Movies')}>Movies</NavLink>
-                </NavItem>
-
-
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
-                My Account
+                Dashboard
               </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem header>Options</DropdownItem>
+                      <DropdownItem header>Dashboards</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/">Tickets</DropdownItem>
+                      <DropdownItem href="/admindash">Movie Analytics</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/payments">Make Payments</DropdownItem>
-                      <DropdownItem divider />
-                      <DropdownItem href="/profile" onclick="">Profile</DropdownItem>
+                      <DropdownItem href="/adminanalytics">User Analytics</DropdownItem>
 
                     </DropdownMenu>
                   </Dropdown>

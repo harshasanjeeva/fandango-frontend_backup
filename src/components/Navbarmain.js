@@ -56,16 +56,8 @@ class Navbarmain extends Component {
                     <NavLink onClick={(event) => history.push('/Movies')}>Movies</NavLink>
                 </NavItem>
 
-                <NavItem>
-                    <NavLink onClick={() => {
-                            this.props.del(this.props.user_id),
-                                history.push('/')}}>Delete Account</NavLink>
-                </NavItem>
 
-                <NavItem>
-                    <NavLink onClick={() => {
-                            history.push('/myprofile')}}>View Profile</NavLink>
-                </NavItem>
+             
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
@@ -84,6 +76,19 @@ class Navbarmain extends Component {
                       <DropdownItem href="/profile" onclick="">Profile</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
+                  <NavItem>
+
+
+                  <NavLink onClick={() => {
+                          history.push('/myprofile')}}>View Profile</NavLink>
+                  </NavItem>
+
+                  <NavItem>
+                  <NavLink onClick={() => {
+                          this.props.del(this.props.user_id),
+                              history.push('/')}}>Delete Account</NavLink>
+                  </NavItem>
+
                 <NavItem>
                 <NavLink href="/">Sign Out</NavLink>
                 </NavItem>

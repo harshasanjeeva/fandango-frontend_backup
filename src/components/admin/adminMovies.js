@@ -52,11 +52,11 @@ class adminMovies extends Component {
                 return (
 
                     <ListGroupItem action
-                                   key={movie._id}>
+                                   key={movie._id} style={{backgroundColor:"black",padding:"10px"}}>
 
-                        <Card body style={{backgroundColor:"black",padding:"10px"}}>
-                            <CardTitle>{movie.movieName}</CardTitle>
-                            <CardText>{movie.movieType}</CardText>
+                        <Card body style={{backgroundColor:"black",padding:"10px",border:"solid white"}}>
+                            <CardTitle style={{color:"orange"}}><span>Movie Name: </span>{movie.movieName}</CardTitle>
+                            <CardText style={{color:"white"}}><span>Movie Category: </span>{movie.movieType}</CardText>
                             <Button onClick={(event)=>{
                                 document.getElementById("addMovie").innerText="Update Movie";
                                 document.getElementById("addMovieButton").innerText="Update";
@@ -136,13 +136,13 @@ class adminMovies extends Component {
                     <Col>
 
                         <div >
-                            <h1 id="addMovie">Add New Movie</h1>
+                            <h3 id="addMovie" style={{color:"teal"}}>Add New Movie</h3>
                         </div>
                         <div >
 
                             <Form>
                                 <div>
-                                    <strong>Title:</strong>
+                                    <span style={{color:"white", float:"left"}}>Title:</span>
                                     <Input
 
                                         type="text"
@@ -158,7 +158,7 @@ class adminMovies extends Component {
                                 </div>
 
                                 <div>
-                                    <strong>Trailer Link:</strong>
+                                    <span style={{color:"white", float:"left"}}>Trailer Link:</span>
                                     <Input
 
                                         type="text"
@@ -172,8 +172,9 @@ class adminMovies extends Component {
                                         }}
                                     />
                                 </div>
+                                <br />
                                 <div>
-                                    <strong>Movie Type:</strong>
+                                    <span style={{color:"white", float:"left"}}>Movie Type:</span>
 
 
                                     <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} id="movieType">
@@ -186,17 +187,47 @@ class adminMovies extends Component {
                                             })
                                         }}>
                                             <DropdownItem header>Action</DropdownItem>
-                                            <DropdownItem >Drama</DropdownItem>
-                                            <DropdownItem>Comedy</DropdownItem>
-                                            <DropdownItem>Romance</DropdownItem>
-                                            <DropdownItem>Horror</DropdownItem>
-                                            <DropdownItem>Sci-Fi</DropdownItem>
+                                            <DropdownItem onClick={(event) =>{
+                                                this.setState({
+                                                    movieType:event.target.innerText
+                                                })
+                                                console.log("event  movie type==>",event.target.innerText)
+
+                                            }}>Drama</DropdownItem>
+                                            <DropdownItem onClick={(event) =>{
+                                                this.setState({
+                                                    movieType:event.target.innerText
+                                                })
+                                                console.log("event  movie type==>",event.target.innerText)
+
+                                            }}>Comedy</DropdownItem>
+                                            <DropdownItem onClick={(event) =>{
+                                                this.setState({
+                                                    movieType:event.target.innerText
+                                                })
+                                                console.log("event  movie type==>",event.target.innerText)
+
+                                            }}>Romance</DropdownItem>
+                                            <DropdownItem onClick={(event) =>{
+                                                this.setState({
+                                                    movieType:event.target.innerText
+                                                })
+                                                console.log("event  movie type==>",event.target.innerText)
+
+                                            }}>Horror</DropdownItem>
+                                            <DropdownItem onClick={(event) =>{
+                                                this.setState({
+                                                    movieType:event.target.innerText
+                                                })
+                                                console.log("event  movie type==>",event.target.innerText)
+
+                                            }}>Sci-Fi</DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
                                 </div>
 
                                 <div>
-                                    <strong>Movie Cast:</strong>
+                                    <span style={{color:"white", float:"left"}}>Movie Cast:</span>
                                     <Input
 
                                         type="textarea"
@@ -212,7 +243,7 @@ class adminMovies extends Component {
                                 </div>
 
                                 <div>
-                                    <strong>Release Date:</strong>
+                                    <span style={{color:"white", float:"left"}}>Release Date:</span>
                                     <Input
 
                                         type="date"
@@ -228,7 +259,7 @@ class adminMovies extends Component {
                                 </div>
 
                                 <div>
-                                    <strong>Ratings:</strong>
+                                    <span style={{color:"white", float:"left"}}>Ratings:</span>
                                     <Input
 
                                         type="number"
@@ -244,7 +275,7 @@ class adminMovies extends Component {
                                 </div>
 
                                 <div>
-                                    <strong>Photos:</strong>
+                                    <span style={{color:"white", float:"left"}}>Photos:</span>
                                     <Input
 
                                         type="file"
@@ -260,7 +291,7 @@ class adminMovies extends Component {
                                 </div>
 
                                 <div>
-                                    <strong>Movie length:</strong>
+                                    <span style={{color:"white", float:"left"}}>Movie length:</span>
                                     <Input
 
                                         type="text"
@@ -277,7 +308,7 @@ class adminMovies extends Component {
 
 
                                 <div>
-                                    <strong>Ratings & Reviews</strong>
+                                    <span>Ratings & Reviews</span>
                                     <Input
 
                                         type="textarea"
@@ -291,10 +322,10 @@ class adminMovies extends Component {
                                         }}
                                     />
                                 </div>
-
+<br />
                                 <div>
                                     <Button
-                                        className="btn btn-primary"
+                                        color="success"
                                         id="addMovieButton"
                                         type="button"
                                         onClick={() => this.props.log(this.state)}>

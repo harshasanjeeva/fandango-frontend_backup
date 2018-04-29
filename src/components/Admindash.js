@@ -5,7 +5,7 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import { withRouter } from 'react-router-dom';
 import Homemain from './Homemain'
-import Navbarheader from './Navbarlogout'
+import Navbarheader from './admin/Navbarmain'
 import {Link} from 'react-router-dom';
 import Footer from './Footer'
 import {Row,Col} from 'reactstrap'
@@ -122,12 +122,12 @@ var data = [
        <Navbarheader />
        <Row>
        <Col>
-       <h4 style={{color:"silver",float:"left"}}>Movies with its revenue/year</h4>
+       <h4 style={{color:"silver",float:"left"}}>city wise revenue/year</h4>
        <BarChart data={chartData} width="500" height="250" style={{float:"left"}}/>
        </Col>
 
        <Col>
-       <h4 style={{color:"silver",float:"left",marginLeft:"60px"}}>Movies with its revenue/year</h4>
+       <h4 style={{color:"silver",float:"left",marginLeft:"60px"}}>show first 10 movies with its revenue/year</h4>
        <LineChart data={chartData} width="600" height="250"/>
        </Col>
 
