@@ -16,37 +16,31 @@ class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          "name": this.props.name,
-          "email":this.props.email,
-          "phone":this.props.phone,
-
-          "userid":this.props.userid,
-        
-          "cardholdername":"",
-          "creditcard":"",
-          "cvv":"",
-          "expdate":""
+          user_id: this.props.user_id,
+          email:this.props.email,
+          phone:this.props.phone,
+          first_name:this.props.first_name,
+          last_name:this.props.last_name,
+          credit_card:this.props.credit_card,
+          card_holder_name:this.props.card_holder_name,
+          cvv:this.props.cvv,
+          address:this.props.address,
+          city:this.props.city,
+          state:this.props.state,
+          zipcode:this.props.zipcode,
+          expdate:this.props.expdate
         };
 
         // this.toggle = this.toggle.bind(this);
       }
 
 
-
-callworks(){
-
-   history.push('/');
-}
-
-callEditProfile(){
-
-  history.push('/');
-}
   render() {
       console.log("userrssss",this.props.username)
-    return (  <div style={{backgroundColor:"black"}}> 
-      {this.props.isLoggedIn ?
-        <div>
+
+    return (  <div> 
+
+
       <NavHeaderLogin />
 <br />
         <Card style={{ 
@@ -96,10 +90,10 @@ console.log("filllle==>",payload)
                 
                   <Label for="name" style={{color:"white"}}>Name</Label>
                   <Col>
-                  <Input type="name" name="name" id="name" value={this.state.name} placeholder="Name" onChange={(event) => {
+                  <Input type="name" name="name" id="name" value={this.state.first_name} placeholder="Name" onChange={(event) => {
                     console.log(this.state);                
                     this.setState({
-                             name: event.target.value
+                        first_name: event.target.value
                                     });
                                 }} />
                   </Col>
@@ -144,10 +138,10 @@ console.log("filllle==>",payload)
                       
                       type="text"
                      
-                      
+                      value={this.state.card_holder_name}
                       onChange={(event) => {
                           this.setState({
-                              cardholdername: event.target.value
+                              card_holder_name: event.target.value
                           });
                       }}
                   />
@@ -164,10 +158,10 @@ console.log("filllle==>",payload)
                           name="email"
                           type="text"
                           
-                          value={this.state.creditcard}
+                          value={this.state.credit_card}
                           onChange={(event) => {
                               this.setState({
-                                  creditcard: event.target.value
+                                  credit_card: event.target.value
                               });
                           }}
                       />
@@ -214,37 +208,38 @@ console.log("filllle==>",payload)
                 <Button color="primary" onClick={() => {
                     console.log("state on click",this.state)
                    this.props.profile(this.state);
-                   // this.callworks();
-                  }} >Save</Button>{' '}
+                    history.push('/movies');
+                  }} >Save</Button>
                   <Button color="secondary" onClick={() => {
-                    
-                    
-                    this.callworks();
+
                     
                   }}>Cancel</Button>
             
             </CardBody>
         </Card>
-</div>
-        : history.push('/')}
-        </div>
-    )
+</div>)
+
   }
 }
-const mapStateToProps = (stores) => {
-    
-      return{
-        name: "",
-        email: "",
-        user_id: stores.user.stores.user_id,
-        isLoggedIn: true,
-        phone: "",
-        about: "",
-        skills: ""
-
-      }
-
-  }
+const mapStateToProps =(stores)=> {
+    console.log(stores);
+    console.log(stores.user.stores.user_id)
+    return {
+        user_id: stores.user.editProfile.editProfile.user_id,
+        first_name : stores.user.editProfile.editProfile.first_name,
+        last_name : stores.user.editProfile.editProfile.last_name,
+        address : stores.user.editProfile.editProfile.address,
+        city : stores.user.editProfile.editProfile.city,
+        state : stores.user.editProfile.editProfile.state,
+        zipcode : stores.user.editProfile.editProfile.zipcode,
+        phone : stores.user.editProfile.editProfile.phone,
+        email : stores.user.editProfile.editProfile.email,
+        credit_card:stores.user.editProfile.editProfile.credit_card,
+        card_holder_name:stores.user.editProfile.editProfile.card_holder_name,
+        cvv:stores.user.editProfile.editProfile.cvv,
+        expdate:stores.user.editProfile.editProfile.expdate
+    };
+}
 
   const mapDispatchToProps = (dispatch) => {
     console.log("dispatch",dispatch)

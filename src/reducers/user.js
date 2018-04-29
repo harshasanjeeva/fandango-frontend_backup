@@ -196,16 +196,8 @@ const stores= (state = initialState, action) => {
             console.log("in view profile store")
             return {
                 ...state,
-                "stores":{
-                    "First_Name":action.data.First_Name,
-                    "Last_Name":action.data.Last_Name,
-                    "address":action.data.address,
-                    "city":action.data.city,
-                    "state":action.data.state,
-                    "zipcode":action.data.zipcode,
-                    "phone":action.data.phone,
-                    "email":action.data.email,
-                    "addhall_status":action.data.status
+                "editProfile":{
+                    "editProfile":action.data.editProfile
                 }
             }
         case ADDUSERHALL:
