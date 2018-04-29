@@ -87,7 +87,10 @@ class Navbarmain extends Component {
                       <DropdownItem onClick={() => {
                           var data={user_id:this.props.user_id};
                           this.props.real(data);
+
+                         setTimeout(function(){
                           history.push('/realticket');
+                         },3000) 
                           }}>Tickets</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem href="/payments">Make Payments</DropdownItem>

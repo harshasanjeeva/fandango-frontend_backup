@@ -38,7 +38,7 @@ class EditProfile extends Component {
   render() {
       console.log("userrssss",this.props.username)
 
-    return (  <div> 
+    return (  <div style={{backgroundColor:"black"}}> 
 
 
       <NavHeaderLogin />
@@ -83,14 +83,14 @@ console.log("filllle==>",payload)
 
             <hr />
             <CardBody>
-            <CardTitle style={{color:"white"}}>User Profile Page</CardTitle>
+            <CardTitle style={{color:"orange"}} >User Profile Page</CardTitle>
 
             <Form>
                 <FormGroup row>
                 
                   <Label for="name" style={{color:"white"}}>Name</Label>
                   <Col>
-                  <Input type="name" name="name" id="name" value={this.state.first_name} placeholder="Name" onChange={(event) => {
+                  <Input style={{backgroundColor:"black",color:"silver"}} type="name" name="name" id="name" value={this.state.first_name} placeholder="Name" onChange={(event) => {
                     console.log(this.state);                
                     this.setState({
                         first_name: event.target.value
@@ -104,7 +104,7 @@ console.log("filllle==>",payload)
                 
                   <Label for="email" style={{color:"white"}}>Email</Label>
                   <Col>
-                  <Input type="email" name="semail" id="semail" value={this.state.email} placeholder="Email" onChange={(event) => {
+                  <Input style={{backgroundColor:"black",color:"silver"}} type="email" name="semail" id="semail" value={this.state.email} placeholder="Email" onChange={(event) => {
                     console.log(this.state);                
                     this.setState({
                              email: event.target.value
@@ -119,7 +119,7 @@ console.log("filllle==>",payload)
             
                 <Label for="phone" style={{color:"white"}}>Phone</Label>
                 <Col>
-                <Input type="number" name="number" id="number" value={this.state.phone} placeholder="Phone" onChange={(event) => {
+                <Input style={{backgroundColor:"black",color:"silver"}} type="number" name="number" id="number" value={this.state.phone} placeholder="Phone" onChange={(event) => {
                   console.log(this.state);                
                   this.setState({
                            phone: event.target.value
@@ -135,7 +135,7 @@ console.log("filllle==>",payload)
               <span id="label-left" style={{color:"white"}}>Cardholder Name</span>
             
               <Input
-                      
+              style={{backgroundColor:"black",color:"silver"}}
                       type="text"
                      
                       value={this.state.card_holder_name}
@@ -154,7 +154,7 @@ console.log("filllle==>",payload)
               <Row>
                   <Col>
                       <span id="label-left" style={{color:"white"}}>Card Number</span>
-                      <Input
+                      <Input style={{backgroundColor:"black",color:"silver"}}
                           name="email"
                           type="text"
                           
@@ -169,7 +169,7 @@ console.log("filllle==>",payload)
                   <Col>
                   <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                   <Input
-                     
+                  style={{backgroundColor:"black",color:"silver"}}
                       type="number"
                       placeholder="Enter CVV"
                       value={this.state.cvv}
@@ -184,8 +184,8 @@ console.log("filllle==>",payload)
      
            
               <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
-                  <input
-                      className="form-control"
+                  <Input 
+                  style={{backgroundColor:"black",color:"silver"}}
                       type="text"
                       placeholder="MM/YY"
                       value={this.state.expdate}
@@ -205,11 +205,12 @@ console.log("filllle==>",payload)
             </Form>
       
 
-                <Button color="primary" onClick={() => {
+                <Button color="primary" style={{marginRight:"10px"}} onClick={() => {
                     console.log("state on click",this.state)
                    this.props.profile(this.state);
                     history.push('/movies');
                   }} >Save</Button>
+                 
                   <Button color="secondary" onClick={() => {
 
                     

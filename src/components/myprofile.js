@@ -16,7 +16,7 @@ class myprofile extends React.Component {
     
     render() {
         return (
-            <div>
+            <div style={{backgroundColor:"black"}}>
                     <div>
                         <NavHeaderLogin />
                         <br />
@@ -24,15 +24,16 @@ class myprofile extends React.Component {
 
                             width: 600,
                             margin: 'auto',
-                            height: 750,
+                            height: 950,
+                            backgroundColor:"black"
                         }}>
                             <img src={require('./image3.png')} alt="Card image cap" style={{
 
-                                width: 120,
+                                width: '136px',
                                 margin: 'auto',
-                                marginTop:'10px',
+                                marginTop:'136px',
                                 height: 140,
-                                borderRadius: 50}}/>
+                                borderRadius: 73}}/>
 
                             <br/>
 
@@ -57,13 +58,13 @@ class myprofile extends React.Component {
 
                             <hr />
                             <CardBody>
-                                <CardTitle>User Profile Page</CardTitle>
+                                <CardTitle style={{color:"orange"}}>User Profile Page</CardTitle>
 
                                 <Form>
                                     <FormGroup row>
 
-                                        <Label for="name">Name</Label>
-                                        <Col>
+                                        <Label for="name" style={{color:"white"}}>Name</Label>
+                                        <Col style={{color:"silver"}}>
                                             {this.props.first_name} &nbsp; {this.props.last_name}
                                         </Col>
                                     </FormGroup>
@@ -71,8 +72,8 @@ class myprofile extends React.Component {
 
                                     <FormGroup row>
 
-                                        <Label for="email">Email</Label>
-                                        <Col>
+                                        <Label for="email" style={{color:"white"}}>Email</Label>
+                                        <Col style={{color:"silver"}}>
                                             {this.props.email}
                                         </Col>
                                     </FormGroup>
@@ -81,16 +82,16 @@ class myprofile extends React.Component {
 
                                     <FormGroup row>
 
-                                        <Label for="phone">Phone</Label>
-                                        <Col>
+                                        <Label for="phone" style={{color:"white"}}>Phone</Label>
+                                        <Col style={{color:"silver"}}>
                                             {this.props.phone}
                                         </Col>
                                     </FormGroup>
 
                                     <div>
 
-                                        <p id="label-left">Cardholder Name</p> &nbsp;
-                                        {this.props.card_holder_name}
+                                        <p id="label-left" style={{color:"white"}}>Cardholder Name</p> &nbsp;
+                                      <span style={{color:"silver"}}>  {this.props.card_holder_name} </span>
 
                                     </div>
                                     <br/>
@@ -98,28 +99,28 @@ class myprofile extends React.Component {
 
 
                                     <Row>
-                                        <Col>
+                                        <Col style={{color:"white"}}>
                                             <p id="label-left" >Card Number</p> &nbsp;
-                                            {this.props.credit_card}
+                                        <span style={{color:"silver"}}>    {this.props.credit_card} </span>
 
                                         </Col>
-                                        <Col>
+                                        <Col style={{color:"white"}}>
                                             <p for="exampleEmail" id="label-left">CVV</p>  &nbsp;
-                                            {this.props.cvv}
+                                         <span style={{color:"silver"}}>   {this.props.cvv} </span>
 
                                         </Col>
                                     </Row>
                                     <br/>
 
 
-                                    <p for="exampleEmail" id="label-left">Expiry date</p> &nbsp;
-                                    {this.props.expdate}
+                                    <p for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</p> &nbsp;
+                                  <span style={{color:"silver"}}>  {this.props.expdate}</span>
 
                                     <br/>
                                     <br/>
 
 
-                                    <Button onClick={(event)=>{
+                                    <Button color="info" onClick={(event)=>{
                                         history.push('/profile');
                                     }}> Edit
                                     </Button>
