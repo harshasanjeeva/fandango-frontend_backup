@@ -41,11 +41,11 @@ class adminMovieHalls extends Component {
                 return (
 
                     <ListGroupItem action
-                                   key={movieHall.hallId}>
+                                   key={movieHall.hallId} style={{color:"orange",backgroundColor:"black"}}>
 
                             {movieHall.hallName}
                             <br/>
-                            <Button onClick={(event)=>{
+                            <Button color="success" onClick={(event)=>{
                                 history.push
                                 ({
                                     pathname: '/addUser',
@@ -102,13 +102,16 @@ class adminMovieHalls extends Component {
 
     render() {
         return (
+            <div style={{backgroundColor: "black",height:"1100px"}}>
             <Container>
+                
 
-                <Row style={{marginTop:"20px"}}>
+                <Row style={{marginTop:"20px",color:"white"}}>
                                 Enter Movie Hall Name
                     <Col>
                         <FormGroup style={{marginLeft:"20px"}}>
                             <Input
+                            placeholder="Search Movie Hall name"
                              type="text"
                              label="Search Movie Halls"
                              value={this.state.searchHallName}
@@ -125,14 +128,14 @@ class adminMovieHalls extends Component {
                 </Row>
 
                 <Row>
-                <Col>
-                <ListGroup>
+                <Col style={{backgroundColor:"black"}}>
+                <ListGroup style={{backgroundColor:"black"}}>
                     {this.renderTheatres()}
                 </ListGroup>
                 </Col>
 
                 <Col>
-                    <h3 id="addHallh3">Add New Movie Hall</h3>
+                    <h3 id="addHallh3"  style={{color:"white"}}>Add New Movie Hall</h3>
                     <br/>
                     <FormGroup style={{marginLeft:"20px"}}>
                         <Input
@@ -173,7 +176,7 @@ class adminMovieHalls extends Component {
                             }}
                         />
                         <br/>
-                        <Button  id="addHallButton" onClick={(event)=> {
+                        <Button  id="addHallButton" color="primary" onClick={(event)=> {
                             var data={hallId:this.state.hallId, hallName: this.state.hallName, hallAddress: this.state.hallAddress, type: this.state.type}
                             this.props.addHall(data)
                         }}>
@@ -188,7 +191,7 @@ class adminMovieHalls extends Component {
 
             </Container>
 
-        );
+            </div> );
 
     }}
 function mapStateToProps(state) {

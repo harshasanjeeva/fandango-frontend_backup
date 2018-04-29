@@ -22,12 +22,11 @@ import adminLogin from "./admin/adminLogin";
 import adminHome from "./admin/adminMovieHalls";
 import ticket from "./ticket";
 import addUser from "./admin/addUser";
+import Adminanalytics from "./Adminanalytics"
 import adminMainPage from "./admin/adminMainPage";
 import BookTicket from "./BookTicket";
 
-// import Tickets from "./Tickets";
-
-
+import Admindash from "./Admindash";
 
 import viewUsers from "./admin/viewUsers"
 
@@ -42,7 +41,11 @@ class Routes extends Component {
                     <Route  path='/signup' component={Signup}/>
                     <Route  path='/booking' component={Booking}/>
                     <Route  path='/movies' component={Movies}/>
+                    
                     <Route  path='/alltheatresAndTimings' component={AllTheatresAndTimings}/>
+                    <Route  path='/admindash' component={Admindash}/>
+                    
+                    <Route  path='/adminanalytics' component={Adminanalytics}/>
                     <Route  path='/Ticket' component={Ticket}/>
                     <Route  path='/payments' component={Payments}/>
                     <Route  path='/profile' component={Profile}/>
@@ -55,7 +58,9 @@ class Routes extends Component {
                     <Route  path='/adminLogin' component={adminLogin}/>
 
                     <Route  path='/ticket' component={ticket}/>
+
                     <Route  path='/bookTicket' component={BookTicket}/>
+
                     <Route  path='/addUser' component={addUser}/>
                     <Route  path='/viewUsers' component={viewUsers}/>
                     <Route  path='/adminMainPage' component={adminMainPage}/>

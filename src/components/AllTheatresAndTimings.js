@@ -38,9 +38,7 @@ class AllTheatresAndTimings extends Component {
         console.log("in mapped timinings theatre===>",timings.theatreName)
         //movieTimings
         return timings.map((timing)=>{
-            return(
-                <Button style={{color:'green'}}>
-                    <Button color="warning"
+            return(<Button color="warning" style={{margin:"5px"}}
                             onClick={(event) => {
                                 this.setState({
                                     user_id:this.props.user_id,// get userid
@@ -58,7 +56,7 @@ class AllTheatresAndTimings extends Component {
                                     });
                                 },1000)
                             }}>{timing}</Button>
-                </Button>
+               
             );
         });
     }
@@ -73,13 +71,13 @@ class AllTheatresAndTimings extends Component {
         console.log("All theatres -==>",location.state.movieIds, location.state.movieNames,location.state.genre, location.state.release);
         return this.props.theatres.map((theatre) => {
             return (
-                <div class="theater__wrap" style={{border:'solid', borderColor:'1px', borderWidth: "0.5px", padding: "7px"}}>
+                <div class="theater__wrap" style={{border:'solid', borderColor:'1px', borderWidth: "0.5px", padding: "7px",margin:"10px"}}>
                     <div class="theater__header" >
 
                         <div class="theater__name-wrap">
-                            <h3 style={{color:'orange'}}>
+                            <h2 style={{color:'green'}}>
                                 {theatre.theatreName}
-                            </h3>
+                            </h2>
                         </div>
 
                         <div>
@@ -96,19 +94,19 @@ class AllTheatresAndTimings extends Component {
                         <ListGroupItem>
 
 
-                            <h3>
+                            <h5 style={{color:"silver"}}>
                                 Select a movie time to buy Standard Showtimes
-                            </h3>
+                            </h5>
 
 
                             <ul class="theater__amentiy-list">
 
                                 <li class="mop-theater__amenity-icon-wrap">
-                                    <NavLink>Closed caption</NavLink>
+                                    <NavLink style={{color:"silver"}}>Closed caption</NavLink>
                                 </li>
 
                                 <li class="mop-theater__amenity-icon-wrap">
-                                    <NavLink>Accessibility devices available</NavLink>
+                                    <NavLink style={{color:"silver"}}>Accessibility devices available</NavLink>
                                 </li>
 
                             </ul>
@@ -183,16 +181,16 @@ class AllTheatresAndTimings extends Component {
                     </div>
 
                 </TabPanel>
-                <TabPanel>
+                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
                     <h2>Any content 2</h2>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
                     <h2>Any content 2</h2>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
                     <h2>Any content 2</h2>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
                     <h2>Any content 2</h2>
                 </TabPanel>
             </Tabs>

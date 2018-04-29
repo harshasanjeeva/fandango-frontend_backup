@@ -37,7 +37,9 @@ class EditProfile extends Component {
 
   render() {
       console.log("userrssss",this.props.username)
+
     return (  <div> 
+
 
       <NavHeaderLogin />
 <br />
@@ -46,14 +48,17 @@ class EditProfile extends Component {
             width: 600,
             margin: 'auto',
             height: 750,
+            backgroundColor:"black",
+            border:"solid white",
+            borderWidth:"0.5px"
 }}>
 <img src={require('./image3.png')} alt="Card image cap" style={{ 
             
-  width: 120,
+  width: 137,
   margin: 'auto',
   marginTop:'10px',
-  height: 140,
-  borderRadius: 50}}/>
+ height: 138,
+  borderRadius: 75}}/>
 
 <br/>
 
@@ -78,12 +83,12 @@ console.log("filllle==>",payload)
 
             <hr />
             <CardBody>
-            <CardTitle>User Profile Page</CardTitle>
+            <CardTitle style={{color:"white"}}>User Profile Page</CardTitle>
 
             <Form>
                 <FormGroup row>
                 
-                  <Label for="name">Name</Label>
+                  <Label for="name" style={{color:"white"}}>Name</Label>
                   <Col>
                   <Input type="name" name="name" id="name" value={this.state.first_name} placeholder="Name" onChange={(event) => {
                     console.log(this.state);                
@@ -97,7 +102,7 @@ console.log("filllle==>",payload)
 
                 <FormGroup row>
                 
-                  <Label for="email">Email</Label>
+                  <Label for="email" style={{color:"white"}}>Email</Label>
                   <Col>
                   <Input type="email" name="semail" id="semail" value={this.state.email} placeholder="Email" onChange={(event) => {
                     console.log(this.state);                
@@ -112,7 +117,7 @@ console.log("filllle==>",payload)
 
                 <FormGroup row>
             
-                <Label for="phone">Phone</Label>
+                <Label for="phone" style={{color:"white"}}>Phone</Label>
                 <Col>
                 <Input type="number" name="number" id="number" value={this.state.phone} placeholder="Phone" onChange={(event) => {
                   console.log(this.state);                
@@ -127,7 +132,7 @@ console.log("filllle==>",payload)
                      
                      
                      
-              <p id="label-left">Cardholder Name</p>
+              <span id="label-left" style={{color:"white"}}>Cardholder Name</span>
             
               <Input
                       
@@ -148,7 +153,7 @@ console.log("filllle==>",payload)
           
               <Row>
                   <Col>
-                      <p id="label-left" >Card Number</p>
+                      <span id="label-left" style={{color:"white"}}>Card Number</span>
                       <Input
                           name="email"
                           type="text"
@@ -162,7 +167,7 @@ console.log("filllle==>",payload)
                       />
                   </Col>
                   <Col>
-                  <p for="exampleEmail" id="label-left">CVV</p>
+                  <span for="exampleEmail" id="label-left" style={{color:"white"}}>CVV</span>
                   <Input
                      
                       type="number"
@@ -178,7 +183,7 @@ console.log("filllle==>",payload)
                 </Row>
      
            
-              <p for="exampleEmail" id="label-left">Expiry date</p>
+              <span for="exampleEmail" id="label-left" style={{color:"white"}}>Expiry date</span>
                   <input
                       className="form-control"
                       type="text"
@@ -190,8 +195,8 @@ console.log("filllle==>",payload)
                           });
                       }}
                   />
-
-
+             
+<br />
 
 
 

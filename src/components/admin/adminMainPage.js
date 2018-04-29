@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Navbarmain from './Navbarmain';
 import AdminHome from './adminMovieHalls';
 import AdminMovies from './adminMovies';
-
+import { withRouter } from 'react-router-dom';
 import history from "../History";
 import {actionAdminLogin, getMovieHalls} from "../../actions/loginactions";
 
@@ -29,20 +29,23 @@ class adminMainPage extends React.Component {
     }
     render() {
         return (
-            <Container>
-            <Navbarmain/>
+            <div style={{backgroundColor:"black"}}>
+            <Navbarmain/>   
+            <br />
+            <Container >
+          
                 <Nav tabs>
                     <NavItem>
                         <NavLink
                             onClick={() => { this.toggle('1'); }}
-                        >
+                            style={{color:"orange",border:"solid white",borderWidth:"0.5px"}}>
                             Movie Halls
                         </NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink
                             onClick={() => { this.toggle('2'); }}
-                        >
+                            style={{color:"orange",border:"solid white",borderWidth:"0.5px"}} >
                             Movies
                         </NavLink>
                     </NavItem>
@@ -76,7 +79,7 @@ class adminMainPage extends React.Component {
                     </TabPane>
                 </TabContent>
             </Container>
-        );
+            </div> );
     }
 }
 
@@ -86,7 +89,7 @@ const mapDispatchToProps =(dispatch)=> {
         getMovieHalls: () => dispatch(getMovieHalls())
     };
 }
-const mapStateToProps =(state)=> {
-    return state
+const mapStateToProps = (state)=> {
+    return
 }
-export default connect(mapStateToProps,mapDispatchToProps)(adminMainPage);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(adminMainPage));

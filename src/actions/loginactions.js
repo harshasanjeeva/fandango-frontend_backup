@@ -174,6 +174,7 @@ export function movies(data) {
 export function actiongetmovies(userdata) {
     console.log("in get movies");
     console.log(userdata);
+    
     return function (dispatch) {
         // try {
             API.getmovies(userdata)
@@ -193,6 +194,28 @@ export function actiongetmovies(userdata) {
         // }
     }
 
+};
+
+export function analytics(userdata){
+    console.log("inside analytics action");
+    return function (dispatch) {
+        try {
+
+            API.analytics(userdata)
+                .then((response) => {
+                    try {
+                        console.log("inside analytics action");
+                        // dispatch(loginAd(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+}
 }
 export function getmovies(data) {
     console.log("data===> in actions",data);

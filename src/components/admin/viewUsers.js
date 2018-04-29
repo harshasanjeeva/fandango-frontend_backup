@@ -47,11 +47,11 @@ class viewUsers extends Component {
             return (
 
                 <ListGroupItem action
-                               key={hallUser.hallId}>
+                               key={hallUser.hallId}  style={{backgroundColor:"black",width:"50",border:"solid white",borderWidth:"0.5 px"}}>
 
 
 
-                    {this.state.toggle ? (<div>Hall User Email : {hallUser.hallUserEmail}<br/>
+                    {this.state.toggle ? (<div style={{color:"silver"}}>Hall User Email : {hallUser.hallUserEmail}<br/>
                             Hall User Id: {hallUser.hallUserId}</div>) :
                         (<FormGroup style={{marginLeft:"20px"}}>
                         <Input
@@ -106,11 +106,13 @@ class viewUsers extends Component {
     render() {
         const {location}=this.props;
         return (
+            <div style={{backgroundColor:"black",height:"1100px"}}>
+            <Navbarmain/>
             <Container>
-                <Navbarmain/>
-                <h3> All Users </h3>
+               
+                <h3 style={{color:"orange"}}> All Users </h3>
 
-                <ListGroup>
+                <ListGroup style={{backgroundColor:"black",border:"solid"}}>
 
                 {this.renderList()}
 
@@ -119,7 +121,7 @@ class viewUsers extends Component {
 
             </Container>
 
-        );
+            </div> );
 
     }}
 function mapStateToProps(state) {

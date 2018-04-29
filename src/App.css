@@ -62,3 +62,11 @@
   margin-left: 500px;
   margin-top: 250px;  
 }
+
+#root > div > div > div.container > div:nth-child(2) > div:nth-child(1){
+  background-color: black;
+    border: solid;
+    border-color: white;
+    border-width: 0.5px;
+    padding: 1px;
+}

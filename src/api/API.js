@@ -166,7 +166,24 @@ export const moviesadd = (payload) =>
 
 
 
-
+export const analytics = (payload) =>
+    fetch(`${api}/operations/analytics`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+            console.log("here in api myprojectDesc proposal"); 
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
 
 export const halladd = (payload) =>
     fetch(`${api}/operations/addhall`, {

@@ -27,9 +27,11 @@ class addUser extends Component {
     render() {
         const {location}=this.props;
         return (
+            <div style={{backgroundColor:"black",height:"1100px"}}>
+            <Navbarmain/>
             <Container>
-                <Navbarmain/>
-                <h3> Add User to Hall {location.state.hallId}</h3>
+                
+                <h3 style={{color:"orange"}}> Add User to Hall : {location.state.hallId}</h3>
 
                 <FormGroup style={{marginLeft:"20px"}}>
                     <Input
@@ -56,7 +58,7 @@ class addUser extends Component {
                         }}
                     /><br/>
                     <Input
-                        type="text"
+                        type="password"
                         label="Confirm Password"
                         placeholder="Confirm Password"
                         value={this.state.confPassword}
@@ -67,7 +69,7 @@ class addUser extends Component {
                         }}
                     />
                     <br/>
-                    <Button onClick={(event)=>{
+                    <Button color="success" onClick={(event)=>{
                         var data={email:this.state.email, password: this.state.password,hallId:location.state.hallId};
                         this.props.addUserToHall(data);
 
@@ -79,7 +81,7 @@ class addUser extends Component {
 
             </Container>
 
-        );
+            </ div> );
 
     }}
 function mapStateToProps(state) {

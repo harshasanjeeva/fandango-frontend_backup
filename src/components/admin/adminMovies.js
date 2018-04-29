@@ -54,7 +54,7 @@ class adminMovies extends Component {
                     <ListGroupItem action
                                    key={movie._id}>
 
-                        <Card body>
+                        <Card body style={{backgroundColor:"black",padding:"10px"}}>
                             <CardTitle>{movie.movieName}</CardTitle>
                             <CardText>{movie.movieType}</CardText>
                             <Button onClick={(event)=>{
@@ -107,7 +107,7 @@ class adminMovies extends Component {
         return (
             <Container>
 
-                <Row style={{marginTop:"20px"}}>
+                <Row style={{marginTop:"20px",color:"white"}}>
                     Enter Movie Name
                     <Col>
                         <FormGroup style={{marginLeft:"20px"}}>
