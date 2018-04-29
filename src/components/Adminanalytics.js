@@ -5,7 +5,7 @@ import Charts from 'fusioncharts/fusioncharts.charts';
 import ReactFC from 'react-fusioncharts';
 import { withRouter } from 'react-router-dom';
 import Homemain from './Homemain'
-import Navbarheader from './Navbarlogout'
+import Navbarheader from './admin/Navbarmain';
 import {Link} from 'react-router-dom';
 import Footer from './Footer'
 import {Row,Col} from 'reactstrap'
