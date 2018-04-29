@@ -352,3 +352,40 @@ export const viewAllUsers = (payload) =>
 
 
 
+        export const getreviews = (payload) =>
+        fetch(`${api}/operations/getreviews`, {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }).then(response => response.json())
+            .then(response => {
+                console.log("response in API",response)
+                return response;
+            })
+            .catch(error => {
+                console.log("This is error");
+    
+                return error;
+            });
+    
+    export const subreviews = (payload) =>
+        fetch(`${api}/operations/subreviews`, {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }).then(response => response.json())
+            .then(response => {
+                console.log("response in API",response)
+                return response;
+            })
+            .catch(error => {
+                console.log("This is error");
+    
+                return error;
+            });

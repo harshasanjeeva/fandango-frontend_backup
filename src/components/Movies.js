@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container,Row,Col,ListGroupItem,ListGroup,NavLink,Button,FormGroup,Input} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import '.././App.css';
-import {actionmovies,actiongetmovies, analytics} from '../actions/loginactions';
+import {actionmovies,actiongetmovies, analytics, actiongetreviews} from '../actions/loginactions';
 import {connect} from 'react-redux';
 import Navbarmain from './Navbarmain'
 import history from "./History";
@@ -28,11 +28,17 @@ class Movies extends Component {
 
     handleMoviesClick = (event,movie) => {
         event.preventDefault();
+       
+    //    setTimeout(function(){
         history.push
         ({
             pathname: '/booking',
             state: { movieId: movie.movieId,movieName:movie.movieName, genre:movie.movieType, release:movie.movieTiming}
         });
+       
+        
+         //   this.props.getreviews({movieName:movie.movieName})
+     
         this.props.log(movie);
         this.props.analytics(this.state);
     }
@@ -76,9 +82,11 @@ class Movies extends Component {
                                 to={{
                                     pathname: `/booking`,
                                     state: {movieId: movie.movieId}
-                                }}>
+                                }}
+                                 >
 
                                 <NavLink onClick={(event) => {
+                         
 
                                 this.handleMoviesClick(event, movie)
                                this.props.analytics(this.state);

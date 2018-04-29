@@ -13,6 +13,11 @@ import {ADMINLOGIN} from "../actions/loginactions";
 import {ADDUSERHALL} from "../actions/loginactions";
 import {GETMOVIEHALLS} from "../actions/loginactions";
 import {VIEWALLUSERS} from "../actions/loginactions"
+import {REVIEWS} from "../actions/loginactions";
+
+import {SUBMITREVIEWS} from "../actions/loginactions";
+
+
 const initialState = {
        
     "user":{
@@ -224,6 +229,30 @@ const stores= (state = initialState, action) => {
                     "viewAllUsers":action.data
                 }
             }
+
+
+
+            case REVIEWS:
+            console.log("im here in MOVIE REVIEWS store");
+            console.log(stores)
+            return {
+                ...state,
+                "reviews":{
+                    "reviews":action.data.reviews
+                }
+            }
+
+        case SUBMITREVIEWS:
+            console.log("im here in SUBMIT REVIEWS store");
+            console.log(stores)
+            return {
+                ...state,
+                "substatus":{
+                    "reviews":action.data.status
+                }
+            }
+
+            
         default :
             return state;
 

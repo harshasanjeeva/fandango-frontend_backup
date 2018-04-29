@@ -2,12 +2,12 @@
 import React, {Component} from 'react';
 import {actionbook} from '../actions/loginactions';
 import "../../node_modules/video-react/dist/video-react.css";
-import { Button, ButtonToolbar} from 'reactstrap';
+import { Button, ButtonToolbar,Card,ListGroupItem,CardTitle,Input,ListGroup} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
-import {analytics} from '../actions/loginactions';
+import {analytics,actionsubmitreviews,actiongetreviews} from '../actions/loginactions';
 
 import { withRouter } from 'react-router-dom';
 
@@ -68,6 +68,43 @@ class Booking extends Component {
         this.props.analytics(this.state);
     }
 
+
+
+    renderReviewList=()=>
+    {
+
+        const reviews=this.props.movie.reviews;
+        if (reviews.length !== 0 && reviews !== null && reviews !== undefined)
+        {
+
+            return reviews.map((review) => {
+                return (
+                    <ListGroupItem action
+                                   key={review}>
+                        <div>
+                            <span>{review}</span>
+                        </div>
+
+                    </ListGroupItem>
+
+                );
+            });
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     render(){
         const { location } = this.props;
         console.log("booking -==>",location.state.movieId, location.state.movieName,location.state.genre, location.state.release);
@@ -86,7 +123,9 @@ class Booking extends Component {
                 <TabList >
                   <Tab style={{color: "orange"}}>Overview</Tab>
                  
-                  <Tab style={{color: "orange"}}>Reviews</Tab>
+                  <Tab style={{color: "orange"}} onClick={(event) => {
+                    this.props.getreviews({movieName:location.state.movieName})
+                }}>Reviews</Tab>
                   <Tab style={{color: "orange"}}>Trailer</Tab>
                 </TabList>
             
@@ -262,7 +301,7 @@ class Booking extends Component {
               <div className="row justify-content-md-middle">
               <div className="col-lg-6-middle">
                   <Card>
-                      <CardTitle>USER REVIEWS</CardTitle>
+                      <CardTitle style={{color:"silver"}}>USER REVIEWS</CardTitle>
                       <div className="form-group">
                           Movie_Name:<span>{location.state.movieName}</span>
                       </div>
@@ -303,7 +342,9 @@ class Booking extends Component {
 const mapDispatchToProps =(dispatch)=> {
     return {
         log : (data) => dispatch(actionbook(data)),
-        analytics : (data) => dispatch(analytics(data))
+        analytics : (data) => dispatch(analytics(data)),
+        submitreviews: (data) => dispatch(actionsubmitreviews(data)),
+        getreviews: (data) => dispatch(actiongetreviews(data)),
     };
 }
 
@@ -312,8 +353,8 @@ const mapStateToProps =(stores)=> {
     return {
         movie:stores.user.booking.booking_data,
         theatres:stores.theatres,
-        user_id:stores.user.stores.user_id
-
+        user_id:stores.user.stores.user_id,
+        reviews: "stores.user.reviews.reviews"
     };
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Booking));

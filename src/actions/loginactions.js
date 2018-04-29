@@ -19,7 +19,8 @@ export const ADMINLOGIN ="ADMINLOGIN";
 export const ADDUSERHALL="ADDUSERHALL";
 export const GETMOVIEHALLS="GETMOVIEHALLS";
 export const VIEWALLUSERS="VIEWALLUSERS";
-
+export const REVIEWS="REVIEWS";
+export const SUBMITREVIEWS="SUBMITREVIEWS";
 export function actionlogin(userdata) {
     console.log("in login");
     console.log(userdata);
@@ -589,6 +590,69 @@ export function viewAllUsersP(data) {
     return {
         type: VIEWALLUSERS,
         message: "inside hall user data",
+        data:data
+    }
+}
+
+
+export function actiongetreviews(data) {
+    console.log("in action get reviews");
+    return function (dispatch) {
+        try {
+
+            API.getreviews(data)
+                .then((response) => {
+                    try {
+                        dispatch(getreviews(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+}
+
+export function getreviews(data) {
+    console.log(data);
+    return {
+        type: REVIEWS,
+        message: "inside getreviews data",
+        data:data
+    }
+}
+
+export function actionsubmitreviews(data) {
+    console.log("in action submit reviews");
+    return function (dispatch) {
+        try {
+
+            API.subreviews(data)
+                .then((response) => {
+                    try {
+                        dispatch(submitreviews(response));
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
+                });
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
+}
+
+export function submitreviews(data) {
+    console.log(data);
+    return {
+        type: SUBMITREVIEWS,
+        message: "inside submitreviews data",
         data:data
     }
 }

@@ -317,7 +317,7 @@ class adminMovies extends Component {
                                         value={this.state.reviews}
                                         onChange={(event) => {
                                             this.setState({
-                                                reviews: event.target.value
+                                                reviews: [event.target.value]
                                             });
                                         }}
                                     />
