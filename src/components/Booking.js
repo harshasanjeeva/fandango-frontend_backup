@@ -258,6 +258,35 @@ class Booking extends Component {
             </TabPanel>
             <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
               <h2>Any content 2</h2>
+              
+              <div className="row justify-content-md-middle">
+              <div className="col-lg-6-middle">
+                  <Card>
+                      <CardTitle>USER REVIEWS</CardTitle>
+                      <div className="form-group">
+                          Movie_Name:<span>{location.state.movieName}</span>
+                      </div>
+                      <Input type="name"
+                             placeholder="Enter Reviews"
+                             onChange={(event) => {
+                                 this.setState({
+                                     reviews: event.target.value
+                              });
+                              }} />
+                      <Button color="primary" onClick={(event) => {
+                          this.props.submitreviews({movieName:location.state.movieName,reviews:this.state.reviews})
+                      }}>Submit Review</Button>
+
+                      <div>
+                          <ListGroup>
+                          {this.renderReviewList()}
+                          </ListGroup>
+                      </div>
+                  </Card>
+
+
+              </div>
+          </div>
             </TabPanel>
             <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
             <h2>Any content 2</h2>
