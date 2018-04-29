@@ -64,7 +64,17 @@ class Navbarmain extends Component {
                         ({
                             pathname: '/myprofile',
                             state: { user_id: this.props.user_id}
-                        });}}>View Profile</NavLink>
+                        });
+                        var data={user_id:this.props.user_id};
+                        this.props.profile(data);
+                        setTimeout(function () {
+                            history.push
+                            ({
+                                pathname: '/myprofile'
+                            });
+                        });
+
+                    }}>View Profile</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -85,7 +95,9 @@ class Navbarmain extends Component {
                       <DropdownItem onClick={() => {
                           var data={user_id:this.props.user_id};
                           this.props.profile(data);
-                          history.push('/profile');
+                          setTimeout(function () {
+                              history.push('/profile');
+                          });
                           }}>Profile</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
