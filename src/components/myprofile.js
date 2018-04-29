@@ -13,12 +13,7 @@ class myprofile extends React.Component {
 
     }
 
-    componentWillMount() {
-        const {location} = this.props;
-        console.log(location.state.user_id);
-        var data={user_id:location.state.user_id};
-        this.props.profile(data);
-    }
+    
     render() {
         return (
             <div>
