@@ -106,7 +106,7 @@ class adminMovieHalls extends Component {
             <Container>
                 
 
-                <Row style={{marginTop:"20px"}}>
+                <Row style={{marginTop:"20px",color:"white"}}>
                                 Enter Movie Hall Name
                     <Col>
                         <FormGroup style={{marginLeft:"20px"}}>

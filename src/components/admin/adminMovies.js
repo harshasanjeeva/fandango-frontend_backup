@@ -54,7 +54,7 @@ class adminMovies extends Component {
                     <ListGroupItem action
                                    key={movie._id}>
 
-                        <Card body>
+                        <Card body style={{backgroundColor:"black",padding:"10px"}}>
                             <CardTitle>{movie.movieName}</CardTitle>
                             <CardText>{movie.movieType}</CardText>
                             <Button onClick={(event)=>{
