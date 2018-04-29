@@ -49,9 +49,11 @@ class Navbarmain extends Component {
        
 
         </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          
+     
             <Nav className="ml-auto" navbar>
+
+
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
                 Dashboard
@@ -66,9 +68,12 @@ class Navbarmain extends Component {
                     </DropdownMenu>
                   </Dropdown>
 
-
+            </Nav>
+        
+            <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav>
                 <NavItem>
-                <NavLink href="/">Sign Out</NavLink>
+                <NavLink href="/" style={{color:"silver"}}>Sign Out</NavLink>
                 </NavItem>
 
 

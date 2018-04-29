@@ -133,8 +133,7 @@ class AllTheatresAndTimings extends Component {
             <Tabs>
                 <TabList >
                     <Tab style={{color: "orange"}}>Overview</Tab>
-                    <Tab style={{color: "orange"}}>Movie Times + Tickets</Tab>
-                    <Tab style={{color: "orange"}}>Synopsis</Tab>
+  
                     <Tab style={{color: "orange"}}>Reviews</Tab>
                     <Tab style={{color: "orange"}}>Trailer</Tab>
                 </TabList>
@@ -187,12 +186,7 @@ class AllTheatresAndTimings extends Component {
                 <TabPanel style={{backgroundColor:"black",height:"800px"}}>
                     <h2>Any content 2</h2>
                 </TabPanel>
-                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
-                    <h2>Any content 2</h2>
-                </TabPanel>
-                <TabPanel style={{backgroundColor:"black",height:"800px"}}>
-                    <h2>Any content 2</h2>
-                </TabPanel>
+
             </Tabs>
 
         </div> );

@@ -18,11 +18,11 @@ class Navbarmain extends Component {
         this.state = {
        
           isOpen: false,
-          isOpens: false,
-          isOpensthree: false,
-          dropdownOpen: false,
-          dropdownOpens:false,
-          dropdownOpensthree:false
+          // isOpens: false,
+          // isOpensthree: false,
+         dropdownOpen: false,
+   //       dropdownOpens:false,
+          // dropdownOpensthree:false
         };
       }
 
@@ -30,7 +30,7 @@ class Navbarmain extends Component {
       toggle() {
         this.setState({
           isOpen: !this.state.isOpen,
-          dropdownOpen: !this.state.dropdownOpen,
+         dropdownOpen: !this.state.dropdownOpen,
         });
       }
 
@@ -47,39 +47,26 @@ class Navbarmain extends Component {
        
 
         </NavbarBrand>
+
+
+         {/*
           <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+         */} 
+
+
+         
+            <Nav className="ml-auto"  navbar>
 
 
   
-                <NavItem>
-                    <NavLink onClick={(event) => history.push('/Movies')}>Movies</NavLink>
+                <NavItem >
+                    <NavLink onClick={(event) => history.push('/Movies')}    >Movies</NavLink>
                 </NavItem>
 
-
-                <NavItem>
-                    <NavLink onClick={() => {
-                        history.push
-                        ({
-                            pathname: '/myprofile',
-                            state: { user_id: this.props.user_id}
-                        });
-                        var data={user_id:this.props.user_id};
-                        this.props.profile(data);
-                        setTimeout(function () {
-                            history.push
-                            ({
-                                pathname: '/myprofile'
-                            });
-                        });
-
-                    }}>View Profile</NavLink>
-                </NavItem>
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
-                My Account{this.props.user_id}
+                My Account
                 </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem header>Options</DropdownItem>
@@ -92,8 +79,30 @@ class Navbarmain extends Component {
                           history.push('/realticket');
                          },3000) 
                           }}>Tickets</DropdownItem>
+
+
                       <DropdownItem divider />
-                      <DropdownItem href="/payments">Make Payments</DropdownItem>
+                      <DropdownItem onClick={() => {
+                    history.push
+                    ({
+                        pathname: '/myprofile',
+                        state: { user_id: this.props.user_id}
+                    });
+                    var data={user_id:this.props.user_id};
+                    this.props.profile(data);
+                    setTimeout(function () {
+                        history.push
+                        ({
+                            pathname: '/myprofile'
+                        });
+                    });
+
+                }}> View Profile</DropdownItem>
+
+
+
+
+
                       <DropdownItem divider />
                       <DropdownItem onClick={() => {
                           var data={user_id:this.props.user_id};
@@ -101,19 +110,29 @@ class Navbarmain extends Component {
                           setTimeout(function () {
                               history.push('/profile');
                           });
-                          }}>Profile</DropdownItem>
+                          }}>Edit Profile</DropdownItem>
+
+
+
+
+
+
+
                     </DropdownMenu>
                   </Dropdown>
 
+                  </Nav>
 
+                  <Collapse isOpen={this.state.isOpen} navbar>
+                  <Nav>
                   <NavItem>
-                  <NavLink onClick={() => {
+                  <NavLink  onClick={() => {
                           this.props.del(this.props.user_id),
                               history.push('/')}}>Delete Account</NavLink>
                   </NavItem>
 
                 <NavItem>
-                <NavLink href="/">Sign Out</NavLink>
+                <NavLink href="/" style={{color:"white"}}>Sign Out</NavLink>
                 </NavItem>
 
 

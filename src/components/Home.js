@@ -25,7 +25,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div >
+      <div style={{backgroundColor:"black"}} >
   
       <div >
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/alice-carousel.css";
-
+import history from "./History";
 import {
   Carousel,
   CarouselItem,
@@ -109,15 +109,57 @@ class Homesmall extends Component {
 
         <AliceCarousel responsive={responsive} style={{width:"800px",height:"200px"}}>
         <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209250/images/masterrepository/fandango/209250/disobedience2018.jpg" 
-        className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209376/images/masterrepository/fandango/209376/kings-2017.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/208107/images/masterrepository/fandango/208107/letthesunshinein-2018.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/199925/images/masterrepository/fandango/199925/avengersinfinitywar-postera.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/204139/images/masterrepository/fandango/204139/rpo_new_main_vert_dom_2764x.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
-        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" />
+        className="yours-custom-class" onClick={() => {
+                history.push('/login')
+        }} />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/210959/images/masterrepository/fandango/210959/thetestandtheartofthinking2018.jpg" className="yours-custom-class"  onClick={() => {
+          history.push('/login')
+  }}/>
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class"
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209376/images/masterrepository/fandango/209376/kings-2017.jpg" className="yours-custom-class" 
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        
+        />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/208107/images/masterrepository/fandango/208107/letthesunshinein-2018.jpg" className="yours-custom-class" 
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/199925/images/masterrepository/fandango/199925/avengersinfinitywar-postera.jpg" className="yours-custom-class"
+        
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/204139/images/masterrepository/fandango/204139/rpo_new_main_vert_dom_2764x.jpg" className="yours-custom-class" 
+        
+        onClick={() => {
+          history.push('/login')
+  }}
+  />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class"
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        />
+        <img src="https://images.fandango.com/r1.0.444/ImageRenderer/168/250/redesign/static/img/default_poster.png/209375/images/masterrepository/fandango/209375/ifeelpretty_onesheet_rgb_10.jpg" className="yours-custom-class" 
+        onClick={() => {
+          history.push('/login')
+  }}
+        
+        
+        />
 
       </AliceCarousel>
     </div>);

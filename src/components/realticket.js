@@ -57,7 +57,7 @@ class realticket extends Component {
 const mapStateToProps =(stores)=> {
     console.log(stores);
     return {
-        tickets: [stores.user.realticket.realticket]
+        tickets: stores.user.realticket.realticket
     }
 }
 

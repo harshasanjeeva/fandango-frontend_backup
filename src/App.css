@@ -70,3 +70,14 @@
     border-width: 0.5px;
     padding: 1px;
 }
+
+
+
+#root > div > div > div > div:nth-child(1) > div > nav > ul > li:nth-child(1){
+
+  margin-left: 850px !important;
+}
+
+#root > div > div > div:nth-child(1) > div > nav > ul > li:nth-child(1){
+  margin-left: 850px !important;
+}

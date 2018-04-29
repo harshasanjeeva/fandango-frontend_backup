@@ -50,11 +50,17 @@ class BookTicket extends Component {
 
 
         return (
-            <div style={{backgroundColor:"white" ,height: "100% !important"}}>
+            <div style={{backgroundColor:"black" ,height: "1000px"}}>
                 <Navbarmain />
+                <br />
                 <Row>
                     <Col>
-                        <Card style={{backgroundColor:"white", border: "solid", align: "left",
+                        <Card style={{          width: 600,
+                            marginLeft: '300px',
+                            height: 450,
+                            backgroundColor:"black",
+                            border:"solid white",
+                            borderWidth:"0.5px",
                             borderColor: "white"}}>
                             <div>
                                 <div>
@@ -66,13 +72,13 @@ class BookTicket extends Component {
                                 <div >
                                     <form>
                                         <div >
-                                            <h1 style={{color:"white"}}>FANDANGO </h1>
-                                            <h1>Ticket Selection</h1>
+                                            <h1 style={{color:"orange"}}>FANDANGO </h1>
+                                            <h1 style={{color:"silver"}}>Ticket Selection</h1>
                                         </div>
                                         <div >
-                                            <strong>General:</strong>
+                                            <strong style={{float:"left",color:"white"}}>General:</strong>
                                             <Input
-
+                                            style={{backgroundColor:"black",color:"silver"}}
                                                 type="number"
                                                 label="No of Tickets"
                                                 placeholder="Enter Number"
@@ -88,9 +94,9 @@ class BookTicket extends Component {
                                         </div>
                                         <br />
                                         <div className="form-group">
-                                            <strong>Student:</strong>
+                                            <strong style={{float:"left",color:"white"}}>Student:</strong>
                                             <Input
-
+                                            style={{backgroundColor:"black",color:"silver"}}
                                                 type="number"
                                                 label="student"
                                                 placeholder="Enter Number"
@@ -105,9 +111,9 @@ class BookTicket extends Component {
                                         </div>
 
                                         <div className="form-group">
-                                            <strong>Children:</strong>
+                                            <strong style={{float:"left",color:"white"}}>Children:</strong>
                                             <Input
-
+                                            style={{backgroundColor:"black",color:"silver"}}
                                                 type="number"
                                                 label="children"
                                                 placeholder="Enter Number"
