@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import history from './History';
 import '.././App.css';
 import {actionreal,actiondel,actionview} from "../actions/loginactions";
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -64,7 +65,11 @@ class Navbarmain extends Component {
 
                 <NavItem>
                     <NavLink onClick={() => {
-                            history.push('/myprofile')}}>View Profile</NavLink>
+                        history.push
+                        ({
+                            pathname: '/myprofile',
+                            state: { user_id: this.props.user_id}
+                        });}}>View Profile</NavLink>
                 </NavItem>
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -75,13 +80,18 @@ class Navbarmain extends Component {
                       <DropdownItem header>Options</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem onClick={() => {
-                          history.push('/realticket');
                           var data={user_id:this.props.user_id};
-                          this.props.real(data)}}>Tickets</DropdownItem>
+                          this.props.real(data);
+                          history.push('/realticket');
+                          }}>Tickets</DropdownItem>
                       <DropdownItem divider />
                       <DropdownItem href="/payments">Make Payments</DropdownItem>
                       <DropdownItem divider />
-                      <DropdownItem href="/profile" onclick="">Profile</DropdownItem>
+                      <DropdownItem onClick={() => {
+                          var data={user_id:this.props.user_id};
+                          this.props.profile(data);
+                          history.push('/profile');
+                          }}>Profile</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
                 <NavItem>
@@ -102,7 +112,8 @@ class Navbarmain extends Component {
 const mapDispatchToProps =(dispatch)=> {
     return {
         real : (data) => dispatch(actionreal(data)),
-        del : (data) => dispatch(actiondel(data))
+        del : (data) => dispatch(actiondel(data)),
+        profile : (data) => dispatch(actionview(data))
     };
 }
 
@@ -116,7 +127,7 @@ const mapStateToProps =(stores)=> {
 }
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(Navbarmain);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Navbarmain));
 
 
 // <Route exact path="/login" render={() => (

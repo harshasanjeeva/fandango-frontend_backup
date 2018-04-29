@@ -95,7 +95,7 @@ class adminHome extends Component {
                                                 type="button"
                                                 onClick={(event) => {
                                                     this.adminLogin()
-                                                }}>x
+                                                }}>
                                                 Login
                                             </button>
 

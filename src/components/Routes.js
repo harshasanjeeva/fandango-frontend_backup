@@ -53,10 +53,9 @@ class Routes extends Component {
 
                     <Route  path='/addhall' component={Addhall}/>
                     <Route  path='/adminLogin' component={adminLogin}/>
-                    <Route  path='/adminHome' component={adminHome}/>
 
                     <Route  path='/ticket' component={ticket}/>
-                    <Route patch='/bookTicket' component={BookTicket}/>
+                    <Route  path='/bookTicket' component={BookTicket}/>
                     <Route  path='/addUser' component={addUser}/>
                     <Route  path='/viewUsers' component={viewUsers}/>
                     <Route  path='/adminMainPage' component={adminMainPage}/>

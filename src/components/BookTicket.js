@@ -44,8 +44,8 @@ class BookTicket extends Component {
 
     render() {
         const { location } = this.props;
-        console.log(location)
-        console.log("Tickets -==>",location.state.movieIds, location.state.movieNames,location.state.genre,location.state.release, location.state.theatrename, location.state.timings)
+        //console.log(location)
+        //console.log("Tickets -==>",location.state.movieIds, location.state.movieNames,location.state.genre,location.state.release, location.state.theatrename, location.state.timings)
 
 
 

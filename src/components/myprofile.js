@@ -2,65 +2,145 @@ import React from 'react';
 //import { Table, Button } from 'reactstrap';
 import {connect} from "react-redux";
 import {actionprof, actionview} from "../actions/loginactions";
-import { Card, CardTitle} from 'reactstrap';
-import {NavItem, NavLink, Button
-} from 'reactstrap';
+import { Card, CardTitle,Row,Col, Button, Form, FormGroup, Label, Input, FormText, CardBody,NavItem, NavLink } from 'reactstrap';
+import NavHeaderLogin from './Navbarmain';
+import history from "./History";
 
 class myprofile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            userid:this.props.user_id
 
-        };
     }
 
     componentWillMount() {
-        this.props.profile(this.state.userid);
+        const {location} = this.props;
+        console.log(location.state.user_id);
+        var data={user_id:location.state.user_id};
+        this.props.profile(data);
     }
     render() {
         return (
-            <div className="row justify-content-md-middle">
-                <div className="col-md-6">
-                    <Card>
-                        <CardTitle>User Details</CardTitle>
-                        <div className="form-group">
-                            First_Name:{this.props.First_Name}
-                        </div>
+            <div>
+                    <div>
+                        <NavHeaderLogin />
+                        <br />
+                        <Card style={{
 
-                        <div className="form-group">
-                            Last_Name:{this.props.Last_Name}
-                        </div>
+                            width: 600,
+                            margin: 'auto',
+                            height: 750,
+                        }}>
+                            <img src={require('./image3.png')} alt="Card image cap" style={{
 
-                        <div className="form-group">
-                            address:{this.props.address}
-                        </div>
+                                width: 120,
+                                margin: 'auto',
+                                marginTop:'10px',
+                                height: 140,
+                                borderRadius: 50}}/>
 
-                        <div className="form-group">
-                            city:{this.props.city}
-                        </div>
+                            <br/>
 
-                        <div className="form-group">
-                            state:{this.props.state}
-                        </div>
-                        <div className="form-group">
-                            zipcode:{this.props.zipcode}
-                        </div>
-                        <div className="form-group">
-                        phone:{this.props.phone}
-                        </div>
+                            <FormGroup row>
 
-                        <div className="form-group">
-                            email:{this.props.email}
-                        </div>
-                        <NavItem>
-                            <NavLink href="/Movies"><Button color="success">Go To Home</Button></NavLink>
-                        </NavItem>
-                    </Card>
+                                <Col>
+                                    <Input type="file" name="file" id="exampleFile" onChange={(event) => {
+                                        const payload = new FormData();
 
-                </div>
+                                        payload.append('mypic', event.target.files[0]);
+                                        console.log("filllle==>",payload)
+
+                                        this.props.upload(payload);
+                                    }} style={{paddingLeft: "10px"}}/>
+                                </Col>
+
+                                <FormText color="muted" style={{paddingLeft: "20px", paddingRight: "10px"}}>
+                                    This is some placeholder block-level help text for the above input.
+                                    It's a bit lighter and easily wraps to a new line.
+                                </FormText>
+                            </FormGroup>
+
+                            <hr />
+                            <CardBody>
+                                <CardTitle>User Profile Page</CardTitle>
+
+                                <Form>
+                                    <FormGroup row>
+
+                                        <Label for="name">Name</Label>
+                                        <Col>
+                                            {this.props.first_name} &nbsp; {this.props.last_name}
+                                        </Col>
+                                    </FormGroup>
+
+
+                                    <FormGroup row>
+
+                                        <Label for="email">Email</Label>
+                                        <Col>
+                                            {this.props.email}
+                                        </Col>
+                                    </FormGroup>
+
+
+
+                                    <FormGroup row>
+
+                                        <Label for="phone">Phone</Label>
+                                        <Col>
+                                            {this.props.phone}
+                                        </Col>
+                                    </FormGroup>
+
+                                    <div>
+
+                                        <p id="label-left">Cardholder Name</p> &nbsp;
+                                        {this.props.card_holder_name}
+
+                                    </div>
+                                    <br/>
+
+
+
+                                    <Row>
+                                        <Col>
+                                            <p id="label-left" >Card Number</p> &nbsp;
+                                            {this.props.credit_card}
+
+                                        </Col>
+                                        <Col>
+                                            <p for="exampleEmail" id="label-left">CVV</p>  &nbsp;
+                                            {this.props.cvv}
+
+                                        </Col>
+                                    </Row>
+                                    <br/>
+
+
+                                    <p for="exampleEmail" id="label-left">Expiry date</p> &nbsp;
+                                    {this.props.expdate}
+
+                                    <br/>
+                                    <br/>
+
+
+                                    <Button onClick={(event)=>{
+                                        history.push('/profile');
+                                    }}> Edit
+                                    </Button>
+
+
+
+                                </Form>
+
+
+
+                            </CardBody>
+                        </Card>
+                    </div>
+
             </div>
+
         )
     }
 }
@@ -74,15 +154,19 @@ const mapStateToProps =(stores)=> {
     console.log(stores);
     console.log(stores.user.stores.user_id)
     return {
-        user_id: stores.user.stores.user_id,
-        First_Name : stores.user.stores.First_Name,
-        Last_Name : stores.user.stores.Last_Name,
-        address : stores.user.stores.address,
-        city : stores.user.stores.city,
-        state : stores.user.stores.state,
-        zipcode : stores.user.stores.zipcode,
-        phone : stores.user.stores.phone,
-        email : stores.user.stores.email
+        user_id: stores.user.editProfile.editProfile.user_id,
+        first_name : stores.user.editProfile.editProfile.first_name,
+        last_name : stores.user.editProfile.editProfile.last_name,
+        address : stores.user.editProfile.editProfile.address,
+        city : stores.user.editProfile.editProfile.city,
+        state : stores.user.editProfile.editProfile.state,
+        zipcode : stores.user.editProfile.editProfile.zipcode,
+        phone : stores.user.editProfile.editProfile.phone,
+        email : stores.user.editProfile.editProfile.email,
+        credit_card:stores.user.editProfile.editProfile.credit_card,
+        card_holder_name:stores.user.editProfile.editProfile.card_holder_name,
+        cvv:stores.user.editProfile.editProfile.cvv,
+        expdate:stores.user.editProfile.editProfile.expdate
     };
 }
 export default connect(mapStateToProps,mapDispatchToProps)(myprofile);

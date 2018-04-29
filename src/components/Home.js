@@ -29,8 +29,6 @@ class Home extends Component {
   
       <div >
 
-
-
        <Navbarheader />
 
 
