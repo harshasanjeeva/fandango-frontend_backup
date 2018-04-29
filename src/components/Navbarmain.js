@@ -58,9 +58,6 @@ class Navbarmain extends Component {
                 </NavItem>
 
 
-<<<<<<< HEAD
-             
-=======
                 <NavItem>
                     <NavLink onClick={() => {
                         history.push
@@ -69,7 +66,6 @@ class Navbarmain extends Component {
                             state: { user_id: this.props.user_id}
                         });}}>View Profile</NavLink>
                 </NavItem>
->>>>>>> b7858b634218207f3f1cfa60d317514d1a7fffd2
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
@@ -93,12 +89,7 @@ class Navbarmain extends Component {
                           }}>Profile</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
-                  <NavItem>
 
-
-                  <NavLink onClick={() => {
-                          history.push('/myprofile')}}>View Profile</NavLink>
-                  </NavItem>
 
                   <NavItem>
                   <NavLink onClick={() => {
