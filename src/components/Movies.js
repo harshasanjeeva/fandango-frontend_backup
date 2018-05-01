@@ -142,10 +142,8 @@ class Movies extends Component {
                 </Row>
 <br/>
                 <Row>
-                <Col  >
-                </Col  >
-                <Col  >
-                </Col  >
+            
+           
                 <Col  >
                 </Col  >
                 <Col  >
@@ -229,12 +227,11 @@ class Movies extends Component {
 
                         </Col>
                         <Col  >
+                      
+                        <Button color="warning">sort /\</Button>
                         </Col  >
                         <Col  >
-                        </Col  >
-                        <Col  >
-                        </Col  >
-                        <Col  >
+                        <Button color="warning">sort \/</Button>
                         </Col  >
                     </Row>
                     <br />

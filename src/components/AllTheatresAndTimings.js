@@ -35,7 +35,7 @@ class AllTheatresAndTimings extends Component {
 
 
     returnTheatreTiming = (timings,name) => {
-        console.log("in mapped timinings theatre===>",timings.theatreName)
+        console.log("in mapped timinings theatre===>",timings)
         //movieTimings
         return timings.map((timing)=>{
             return(<Button color="warning" style={{margin:"5px"}}
@@ -69,14 +69,15 @@ class AllTheatresAndTimings extends Component {
         dummyrelease=location.state.release;
         dummyuser_id=location.state.user_id;
         console.log("All theatres -==>",location.state.movieIds, location.state.movieNames,location.state.genre, location.state.release);
-        return this.props.theatres.map((theatre) => {
+        return this.props.theatres.map((theatre) => {console.log("theatre",theatre.theatreName);
             return (
+
                 <div class="theater__wrap" style={{border:'solid', borderColor:'1px', borderWidth: "0.5px", padding: "7px",margin:"10px"}}>
                     <div class="theater__header" >
 
                         <div class="theater__name-wrap">
                             <h2 style={{color:'green'}}>
-                                {theatre.theatreName}
+                                 {theatre.theatreName}
                             </h2>
                         </div>
 
@@ -111,7 +112,7 @@ class AllTheatresAndTimings extends Component {
 
                             </ul>
                             <ListGroup className="listgroupStyle" >
-                            {this.returnTheatreTiming(theatre.movieTimings,theatre.theatreName) }
+                     { this.returnTheatreTiming(theatre.movieTiming,theatre.theatreName) }     
 
                             </ListGroup>
                         </ListGroupItem>
@@ -193,8 +194,11 @@ class AllTheatresAndTimings extends Component {
 
     }}
 function mapStateToProps(state) {
+    console.log("states",state)
+
+    console.log("states", state.user.allthreatres.threatres.moviedata)
     return {
-        theatres:state.theatres
+        theatres:state.user.allthreatres.threatres.moviedata
     };
 }
 

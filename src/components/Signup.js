@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import history from "./History";
 import {actionsign} from '../actions/loginactions';
 import {connect} from 'react-redux';
-import { Row, Col, Input} from 'reactstrap';
+import { Row, Col, Input, Alert} from 'reactstrap';
 import {Card} from 'reactstrap';
 import Navbarmain from './Navbarlogout';
 class Signup extends Component {
@@ -23,18 +23,21 @@ class Signup extends Component {
 
     navigate()
     {
-        history.push('/');
+     setTimeout(function(){
+      //  history.push('/');
+     },3000)   
     }
 
     render() {
 
         if (this.props.signin){
-            alert("sign up successfull");
+            // alert("sign up successfull");
             this.navigate();
         }
         return (
             <div style={{backgroundColor:"black" ,height: "700px !important"}}>
             <Navbarmain />
+            {  this.props.signin ?   <Alert color="success"> signup successful</Alert>:'' }
             <br />
             <br />
             <Row style={{backgroundColor:"black" ,height: "600px"}}>
@@ -145,9 +148,9 @@ const mapDispatchToProps =(dispatch)=> {
 }
 
 const mapStateToProps =(stores)=> {
-
+console.log("states",stores )
     return {
-        signin: stores.user.signup_status
+        signin: false//stores.user.stores.signup_status
     };
 }
 

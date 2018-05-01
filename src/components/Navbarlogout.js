@@ -45,9 +45,15 @@ class Navbarlogout extends Component {
               <NavItem>
               <NavLink href="/login">Sign In</NavLink>
             </NavItem>
+
+                <NavItem>
+                    <NavLink href="/movieuser">Movie User</NavLink>
+                </NavItem>
+
             <NavItem>
                 <NavLink href="/adminLogin">Admin Panel</NavLink>
             </NavItem>
+
 
 
 

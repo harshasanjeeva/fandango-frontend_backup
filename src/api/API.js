@@ -205,8 +205,38 @@ export const halladd = (payload) =>
             return error;
         });
 
+
+
+
+export const moviehalldata = (payload) =>
+    fetch(`${api}/operations/getmoviehalldata`, {
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+
+    console.log(response.UserName+" "+response.email);
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
+
+
+
+
 export const paid = (payload) =>
     fetch(`${api}/operations/payment`, {
+
         method: 'POST',
         headers: {
             ...headers,
@@ -215,6 +245,10 @@ export const paid = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
             console.log(payload);
             return response;
         })
@@ -222,9 +256,36 @@ export const paid = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+export const moviedetailsedit = (payload) =>
+    fetch(`${api}/operations/editmoviehalldata`, {
+
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+
+    console.log(response.UserName+" "+response.email);
+
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
 
 export const real = (payload) =>
     fetch(`${api}/operations/realticket`, {
+
         method: 'POST',
         headers: {
             ...headers,
@@ -233,6 +294,11 @@ export const real = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+
             console.log(payload);
             return response;
         })
@@ -241,8 +307,35 @@ export const real = (payload) =>
             return error;
         });
 
+
+export const gethalldata = (payload) =>
+    fetch(`${api}/operations/gethalldata`, {
+
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+    console.log("message",response.message);
+    console.log("after message");
+
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
+
 export const addHallApi = (payload) =>
     fetch(`${api}/operations/addHall`, {
+
         method: 'POST',
         headers: {
             ...headers,
@@ -251,6 +344,11 @@ export const addHallApi = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+
+            console.log("message",response.message);
+            console.log("after message");
+
+
             console.log(payload);
             return response;
         })
@@ -258,10 +356,36 @@ export const addHallApi = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+export const userlogin = (payload) =>
+    fetch(`${api}/operations/movieuserlogin`, {
+
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+    console.log("message",response.message);
+    console.log("after message");
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
 
 
 export const addUserToHall = (payload) =>
     fetch(`${api}/operations/addUserToHall`, {
+
         method: 'POST',
         headers: {
             ...headers,
@@ -270,6 +394,10 @@ export const addUserToHall = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+
+            console.log("message",response.message);
+            console.log("after message");
+
             console.log(payload);
             return response;
         })
@@ -277,9 +405,149 @@ export const addUserToHall = (payload) =>
             console.log("This is error");
             return error;
         });
+
+
+export const moviedetailsadd = (payload) =>
+    fetch(`${api}/operations/addmoviehalldata`, {
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+
+    console.log(response.UserName+" "+response.email);
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
+
 
 export const delprofile = (payload) =>
     fetch(`${api}/operations/delprofile`, {
+
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+
+export const handlerevenue = (payload) =>
+    fetch(`${api}/operations/revenuedetails`, {
+
+    method: 'POST',
+    headers: {
+    ...headers,
+    'Content-Type': 'application/json'
+},
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+.then(response => {
+
+
+    console.log(response.UserName+" "+response.email);
+
+    console.log(payload);
+    return response;
+})
+.catch(error => {
+    console.log("This is error");
+    return error;
+});
+
+
+export const getMovieHalls = (payload) =>
+    fetch(`${api}/operations/getMovieHalls`, {
+
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+        
+export const actiongetthreatre = (payload) =>
+fetch(`${api}/operations/actiongetthreatre`, {
+    method: 'POST',
+    headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+}).then(response => response.json())
+    .then(response => {
+        console.log(payload);
+        return response;
+    })
+    .catch(error => {
+        console.log("This is error");
+        return error;
+    });
+
+
+
+
+
+export const handlebooking = (payload) =>
+    fetch(`${api}/operations/bookingdetails`, {
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+            console.log(response.UserName+" "+response.email);
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const bookingdelete = (payload) =>
+    fetch(`${api}/operations/deletebooking`, {
         method: 'POST',
         headers: {
             ...headers,
@@ -296,23 +564,6 @@ export const delprofile = (payload) =>
             return error;
         });
 
-export const getMovieHalls = (payload) =>
-    fetch(`${api}/operations/getMovieHalls`, {
-        method: 'POST',
-        headers: {
-            ...headers,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-    }).then(response => response.json())
-        .then(response => {
-            console.log(payload);
-            return response;
-        })
-        .catch(error => {
-            console.log("This is error");
-            return error;
-        });
 
 export const viewprofile = (payload) =>
     fetch(`${api}/operations/viewprofile`, {
@@ -334,6 +585,7 @@ export const viewprofile = (payload) =>
 
 export const viewAllUsers = (payload) =>
     fetch(`${api}/operations/viewAllUsers`, {
+
         method: 'POST',
         headers: {
             ...headers,
@@ -342,6 +594,60 @@ export const viewAllUsers = (payload) =>
         body: JSON.stringify(payload)
     }).then(response => response.json())
         .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+export const hallsanalytics = (payload) =>
+    fetch(`${api}/operations/toprevenuehalls`, {
+
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+
+            console.log(payload);
+            return response;
+        })
+        .catch(error => {
+            console.log("This is error");
+            return error;
+        });
+
+
+export const moviesanalytics = (payload) =>
+    fetch(`${api}/operations/toprevenuemovies`, {
+
+        method: 'POST',
+        headers: {
+            ...headers,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }).then(response => response.json())
+        .then(response => {
+
+
+            console.log(response.UserName+" "+response.email);
+
+
             console.log(payload);
             return response;
         })

@@ -6,7 +6,7 @@ import {Button} from 'reactstrap';
 import Navbarmain from './Navbarmain'
 import { Alert } from 'reactstrap';
 import {actionpayment} from "../actions/loginactions";
-
+import { withRouter } from 'react-router-dom';
 
 class Payments extends Component {
     constructor(props) {
@@ -30,17 +30,54 @@ class Payments extends Component {
         children:0,
         general:0
     };
+
+    this.successd = this.successd.bind(this);
 }
 
+successd(event,data){
+    event.preventDefault();
+
+    this.setState({
+        movieid:data.movieId,
+        movieName:data.movieName,
+        genre:data.genre,
+        release:data.release,
+        total_amount:data.total_amount,
+        total_tickets:data.total_tickets,
+        theatrename:data.theatrename,
+        timings:data.timings,
+        children:data.children,
+        student:data.student,
+        general:data.general
+    })
+
+    
+    
+//     setTimeout(function(){
+//        // console.log(this.state)
+//         this.props.pay(this.state)
+//   },1000);
+}
 
     navigate() {
-        history.push('/');
+    //    setTimeout(function(){
+    //     history.push('/movies');
+    //    },5000) 
     }
+
+
+
 
     render() {
         const { location } = this.props;
-        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets,location.state.theatrename, location.state.timings, this.props.user_id)
-       if (this.props.status) {
+        console.log(location)
+        console.log("Payments==>",location.state.movieId, location.state.movieName, location.state.total_amount, location.state.total_tickets,
+        location.state.theatrename, location.state.timings, this.props.user_id)
+       
+       
+       
+       
+        if (this.props.message) {
             this.navigate();
         }
         return (
@@ -62,10 +99,8 @@ class Payments extends Component {
                         borderColor:"white !important",
                         border:"solid"
                      }}>
-
-                        <Alert color="success">
-                            {this.props.message}
-                        </Alert>
+                        {  this.props.message ?   <Alert color="success"> Payment successfull </Alert>:'' }
+                        
 
                         <Alert color="danger">
                             Please pay ${location.state.total_amount}
@@ -82,7 +117,7 @@ class Payments extends Component {
 
 
 
-                            <p id="label-left">Cardholder Name</p>
+                            <p id="label-left" style={{color:"silver"}}>Cardholder Name</p>
 
                             <Input
 
@@ -149,7 +184,7 @@ class Payments extends Component {
 
                         <br/>
                         <div>
-                        <Button color="success" onClick={() => {
+                        <Button color="success" onClick={(event) => {
                             this.setState({
                                 movieid:location.state.movieId,
                                 movieName:location.state.movieName,
@@ -163,7 +198,26 @@ class Payments extends Component {
                                 student:location.state.student,
                                 general:location.state.general
                             })
-                            this.props.pay(this.state)
+
+                            
+console.log(                                "movieid:",location.state.movieId,
+    "movieName:",location.state.movieName,
+    "genre:",location.state.genre,
+    "release:",location.state.release,
+    "total_amount:",location.state.total_amount,
+    "total_tickets:",location.state.total_tickets,
+    "theatrename:",location.state.theatrename,
+    "timings:",location.state.timings,
+    "children:",location.state.children,
+    "student:",location.state.student,
+    "general:",location.state.general)
+    //    setTimeout(function(event){
+    // this.successd(event,location.state);
+      //  },500)
+
+      setTimeout(function(){ this.props.pay(this.state) }.bind(this),1000);
+
+                           
                         }}>Make Payment</Button>
 
                         <br/>
@@ -182,11 +236,22 @@ const mapDispatchToProps =(dispatch)=> {
     };
 }
 const mapStateToProps =(stores)=> {
-    
+    console.log("states",stores)
+
+    console.log("states",stores.user.stores.payment_status)
+// var message;
+// if (){
+//     message : true
+// }else{
+//     message: false
+// }
+//     message : 
     return {
         user_id: stores.user.stores.user_id,
-        status : stores.user.stores.status,
-        message : "success"
+        status : stores.user.stores.payment_status,
+       message:stores.user.stores.payment_status
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Payments);
+
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Payments));

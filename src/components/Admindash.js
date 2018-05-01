@@ -9,6 +9,8 @@ import Navbarheader from './admin/Navbarmain'
 import {Link} from 'react-router-dom';
 import Footer from './Footer'
 import {Row,Col} from 'reactstrap'
+import {actiongetmovies, actionmovies, analytics} from "../actions/loginactions";
+import {connect} from "react-redux";
 Charts(FusionCharts);
 
 
@@ -68,27 +70,78 @@ var BarChart = require("react-chartjs").Bar;
 var DoughnutChart = require("react-chartjs").Doughnut;
 var data = [
 	{
-		value: 300,
+		value: this.props.revenue_list[0],
 		color:"#F7464A",
 		highlight: "#FF5A5E",
-		label: "Red"
+		label: this.props.halls_list[0]
 	},
 	{
-		value: 50,
+		value: this.props.revenue_list[1],
 		color: "#46BFBD",
 		highlight: "#5AD3D1",
-		label: "Green"
+		label: this.props.halls_list[1]
 	},
 	{
-		value: 100,
+		value: this.props.revenue_list[2],
 		color: "#FDB45C",
 		highlight: "#FFC870",
-		label: "Yellow"
-	}
+		label: this.props.halls_list[2]
+	},
+
+    {
+        value: this.props.revenue_list[3],
+        color: "#008080",
+        highlight: "#008080",
+        label: this.props.halls_list[3]
+    },
+
+    {
+        value: this.props.revenue_list[4],
+        color: "#0000FF",
+        highlight: "#0000FF",
+        label: this.props.halls_list[4]
+    },
+
+    {
+        value: this.props.revenue_list[5],
+        color: "#000080",
+        highlight: "#000080",
+        label: this.props.halls_list[5]
+    },
+
+    {
+        value: this.props.revenue_list[6],
+        color: "#FF00FF",
+        highlight: "#FF00FF",
+        label: this.props.halls_list[6]
+    },
+
+    {
+        value: this.props.revenue_list[7],
+        color: "#800080",
+        highlight: "#800080",
+        label: this.props.halls_list[7]
+    },
+
+    {
+        value: this.props.revenue_list[8],
+        color: "#00FFFF",
+        highlight: "#00FFFF",
+        label: this.props.halls_list[8]
+    },
+
+    {
+        value: this.props.revenue_list[9],
+        color: "#008000",
+        highlight: "#008000",
+        label: this.props.halls_list[9]
+    }
+
+
 ]
 
     var chartData= {
-        labels: ["January", "February", "March", "April", "May", "June", "July","MOV","mov","mov"],
+        labels: this.props.movies_list,
         datasets: [
             {
                 label: "My First dataset",
@@ -98,7 +151,7 @@ var data = [
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [65, 59, 80, 81, 56, 55, 40,10,50,60]
+                data: this.props.rev_list
             }
             // {
             //     label: "My Second dataset",
@@ -150,8 +203,34 @@ var data = [
 
   }
 }
+const mapDispatchToProps =(dispatch)=> {
+    return {
+        log : (data) => dispatch(actionmovies(data)),
+        getmovies : (data) => dispatch(actiongetmovies(data)),
+        analytics : (data) => dispatch(analytics(data))
+    };
+}
+
+
+function mapStateToProps(state) {
+    console.log(state);
+    console.log("halls_list in admindash:",state.user.graph1.halls_list);
+    console.log("revenue_list in admindash:",state.user.graph1.revenue_list);
+    console.log("movies_list in admindash:",state.user.graph2.movies_list);
+    console.log("revenue_list in admindash:",state.user.graph2.revenue_list);
+
+    return {
+        halls_list:state.user.graph1.halls_list,
+        revenue_list:state.user.graph1.revenue_list,
+        movies_list:state.user.graph2.movies_list,
+        rev_list:state.user.graph2.revenue_list,
+
+
+    };
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Admindash);
 
 
 
-
-export default withRouter(Admindash);

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import history from './History';
 import '.././App.css';
-import {actionreal,actiondel,actionview} from "../actions/loginactions";
+import {actionreal,actiondel,actionview, signout} from "../actions/loginactions";
 import { withRouter } from 'react-router-dom';
 
 
@@ -62,7 +62,6 @@ class Navbarmain extends Component {
                 <NavItem >
                     <NavLink onClick={(event) => history.push('/Movies')}    >Movies</NavLink>
                 </NavItem>
-
 
                 <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle nav caret>
@@ -132,7 +131,13 @@ class Navbarmain extends Component {
                   </NavItem>
 
                 <NavItem>
-                <NavLink href="/" style={{color:"white"}}>Sign Out</NavLink>
+                <NavLink href="/" style={{color:"white"}}
+                onClick={() => {
+                  this.props.signout(this.props.user_id),
+                      history.push('/')
+                    
+                    }}
+                >Sign Out</NavLink>
                 </NavItem>
 
 
@@ -150,7 +155,8 @@ const mapDispatchToProps =(dispatch)=> {
     return {
         real : (data) => dispatch(actionreal(data)),
         del : (data) => dispatch(actiondel(data)),
-        profile : (data) => dispatch(actionview(data))
+        profile : (data) => dispatch(actionview(data)),
+        signout : (data) => dispatch(signout(data))
     };
 }
 

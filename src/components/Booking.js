@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import history from "./History";
 import { Player } from 'video-react';
 import Navbarmain from './Navbarmain';
-import {analytics,actionsubmitreviews,actiongetreviews} from '../actions/loginactions';
+import {analytics,actionsubmitreviews,actiongetreviews,actiongetthreatre} from '../actions/loginactions';
 
 import { withRouter } from 'react-router-dom';
 
@@ -80,7 +80,7 @@ class Booking extends Component {
             return reviews.map((review) => {
                 return (
                     <ListGroupItem action
-                                   key={review}>
+                                   key={review} style={{backgroundColor:"black",color:"silver", border:"solid white",borderWidth:"0.5px",padding:"5px"}}>
                         <div>
                             <span>{review}</span>
                         </div>
@@ -108,6 +108,8 @@ class Booking extends Component {
     render(){
         const { location } = this.props;
         console.log("booking -==>",location.state.movieId, location.state.movieName,location.state.genre, location.state.release);
+
+
 
         if (this.props.booked===true){
             this.navigate();
@@ -178,8 +180,8 @@ class Booking extends Component {
                                         setTimeout(function(){
                                         history.push
                                         ({
-                                        pathname: '/BookTicket',
-                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                        pathname: '/BookTicket',             //       theatrename, location.state.timings
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release,theatrename:"AMC Eastridge 15",timings:"Friday 23 April 2017 7:30 pm"}
                                     });
 
                                     },1000)
@@ -199,7 +201,7 @@ class Booking extends Component {
                                         history.push
                                         ({
                                         pathname: '/BookTicket',
-                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release,theatrename:"AMC Eastridge 15",timings:"Friday 23 April 2017 7:30 pm"}
                                     });
 
                                     },1000)
@@ -219,7 +221,7 @@ class Booking extends Component {
                                                 history.push
                                                 ({
                                                     pathname: '/BookTicket',
-                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release,theatrename:"AMC Eastridge 15",timings:" Friday 23 April 2017 8:30 pm"}
                                                 });
 
                                             },1000)
@@ -237,7 +239,7 @@ class Booking extends Component {
                                         history.push
                                         ({
                                         pathname: '/BookTicket',
-                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                        state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release, theatrename:"AMC Eastridge 15", timings: "Friday 23 April 2017 9:00 pm"}
                                     });
 
                                     },1000)
@@ -256,7 +258,7 @@ class Booking extends Component {
                                                 history.push
                                                 ({
                                                     pathname: '/BookTicket',
-                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
+                                                    state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release, theatrename:"AMC Eastridge 15", timings: "Friday 23 April 2017 10:00 pm"}
                                                 });
 
                                             },1000)
@@ -276,7 +278,9 @@ class Booking extends Component {
                                                     state: {  movieIds: location.state.movieId, movieNames:location.state.movieName,genre:location.state.genre, release:location.state.release}
                                                 });
 
-                                            },1000)
+                                            },3000)
+
+                                        this.props.threatre({movieName:location.state.movieName});
                                         }}><strong>SEE ALL THEATRES + MOVIE TIMINGS</strong></Button>
                             </ButtonToolbar>
                         </div>
@@ -296,16 +300,16 @@ class Booking extends Component {
             </div>
             </TabPanel>
             <TabPanel style={{backgroundColor: "black", height:"1000px"}}>
-              <h2>Any content 2</h2>
+              
               
               <div className="row justify-content-md-middle">
-              <div className="col-lg-6-middle">
-                  <Card>
+              <div style={{marginLeft:"600px"}}>
+                  <Card style={{backgroundColor:"black"}}>
                       <CardTitle style={{color:"silver"}}>USER REVIEWS</CardTitle>
-                      <div className="form-group">
-                          Movie_Name:<span>{location.state.movieName}</span>
+                      <div className="form-group" style={{color:"orange"}}>
+                          Movie_Name:<span style={{color:"silver"}}>{location.state.movieName}</span>
                       </div>
-                      <Input type="name"
+                      <Input type="name" style={{backgroundColor:"black",color:"silver"}}
                              placeholder="Enter Reviews"
                              onChange={(event) => {
                                  this.setState({
@@ -315,8 +319,9 @@ class Booking extends Component {
                       <Button color="primary" onClick={(event) => {
                           this.props.submitreviews({movieName:location.state.movieName,reviews:this.state.reviews})
                       }}>Submit Review</Button>
-
+<br />
                       <div>
+                      <h5 style={{color:"silver"}}> Earlier Reviews </h5>
                           <ListGroup>
                           {this.renderReviewList()}
                           </ListGroup>
@@ -345,6 +350,7 @@ const mapDispatchToProps =(dispatch)=> {
         analytics : (data) => dispatch(analytics(data)),
         submitreviews: (data) => dispatch(actionsubmitreviews(data)),
         getreviews: (data) => dispatch(actiongetreviews(data)),
+        threatre :(data) => dispatch(actiongetthreatre(data)),
     };
 }
 

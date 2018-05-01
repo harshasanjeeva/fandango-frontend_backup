@@ -1,45 +1,56 @@
 import React, {Component} from 'react';
+import {actionmovieuserlogin} from '../../actions/loginactions';
 import { Row, Col, Input} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "../History";
 import Navbarmain from '../Navbarlogout';
-import {actionAdminLogin, actiongetmovies, getMovieHalls, actiongetanalyticshalls,actiongetanalyticsmovies} from '../../actions/loginactions';
-import { withRouter } from 'react-router-dom';
+import {actiongetmoviehall} from '../../actions/loginactions';
+import {actiongetmovies} from '../../actions/loginactions';
+import {actiongethalls} from '../../actions/loginactions';
 
-class adminHome extends Component {
+
+class Loginuser extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            email:'',
+            email: '',
             password: '',
             modal: false
+
         };
-        this.adminLogin = this.adminLogin.bind(this);
+        this.toggle = this.toggle.bind(this);
+        this.navigate = this.navigate.bind(this);
+    }
+    toggle() {
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
-    adminLogin() {
-        this.props.log(this.state);
-        this.props.getMovieHalls();
-        this.props.getMovies();
-        this.props.graph1();
-        this.props.graph2();
-        setTimeout(function () {
-            history.push
-            ({
-                pathname: '/adminMainPage',
-                state:""
 
-            });
-        },6000);
+    navigate() {
+        console.log("movies===>")
+        setTimeout(function () {
+            history.push('/hallinfo');
+        }, 3000)
+
+        var d = {
+            hallId: this.props.hallId
+        }
+
+            this.props.getmovies(d);
+            this.props.getallmovies(d);
+
     }
 
 
     render() {
 
-
-
+        if (this.props.login_status){
+            this.navigate();
+        }
 
         return (            <div style={{backgroundColor:"black" ,height: "700px !important"}}>
         <Navbarmain />
@@ -61,15 +72,13 @@ class adminHome extends Component {
 
             </div>
             <div >
-
             </div>
 
             <div >
                 <form>
                     <div >
                     <h1 style={{color:"white"}}>FANDANGO-VIP </h1>
-
-                        <h2 style={{color:"orange"}}>Admin Login</h2>
+                        <h2 style={{color:"orange"}}>Movie Hall Login</h2>
                     </div>
                     <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Email </p>
                     <div style={{paddingLeft:100,paddingRight:100 }}>
@@ -89,28 +98,30 @@ class adminHome extends Component {
 <br />
                     <p style={{paddingLeft:10,float:"left" ,color:"white"}}>Password </p>
                     <div className="form-group"  style={{paddingLeft:100,paddingRight:100 }}>
-                    <Input
+                        <Input
 
-                    type="password"
-                    label="password"
-                    placeholder="Enter Password"
-                    value={this.state.password}
-                    onChange={(event) => {
-                        this.setState({
-                            password: event.target.value
-                        });
-                    }}
-                />
+                            type="password"
+                            label="password"
+                            placeholder="Enter Password"
+                            value={this.state.password}
+                            onChange={(event) => {
+                                this.setState({
+                                    password: event.target.value
+                                });
+                            }}
+                        />
                     </div>
                     <div className="form-group">
 
-                    <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={(event) => {
-                        this.adminLogin()
-                    }}>Admin       Login
-                </button>
+                        <button
+                            className="btn btn-primary"
+                            type="button"
+                            onClick={() => {
+
+                                this.props.log(this.state);
+                                this.setState({movieuserlogin_status:false})}}>
+                            Login
+                        </button>
 
 
 
@@ -123,26 +134,26 @@ class adminHome extends Component {
         </Row>
 
 
-        </div>
-
-
-        );
+        </div> );
     }
-
-
 }
 
 const mapDispatchToProps =(dispatch)=> {
     return {
-        log : (data) => dispatch(actionAdminLogin(data)),
-        getMovieHalls: () => dispatch(getMovieHalls()),
-        getMovies : (data) => dispatch(actiongetmovies(data)),
-        graph1 : (data) => dispatch(actiongetanalyticshalls(data)),
-        graph2 : (data) => dispatch(actiongetanalyticsmovies(data))
+        log : (data) => dispatch(actionmovieuserlogin(data)),
+
+        getmovies : (data) => dispatch(actiongetmoviehall(data)),
+        getallmovies : (data) => dispatch(actiongetmovies(data))
     };
 }
-const mapStateToProps =(state)=> {
-    return state
-}
+const mapStateToProps =(stores)=> {
+    console.log(stores);
+    console.log(stores.user.stores.movieuserlogin_status);
+    return {
+        login_status :stores.user.stores.movieuserlogin_status,
+        hallId :stores.user.stores.hall_id
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(adminHome));
+
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Loginuser);

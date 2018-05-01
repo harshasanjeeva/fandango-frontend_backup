@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {actionlogin} from '../actions/loginactions';
-import { Row, Col, Input} from 'reactstrap';
+import { Row, Col, Input,Alert} from 'reactstrap';
 import {Card} from 'reactstrap';
 import {connect} from 'react-redux';
 import history from "./History";
@@ -39,6 +39,8 @@ class Login extends Component {
             <Navbarmain />
             <br />
             <br />
+
+            {  this.props.message ?   <Alert color="success"> Login Successful</Alert>:'' }
             <Row style={{backgroundColor:"black" ,height: "600px"}}>
 
             <Col>
